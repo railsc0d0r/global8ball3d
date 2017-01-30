@@ -24,7 +24,8 @@
     <canvas id="renderCanvas"></canvas>
     <script>
       window.addEventListener('DOMContentLoaded', function() {
-          // your code here
+        var canvas = document.getElementById('renderCanvas');
+        var engine = new BABYLON.Engine(canvas, true);
       });
     </script>
   </body>
