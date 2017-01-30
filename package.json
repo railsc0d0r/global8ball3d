@@ -1,0 +1,14 @@
+{
+  "name": "game3d_poc",
+  "version": "0.0.1",
+  "description": "PoC for a 8ball-pool based on babylonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}
