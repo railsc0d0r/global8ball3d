@@ -22,7 +22,7 @@ var GAME = function() {
     var material = new BABYLON.StandardMaterial(config.color, this);
     material.diffuseColor = color;
 
-    var sphere = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter, segments: 16 }, this);
+    var sphere = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, this);
     sphere.position.x = x;
     sphere.position.y = y;
     sphere.position.z = z;
