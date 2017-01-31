@@ -23,7 +23,7 @@ var BALLS = [{
     {
         "id": 3,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
@@ -67,7 +67,7 @@ var BALLS = [{
     {
         "id": 7,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
@@ -78,7 +78,7 @@ var BALLS = [{
     {
         "id": 8,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
@@ -100,7 +100,7 @@ var BALLS = [{
     {
         "id": 10,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
@@ -122,7 +122,7 @@ var BALLS = [{
     {
         "id": 12,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
@@ -144,7 +144,7 @@ var BALLS = [{
     {
         "id": 14,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
@@ -166,7 +166,7 @@ var BALLS = [{
     {
         "id": 16,
         "type": "playball",
-        "color": "gold",
+        "color": "yellow",
         "radius": 0.0291,
         "mass": 0.17,
         "position": {
