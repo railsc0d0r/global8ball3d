@@ -25,6 +25,29 @@ var GAME = function() {
     sphere.material = material;
   };
 
+  // creates a polyhedron from given config
+  var createBorder = function(name, vertices, scene) {
+    var borderVertices = [];
+    var borderFaces = [
+      [0,1,2],
+      [3,4,5],
+      [0,1,4,3],
+      [0,3,5,2],
+      [1,4,5,2]
+    ];
+
+    vertices.forEach(function(vertex) {
+      borderVertices.push([vertex.x, vertex.y, vertex.z]);
+    });
+    var customOptions = {
+      name: name,
+      vertex: borderVertices,
+      face: borderFaces
+    };
+
+    BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+  };
+
   // creates alls surface-materials
   var createSurfaceMaterials = function(scene) {
     var COLORS = {
@@ -64,6 +87,11 @@ var GAME = function() {
     // create all spheres
     BALLS.forEach(function(ball) {
       createSphere(ball,scene);
+    });
+
+    // create all borders
+    Object.keys(BORDERS).forEach(function(border) {
+      createBorder(border, BORDERS[border], scene);
     });
 
     var ground = BABYLON.MeshBuilder.CreateGround('ground1',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
