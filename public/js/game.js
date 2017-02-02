@@ -71,8 +71,8 @@ var GAME = function() {
     // create a basic BJS Scene object
     var scene = new BABYLON.Scene(engine);
 
-    // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 1.5,-1.5), scene);
+    // create a FreeCamera, and set its position
+    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(2, 1.5, -2), scene);
 
     // target the camera to scene origin
     camera.setTarget(BABYLON.Vector3.Zero());
