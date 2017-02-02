@@ -1,20 +1,24 @@
 var GAME = function() {
+  // the canvas element to render on
   var canvas = document.getElementById('renderCanvas');
+
+  // the engine used to render the world
   var engine = new BABYLON.Engine(canvas, true);
 
+  // object to hold all surface-materials
   var surfaceMaterials = {};
 
   // creates a sphere from given config
-  var createSphere = function(config) {
-    var name = config.id;
-    var radius = config.radius;
+  var createSphere = function(ball,scene) {
+    var name = ball.id;
+    var radius = ball.radius;
     var diameter = radius * 2;
-    var x = config.position.x;
-    var y = config.radius;
-    var z = config.position.z;
-    var material = surfaceMaterials[config.color];
+    var x = ball.position.x;
+    var y = ball.radius;
+    var z = ball.position.z;
+    var material = surfaceMaterials[ball.color];
 
-    var sphere = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, this);
+    var sphere = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
     sphere.position.x = x;
     sphere.position.y = y;
     sphere.position.z = z;
@@ -58,7 +62,9 @@ var GAME = function() {
     createSurfaceMaterials(scene);
 
     // create all spheres
-    BALLS.forEach(createSphere, scene);
+    BALLS.forEach(function(ball) {
+      createSphere(ball,scene);
+    });
 
     var ground = BABYLON.MeshBuilder.CreateGround('ground1',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
 
