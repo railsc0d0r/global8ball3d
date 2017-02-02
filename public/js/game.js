@@ -33,7 +33,7 @@ var GAME = function() {
       [3,4,5],
       [0,1,4,3],
       [0,2,5,3],
-      [1,2,5,4]
+      [1,4,5,2]
     ];
 
     vertices.forEach(function(vertex) {
