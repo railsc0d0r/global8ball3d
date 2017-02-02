@@ -46,7 +46,7 @@ var GAME = function() {
     };
 
     var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
-    border.material = surfaceMaterials.black;
+    border.material = surfaceMaterials.blue;
   };
 
   // creates alls surface-materials
@@ -55,7 +55,8 @@ var GAME = function() {
       red: BABYLON.Color3.Red(),
       yellow: BABYLON.Color3.Yellow(),
       white: BABYLON.Color3.White(),
-      black: BABYLON.Color3.Black()
+      black: BABYLON.Color3.Black(),
+      blue: BABYLON.Color3.Blue()
     };
 
     Object.keys(COLORS).forEach(function(color) {
@@ -96,6 +97,8 @@ var GAME = function() {
     });
 
     var ground = BABYLON.MeshBuilder.CreateGround('ground1',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
+
+    ground.material = surfaceMaterials.blue;
 
     // return the created scene
     return scene;
