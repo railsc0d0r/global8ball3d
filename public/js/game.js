@@ -45,7 +45,8 @@ var GAME = function() {
       face: borderFaces
     };
 
-    BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+    var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+    border.material = surfaceMaterials.black;
   };
 
   // creates alls surface-materials
