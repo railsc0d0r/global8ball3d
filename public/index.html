@@ -26,7 +26,7 @@
     </style>
   </head>
   <body>
-    <canvas id="renderCanvas"></canvas>
+    <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
       var game = new GAME(BALLS, BORDERS, HOLES);
       window.addEventListener('DOMContentLoaded', game.init);
