@@ -78,11 +78,15 @@ function GAME(balls, borders, holes) {
       // create a basic BJS Scene object
       var scene = new BABYLON.Scene(engine);
 
-      // create a FreeCamera, and set its position
-      var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 1.5, -2), scene);
+      var target = BABYLON.Vector3.Zero();
+      var alpha = -135;
+      var beta = -90;
+      var radius = 10;
 
-      // target the camera to scene origin
-      camera.setTarget(BABYLON.Vector3.Zero());
+      // create a ArcRotateCamera, and set its options
+	var camera = new BABYLON.ArcRotateCamera('camera1', alpha, beta, radius, target, scene);
+
+	camera.zoomOnFactor = 2;
 
       // attach the camera to the canvas
       camera.attachControl(canvas, false);
