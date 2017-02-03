@@ -27,7 +27,8 @@
   <body>
     <canvas id="renderCanvas"></canvas>
     <script>
-      window.addEventListener('DOMContentLoaded', GAME);
+      var game = new GAME(BALLS, BORDERS, HOLES);
+      window.addEventListener('DOMContentLoaded', game.init);
     </script>
   </body>
 </html>
