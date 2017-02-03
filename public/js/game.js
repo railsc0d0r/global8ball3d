@@ -79,14 +79,14 @@ function GAME(balls, borders, holes) {
       var scene = new BABYLON.Scene(engine);
 
       var target = BABYLON.Vector3.Zero();
-      var alpha = -135;
-      var beta = -90;
-      var radius = 10;
+      var alpha = Math.PI;
+      var beta = Math.PI / 8 * 3;
+      var radius = 3;
 
       // create a ArcRotateCamera, and set its options
-	var camera = new BABYLON.ArcRotateCamera('camera1', alpha, beta, radius, target, scene);
+      var camera = new BABYLON.ArcRotateCamera('camera1', alpha, beta, radius, target, scene);
 
-	camera.zoomOnFactor = 2;
+      camera.zoomOnFactor = 0.1;
 
       // attach the camera to the canvas
       camera.attachControl(canvas, false);
