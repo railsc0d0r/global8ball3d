@@ -100,7 +100,7 @@ var GAME = function() {
 
     var ground = BABYLON.MeshBuilder.CreateGround('ground1',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
 
-    ground.material = surfaceMaterials.blue;
+    ground.material = surfaceMaterials.gray;
 
     // return the created scene
     return scene;
