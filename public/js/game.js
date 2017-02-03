@@ -56,7 +56,9 @@ var GAME = function() {
       yellow: BABYLON.Color3.Yellow(),
       white: BABYLON.Color3.White(),
       black: BABYLON.Color3.Black(),
-      blue: BABYLON.Color3.Blue()
+      blue: BABYLON.Color3.Blue(),
+      gray: BABYLON.Color3.Gray(),
+      green: BABYLON.Color3.Green()
     };
 
     Object.keys(COLORS).forEach(function(color) {
