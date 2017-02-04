@@ -86,6 +86,7 @@ function GAME(balls, borders, holes) {
       // create a ArcRotateCamera, and set its options
       var camera = new BABYLON.ArcRotateCamera('camera1', alpha, beta, radius, target, scene);
 
+      camera.upperBetaLimit = Math.PI / 2;
       camera.zoomOnFactor = 0.1;
 
       // attach the camera to the canvas
