@@ -93,8 +93,8 @@ function GAME(balls, borders, holes) {
     };
 
     var createPlayground = function (scene) {
-      var ground = BABYLON.MeshBuilder.CreateGround('playground',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
-      ground.material = surfaceMaterials.gray;
+      var ground = BABYLON.MeshBuilder.CreateGround('playground',{ width: 2.6564, height: 1.3864 }, scene);
+      ground.material = surfaceMaterials.lightBlue;
     };
 
     var createScene = function() {
