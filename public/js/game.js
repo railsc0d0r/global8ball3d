@@ -62,7 +62,9 @@ function GAME(balls, borders, holes) {
         black: BABYLON.Color3.Black(),
         blue: BABYLON.Color3.Blue(),
         gray: BABYLON.Color3.Gray(),
-        green: BABYLON.Color3.Green()
+        green: BABYLON.Color3.Green(),
+        brown: BABYLON.Color3.Green().add(BABYLON.Color3.Red()),
+        lightBlue: BABYLON.Color3.Blue().add(BABYLON.Color3.Gray())
       };
 
       Object.keys(COLORS).forEach(function(color) {
