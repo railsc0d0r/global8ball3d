@@ -30,7 +30,7 @@ function GAME(balls, borders, holes) {
     };
 
     // creates a polyhedron from given config
-    var createBorder = function(name, vertices, scene) {
+    var createBorder = function(border, scene) {
       var borderVertices = [];
       var borderFaces = [
         [0,1,2],
@@ -40,11 +40,11 @@ function GAME(balls, borders, holes) {
         [1,4,5,2]
       ];
 
-      vertices.forEach(function(vertex) {
+      border.vertices.forEach(function(vertex) {
         borderVertices.push([vertex.x, vertex.y, vertex.z]);
       });
       var customOptions = {
-        name: name,
+        name: border.id,
         vertex: borderVertices,
         face: borderFaces
       };
@@ -103,8 +103,8 @@ function GAME(balls, borders, holes) {
       });
 
       // create all borders
-      Object.keys(borders).forEach(function(border) {
-        createBorder(border, borders[border], scene);
+      borders.forEach(function(border) {
+        createBorder(border, scene);
       });
 
       var ground = BABYLON.MeshBuilder.CreateGround('ground1',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
