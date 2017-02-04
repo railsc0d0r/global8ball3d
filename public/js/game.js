@@ -74,10 +74,7 @@ function GAME(balls, borders, holes) {
       });
     };
 
-    var createScene = function() {
-      // create a basic BJS Scene object
-      var scene = new BABYLON.Scene(engine);
-
+    var createCamera = function(scene) {
       var target = BABYLON.Vector3.Zero();
       var alpha = Math.PI;
       var beta = Math.PI / 8 * 3;
@@ -91,12 +88,27 @@ function GAME(balls, borders, holes) {
 
       // attach the camera to the canvas
       camera.attachControl(canvas, false);
+    };
+
+    var createPlayground = function (scene) {
+      var ground = BABYLON.MeshBuilder.CreateGround('playground',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
+      ground.material = surfaceMaterials.gray;
+    };
+
+    var createScene = function() {
+      // create a basic BJS Scene object
+      var scene = new BABYLON.Scene(engine);
+
+      createCamera(scene);
 
       // create a basic light, aiming 0,1,0 - meaning, to the sky
       var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
       // create surface-materials
       createSurfaceMaterials(scene);
+
+      // create the playground
+      createPlayground(scene);
 
       // create all spheres
       balls.forEach(function(ball) {
@@ -107,10 +119,6 @@ function GAME(balls, borders, holes) {
       borders.forEach(function(border) {
         createBorder(border, scene);
       });
-
-      var ground = BABYLON.MeshBuilder.CreateGround('ground1',{ width: 2.54, height: 1.27, subdivisions: 2 }, scene);
-
-      ground.material = surfaceMaterials.gray;
 
       // return the created scene
       return scene;
