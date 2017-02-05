@@ -42,6 +42,6 @@ var HOLES = [
       x: -0.002645853,
       z: -0.6932
     },
-    radius: 0.018525346999999998
+    radius: hole_radius
   }
 ]
