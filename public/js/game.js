@@ -151,8 +151,17 @@ function GAME(balls, borders, holes, rail) {
     };
 
     var createPlayground = function (scene) {
-      var ground = BABYLON.MeshBuilder.CreateGround('playground',{ width: 2.6564, height: 1.3864 }, scene);
-      ground.material = surfaceMaterials.lightBlue;
+      var mesh = BABYLON.MeshBuilder.CreateGround('playground',{ width: 2.6564, height: 1.3864 }, scene);
+      var csgPlayground = BABYLON.CSG.FromMesh(mesh);
+      mesh.dispose();
+
+      var csgHoles = createCsgHoles(holes,scene);
+
+      csgHoles.forEach(function(csgHole) {
+        csgPlayground.subtractInPlace(csgHole);
+      });
+
+      csgPlayground.toMesh(name, surfaceMaterials.lightBlue, scene, false);
     };
 
     var createScene = function() {
