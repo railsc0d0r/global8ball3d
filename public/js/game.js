@@ -85,21 +85,30 @@ function GAME(balls, borders, holes, rail) {
 
     // creates another polyhedron from given config
     var createRail = function(rail, scene) {
-	var railVertices = [];
-	var railFaces = rail.faces;
+      var railVertices = [];
+      var railFaces = rail.faces;
 
-	rail.vertices.forEach(function(vertex) {
-	    railVertices.push([vertex.x, vertex.y, vertex.z]);
-	});
+      rail.vertices.forEach(function(vertex) {
+        railVertices.push([vertex.x, vertex.y, vertex.z]);
+      });
 
-	var customOptions = {
+      var customOptions = {
         name: "rail",
         vertex: railVertices,
         face: railFaces
       };
 
-      var rail = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
-      rail.material = surfaceMaterials.brown;
+      var mesh = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+      var csgRail = BABYLON.CSG.FromMesh(mesh);
+      mesh.dispose();
+
+      var csgHoles = createCsgHoles(holes,scene);
+
+      csgHoles.forEach(function(csgHole) {
+        csgRail.unionInPlace(csgHole);
+      });
+
+      csgRail.toMesh(name, surfaceMaterials.brown, scene, false);
     };
 
     // creates alls surface-materials
