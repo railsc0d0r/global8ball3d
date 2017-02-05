@@ -29,6 +29,36 @@ function GAME(balls, borders, holes, rail) {
       sphere.material = material;
     };
 
+    // Creates all holes per given config. These holes are only temporarily added to the scene
+    // and used via csg to be subtracted from other meshes. Afterwards they are disposed.
+    var createCsgHoles = function(holes, scene) {
+      var csgHoles = []
+      holes.forEach(function(hole) {
+        csgHoles.push(createCsgHole(hole, scene));
+      });
+
+      return csgHoles;
+    };
+
+    // Creates a hole-mesh by given config, sets a position, creates a csg from this mesh and disposes the mesh.
+    // Returns the csg-object
+    var createCsgHole = function(hole, scene) {
+      var name = hole.id;
+      var diameter = hole.radius * 2;
+      var x = hole.position.x;
+      var z = hole.position.z;
+      var height = 0.089;
+
+      var mesh = BABYLON.MeshBuilder.CreateCylinder(name, {diameter: diameter, height: height}, scene);
+      mesh.position.x = x;
+      mesh.position.z = z;
+
+      var csg = BABYLON.CSG.FromMesh(mesh);
+      mesh.dispose();
+
+      return csg;
+    };
+
     // creates a polyhedron from given config
     var createBorder = function(border, scene) {
       var borderVertices = [];
