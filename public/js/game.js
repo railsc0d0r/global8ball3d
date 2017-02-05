@@ -1,4 +1,4 @@
-function GAME(balls, borders, holes) {
+function GAME(balls, borders, holes, rail) {
   var scene;
 
   // initialize the game
@@ -51,6 +51,25 @@ function GAME(balls, borders, holes) {
 
       var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
       border.material = surfaceMaterials.blue;
+    };
+
+    // creates another polyhedron from given config
+    var createRail = function(rail, scene) {
+	var railVertices = [];
+	var railFaces = rail.faces;
+
+	rail.vertices.forEach(function(vertex) {
+	    railVertices.push([vertex.x, vertex.y, vertex.z]);
+	});
+
+	var customOptions = {
+        name: "rail",
+        vertex: railVertices,
+        face: railFaces
+      };
+
+      var rail = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+      rail.material = surfaceMaterials.brown;
     };
 
     // creates alls surface-materials
@@ -121,6 +140,9 @@ function GAME(balls, borders, holes) {
       borders.forEach(function(border) {
         createBorder(border, scene);
       });
+
+      // create the rail
+      createRail(rail, scene);
 
       // return the created scene
       return scene;
