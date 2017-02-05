@@ -1,5 +1,5 @@
 var upper_limit = 0.04445;
-var lower_limit = -(upper_limit + 0.1);
+var lower_limit = -upper_limit;
 var x_inner_limit = 1.3282;
 var x_outer_limit = 1.4782;
 var z_inner_limit = 0.6932;
