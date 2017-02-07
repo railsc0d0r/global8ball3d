@@ -187,22 +187,27 @@ function GAME(balls, borders, holes, rail) {
       createCamera(scene);
 
       // create a basic light, aiming 0,1,0 - meaning, to the sky
-      var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+      var light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, scene);
 
       // create surface-materials
       createSurfaceMaterials(scene);
 
       // create the playground
-      createPlayground(scene);
+      var ground = createPlayground(scene);
+
+      // creates a shadowGenerator w/ given SpotLight and let ground receive the shadows
+      var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+      shadowGenerator.bias = 0.0001;
+      ground.receiveShadows = true;
 
       // create all spheres
       balls.forEach(function(ball) {
-        createSphere(ball,scene);
+        shadowGenerator.getShadowMap().renderList.push(createSphere(ball,scene));
       });
 
       // create all borders
       borders.forEach(function(border) {
-        createBorder(border, scene);
+        shadowGenerator.getShadowMap().renderList.push(createBorder(border, scene));
       });
 
       // create the rail
