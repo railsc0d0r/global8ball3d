@@ -75,8 +75,10 @@ function GAME(balls, borders, holes, rail) {
       border.vertices.forEach(function(vertex) {
         borderVertices.push([vertex.x, vertex.y, vertex.z]);
       });
+
+      var name = border.id;
+
       var customOptions = {
-        name: border.id,
         vertex: borderVertices,
         face: borderFaces
       };
@@ -167,7 +169,8 @@ function GAME(balls, borders, holes, rail) {
     };
 
     var createPlayground = function (scene) {
-      var mesh = BABYLON.MeshBuilder.CreateGround('playground',{ width: 2.6564, height: 1.3864 }, scene);
+      var name = 'playground';
+      var mesh = BABYLON.MeshBuilder.CreateGround(name, { width: 2.6564, height: 1.3864 }, scene);
       var csgPlayground = BABYLON.CSG.FromMesh(mesh);
       mesh.dispose();
 
