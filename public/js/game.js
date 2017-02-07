@@ -27,6 +27,8 @@ function GAME(balls, borders, holes, rail) {
       sphere.position.y = y;
       sphere.position.z = z;
       sphere.material = material;
+
+      return sphere;
     };
 
     // Creates all holes per given config. These holes are only temporarily added to the scene
@@ -81,6 +83,8 @@ function GAME(balls, borders, holes, rail) {
 
       var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
       border.material = surfaceMaterials.blue;
+
+      return border;
     };
 
     // creates a box by given config
@@ -173,7 +177,7 @@ function GAME(balls, borders, holes, rail) {
         csgPlayground.subtractInPlace(csgHole);
       });
 
-      csgPlayground.toMesh(name, surfaceMaterials.lightBlue, scene, false);
+      return csgPlayground.toMesh(name, surfaceMaterials.lightBlue, scene, false);
     };
 
     var createScene = function() {
