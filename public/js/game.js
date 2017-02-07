@@ -104,6 +104,7 @@ function GAME(balls, borders, holes, rail) {
     // creates another polyhedron from given config
     var createRail = function(rail, holes, scene) {
       var railBoxes = [];
+      var name = "rail";
 
       rail.forEach(function(box) {
         railBoxes.push(createBox(box,scene));
