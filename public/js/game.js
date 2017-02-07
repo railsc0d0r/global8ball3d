@@ -184,6 +184,10 @@ function GAME(balls, borders, holes, rail) {
       // create a basic BJS Scene object
       var scene = new BABYLON.Scene(engine);
 
+      // Enables physics w/ a gravity of 9.81 in y-direction and CannonJs as Engine
+      scene.enablePhysics();
+
+
       createCamera(scene);
 
       // create a basic light, aiming 0,1,0 - meaning, to the sky
