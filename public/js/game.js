@@ -83,29 +83,40 @@ function GAME(balls, borders, holes, rail) {
       border.material = surfaceMaterials.blue;
     };
 
-    // creates another polyhedron from given config
-    var createRail = function(rail, scene) {
-      var railVertices = [];
-      var railFaces = rail.faces;
+    // creates a box by given config
+    var createBox = function(box, scene) {
+      var name = box.id;
+      var width = box.width;
+      var height = box.height;
+      var depth = box.depth;
+      var x = box.position.x;
+      var y = box.position.y;
+      var z = box.position.z;
 
-      rail.vertices.forEach(function(vertex) {
-        railVertices.push([vertex.x, vertex.y, vertex.z]);
+      var mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, scene);
+      mesh.position.x = x;
+      mesh.position,y = y;
+      mesh.position.z = z;
+
+      return mesh;
+    };
+
+    // creates another polyhedron from given config
+    var createRail = function(rail, holes, scene) {
+      var railBoxes = [];
+
+      rail.forEach(function(box) {
+        railBoxes.push(createBox(box,scene));
       });
 
-      var customOptions = {
-        name: "rail",
-        vertex: railVertices,
-        face: railFaces
-      };
-
-      var mesh = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+      var mesh = BABYLON.Mesh.MergeMeshes(railBoxes);
       var csgRail = BABYLON.CSG.FromMesh(mesh);
       mesh.dispose();
 
       var csgHoles = createCsgHoles(holes,scene);
 
       csgHoles.forEach(function(csgHole) {
-        csgRail.unionInPlace(csgHole);
+        csgRail.subtractInPlace(csgHole);
       });
 
       csgRail.toMesh(name, surfaceMaterials.brown, scene, false);
@@ -190,7 +201,7 @@ function GAME(balls, borders, holes, rail) {
       });
 
       // create the rail
-      createRail(rail, scene);
+      createRail(rail, holes, scene);
 
       // return the created scene
       return scene;
