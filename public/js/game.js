@@ -219,6 +219,8 @@ function GAME(balls, borders, holes, rail) {
 
     // call the createScene function
     scene = createScene();
+    scene.debugLayer.show();
+
 
     // run the render loop
     engine.runRenderLoop(function() {
