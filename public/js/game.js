@@ -202,6 +202,7 @@ function GAME(balls, borders, holes, rail) {
       // creates a shadowGenerator w/ given SpotLight and let ground receive the shadows
       var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
       shadowGenerator.bias = 0.0001;
+      shadowGenerator.setDarkness(0.18);
       ground.receiveShadows = true;
 
       // create all spheres
