@@ -196,7 +196,10 @@ function GAME(balls, borders, holes, rail) {
         csgPlayground.subtractInPlace(csgHole);
       });
 
-      return csgPlayground.toMesh(name, surfaceMaterials.lightBlue, scene, false);
+      var playground = csgPlayground.toMesh(name, surfaceMaterials.lightBlue, scene, false);
+      playground.physicsImpostor = createPhysicsImpostor(playground, 'GROUND', { mass: 0, restitution: 0.8 }, scene);
+
+      return playground;
     };
 
     var createScene = function() {
