@@ -186,7 +186,10 @@ function GAME(balls, borders, holes, rail) {
 
     var createPlayground = function (scene) {
       var name = 'playground';
-      var mesh = BABYLON.MeshBuilder.CreateGround(name, { width: 2.6564, height: 1.3864 }, scene);
+      var height = 0.02;
+
+      var mesh = BABYLON.MeshBuilder.CreateBox(name, { width: 2.6564, height: height, depth: 1.3864 }, scene);
+      mesh.position.y = -(height / 2);
       var csgPlayground = BABYLON.CSG.FromMesh(mesh);
       mesh.dispose();
 
