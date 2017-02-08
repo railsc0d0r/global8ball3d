@@ -33,12 +33,15 @@ function GAME(balls, borders, holes, rail) {
       var y = ball.radius;
       var z = ball.position.z;
       var material = surfaceMaterials[ball.color];
+      var mass = ball.mass;
 
       var sphere = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
       sphere.position.x = x;
       sphere.position.y = y;
       sphere.position.z = z;
       sphere.material = material;
+
+      sphere.physicsImpostor = createPhysicsImpostor(sphere, 'SPHERE', { mass: mass, restitution: 0.98 }, scene);
 
       return sphere;
     };
