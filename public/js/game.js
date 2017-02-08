@@ -100,6 +100,7 @@ function GAME(balls, borders, holes, rail) {
 
       var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
       border.material = surfaceMaterials.blue;
+      border.physicsImpostor = createPhysicsImpostor(border, 'BORDER', { mass: 0, restitution: 0.8 }, scene);
 
       return border;
     };
