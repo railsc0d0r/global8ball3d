@@ -12,6 +12,18 @@ function GAME(balls, borders, holes, rail) {
     // object to hold all surface-materials
     var surfaceMaterials = {};
 
+    // maps objects to PhysicsImpostors
+    var physicsImpostors = {
+        SPHERE: BABYLON.PhysicsImpostor.SphereImpostor,
+        BORDER: BABYLON.PhysicsImpostor.MeshImpostor,
+        GROUND: BABYLON.PhysicsImpostor.BoxImpostor
+    };
+
+    // creates a physicImpostor for a given object
+    var createPhysicsImpostor = function(object, impostor_class, options, scene) {
+      return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, scene);
+    };
+
     // creates a sphere from given config
     var createSphere = function(ball,scene) {
       var name = ball.id;
