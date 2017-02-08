@@ -64,7 +64,7 @@ function GAME(balls, borders, holes, rail) {
       var diameter = hole.radius * 2;
       var x = hole.position.x;
       var z = hole.position.z;
-      var height = 0.089;
+      var height = 0.1;
 
       var mesh = BABYLON.MeshBuilder.CreateCylinder(name, {diameter: diameter, height: height}, scene);
       mesh.position.x = x;
