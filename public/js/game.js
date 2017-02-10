@@ -146,7 +146,10 @@ function GAME(balls, borders, holes, rail) {
       csgPlayground.subtractInPlace(csgHole);
     });
 
-    var playground = csgPlayground.toMesh(name, _surfaceMaterials.lightBlue, scene, false);
+    var material = _surfaceMaterials.lightBlue.clone('playground');
+    material.specularColor = BABYLON.Color3.FromHexString('#333333');
+
+    var playground = csgPlayground.toMesh(name, material, scene, false);
     playground.physicsImpostor = _createPhysicsImpostor(playground, 'GROUND', { mass: 0, restitution: 0.8 }, scene);
 
     return playground;
@@ -197,7 +200,11 @@ function GAME(balls, borders, holes, rail) {
     };
 
     var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
-    border.material = _surfaceMaterials.blue;
+
+    var material = _surfaceMaterials.blue.clone('border');
+    material.specularColor = BABYLON.Color3.FromHexString('#333333');
+
+    border.material = material;
     border.physicsImpostor = _createPhysicsImpostor(border, 'BORDER', { mass: 0, restitution: 0.8 }, scene);
 
     return border;
@@ -220,7 +227,11 @@ function GAME(balls, borders, holes, rail) {
       csgRail.subtractInPlace(csgHole);
     });
 
-    csgRail.toMesh(name, _surfaceMaterials.brown, scene, false);
+    var material = _surfaceMaterials.brown.clone('rail');
+    material.specularColor = BABYLON.Color3.FromHexString('#333333');
+    material.roughness = 1000;
+
+    csgRail.toMesh(name, material, scene, false);
   };
 
   // creates a box by given config
