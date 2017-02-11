@@ -79,8 +79,12 @@ function GAME(balls, borders, holes, rail, cue) {
     ground.receiveShadows = true;
 
     // create all spheres
-    balls.forEach(function(ball) {
-      shadowGenerator.getShadowMap().renderList.push(_createSphere(ball,scene));
+    balls.forEach(function(ballConfig) {
+      var ball = _createSphere(ballConfig,scene);
+      ball.type = ballConfig.type;
+
+      _balls.push(ball);
+      shadowGenerator.getShadowMap().renderList.push(ball);
     });
 
     // create all borders
