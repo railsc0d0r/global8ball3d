@@ -110,6 +110,7 @@ function GAME(balls, borders, holes, rail) {
       gray: BABYLON.Color3.Gray(),
       green: BABYLON.Color3.Green(),
       brown: BABYLON.Color3.FromHexString('#331100'),
+      lightBrown: BABYLON.Color3.FromHexString('#331100').add(BABYLON.Color3.Gray()),
       lightBlue: BABYLON.Color3.Blue().add(BABYLON.Color3.Gray())
     };
 
