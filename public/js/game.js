@@ -213,6 +213,36 @@ function GAME(balls, borders, holes, rail) {
     csgRail.toMesh(name, material, scene, false);
   };
 
+  // Creates all holes per given config. These holes are only temporarily added to the scene
+  // and used via csg to be subtracted from other meshes. Afterwards they are disposed.
+  var _createCsgHoles = function(holes, scene) {
+    var csgHoles = []
+    holes.forEach(function(hole) {
+      csgHoles.push(_createCsgHole(hole, scene));
+    });
+
+    return csgHoles;
+  };
+
+  // Creates a hole-mesh by given config, sets a position, creates a csg from this mesh and disposes the mesh.
+  // Returns the csg-object
+  var _createCsgHole = function(hole, scene) {
+    var name = hole.id;
+    var diameter = hole.radius * 2;
+    var x = hole.position.x;
+    var z = hole.position.z;
+    var height = 0.1;
+
+    var mesh = BABYLON.MeshBuilder.CreateCylinder(name, {diameter: diameter, height: height}, scene);
+    mesh.position.x = x;
+    mesh.position.z = z;
+
+    var csg = BABYLON.CSG.FromMesh(mesh);
+    mesh.dispose();
+
+    return csg;
+  };
+
   // creates a box by given config
   var _createBox = function(box, scene) {
     var name = box.id;
@@ -270,36 +300,6 @@ function GAME(balls, borders, holes, rail) {
     mesh.physicsImpostor = _createPhysicsImpostor(mesh, 'SPHERE', { mass: mass, restitution: 0.98 }, scene);
 
     return mesh;
-  };
-
-  // Creates all holes per given config. These holes are only temporarily added to the scene
-  // and used via csg to be subtracted from other meshes. Afterwards they are disposed.
-  var _createCsgHoles = function(holes, scene) {
-    var csgHoles = []
-    holes.forEach(function(hole) {
-      csgHoles.push(_createCsgHole(hole, scene));
-    });
-
-    return csgHoles;
-  };
-
-  // Creates a hole-mesh by given config, sets a position, creates a csg from this mesh and disposes the mesh.
-  // Returns the csg-object
-  var _createCsgHole = function(hole, scene) {
-    var name = hole.id;
-    var diameter = hole.radius * 2;
-    var x = hole.position.x;
-    var z = hole.position.z;
-    var height = 0.1;
-
-    var mesh = BABYLON.MeshBuilder.CreateCylinder(name, {diameter: diameter, height: height}, scene);
-    mesh.position.x = x;
-    mesh.position.z = z;
-
-    var csg = BABYLON.CSG.FromMesh(mesh);
-    mesh.dispose();
-
-    return csg;
   };
 
   // creates a physicImpostor for a given object
