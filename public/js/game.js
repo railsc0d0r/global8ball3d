@@ -11,6 +11,12 @@ function GAME(balls, borders, holes, rail, cue) {
   // object to hold all surface-materials
   var _surfaceMaterials = {};
 
+  // the cue-stick
+  var _cue = {};
+
+  // an array to hold and provide all balls
+  var _balls = [];
+
   // initialize the game
   this.init = function() {
     // the canvas element to render on
