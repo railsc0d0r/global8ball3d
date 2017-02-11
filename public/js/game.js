@@ -89,14 +89,20 @@ function GAME(balls, borders, holes, rail, cue) {
 
     // create all borders
     borders.forEach(function(border) {
-      shadowGenerator.getShadowMap().renderList.push(_createBorder(border, scene));
+      var borderMesh = _createBorder(border, scene);
+      shadowGenerator.getShadowMap().renderList.push(borderMesh);
+      borderMesh.receiveShadows = true;
     });
 
     // create the rail
-    _createRail(rail, holes, scene);
+    var railMesh = _createRail(rail, holes, scene);
+    railMesh.receiveShadows = true;
 
     // create the cue
     _cue = _createCue(cue, scene);
+    _cue.getDescendants(true).forEach(function(child) {
+      shadowGenerator.getShadowMap().renderList.push(child);
+    });
 
     // return the created scene
     return scene;
