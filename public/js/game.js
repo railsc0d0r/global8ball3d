@@ -213,6 +213,24 @@ function GAME(balls, borders, holes, rail, cue) {
     csgRail.toMesh(name, material, scene, false);
   };
 
+  // Creates the cue-stick
+  var _createCue = function(cue, scene) {
+    var cueParts = [];
+    var name = 'cue';
+
+    cue.forEach(function(cuePart) {
+      var mesh = _createCylinder(cuePart, scene);
+      var material = _surfaceMaterials[cuePart.color];
+      mesh.material = material;
+      cueParts.push(mesh);
+    });
+
+    var compositeMesh = BABYLON.Mesh.MergeMeshes(cueParts);
+    compositeMesh.name = name;
+
+    return compositeMesh;
+  };
+
   // Creates all holes per given config. These holes are only temporarily added to the scene
   // and used via csg to be subtracted from other meshes. Afterwards they are disposed.
   var _createCsgHoles = function(holes, scene) {
