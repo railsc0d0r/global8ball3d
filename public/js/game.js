@@ -1,4 +1,4 @@
-function GAME(balls, borders, holes, rail) {
+function GAME(balls, borders, holes, rail, cue) {
   // the canvas to render on
   var _canvas;
 

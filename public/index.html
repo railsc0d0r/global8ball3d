@@ -10,6 +10,7 @@
     <script src="/js/borders.js"></script>
     <script src="/js/holes.js"></script>
     <script src="/js/rail.js"></script>
+    <script src="/js/cue.js"></script>
     <script src="/js/game.js"></script>
     <style>
       html, body {
@@ -30,7 +31,7 @@
   <body>
     <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
-      var game = new GAME(BALLS, BORDERS, HOLES, RAIL_BOXES);
+      var game = new GAME(BALLS, BORDERS, HOLES, RAIL_BOXES, CUE);
       window.addEventListener('DOMContentLoaded', game.init);
     </script>
   </body>
