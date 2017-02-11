@@ -231,27 +231,24 @@ function GAME(balls, borders, holes, rail, cue) {
     material.specularColor = BABYLON.Color3.FromHexString('#333333');
     material.roughness = 1000;
 
-    csgRail.toMesh(name, material, scene, false);
+    return csgRail.toMesh(name, material, scene, false);
   };
 
   // Creates the cue-stick
   var _createCue = function(cue, scene) {
-    var cueParts = [];
     var name = 'cue';
+    var compositeMesh = new BABYLON.Mesh(name, scene);
 
     cue.forEach(function(cuePart) {
       var mesh = _createCylinder(cuePart, scene);
       var material = _surfaceMaterials[cuePart.color];
       mesh.material = material;
-      cueParts.push(mesh);
+      mesh.parent = compositeMesh;
     });
 
-    var compositeMesh = BABYLON.Mesh.MergeMeshes(cueParts);
-    compositeMesh.name = name;
-    compositeMesh.material = _surfaceMaterials['lightBrown'];
     compositeMesh.rotation.z = ( Math.PI / 2 - Math.PI / 16);
-    compositeMesh.position.x = -0.77;
-    compositeMesh.position.y = 0.07;
+    compositeMesh.position.x = -0.70;
+    compositeMesh.position.y = 0.05;
 
     return compositeMesh;
   };
