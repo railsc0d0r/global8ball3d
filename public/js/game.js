@@ -53,6 +53,10 @@ function GAME(balls, borders, holes, rail, cue) {
     return _balls;
   };
 
+  this.getBreakball = function() {
+    return _getBreakball();
+  };
+
   var _createScene = function(engine) {
     // create a basic BJS Scene object
     var scene = new BABYLON.Scene(engine);
@@ -357,4 +361,10 @@ function GAME(balls, borders, holes, rail, cue) {
     return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, scene);
   };
 
+  // gets the breakball from _balls
+  var _getBreakball = function() {
+    return _balls.find(function(ball) {
+             return ball.type == 'breakball';
+           });
+  };
 };
