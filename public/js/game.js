@@ -248,6 +248,10 @@ function GAME(balls, borders, holes, rail, cue) {
 
     var compositeMesh = BABYLON.Mesh.MergeMeshes(cueParts);
     compositeMesh.name = name;
+    compositeMesh.material = _surfaceMaterials['lightBrown'];
+    compositeMesh.rotation.z = ( Math.PI / 2 - Math.PI / 16);
+    compositeMesh.position.x = -0.77;
+    compositeMesh.position.y = 0.07;
 
     return compositeMesh;
   };
