@@ -45,6 +45,14 @@ function GAME(balls, borders, holes, rail, cue) {
     return _scene;
   };
 
+  this.getCue = function() {
+    return _cue;
+  };
+
+  this.getBalls = function() {
+    return _balls;
+  };
+
   var _createScene = function(engine) {
     // create a basic BJS Scene object
     var scene = new BABYLON.Scene(engine);
