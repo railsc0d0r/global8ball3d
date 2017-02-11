@@ -77,6 +77,9 @@ function GAME(balls, borders, holes, rail, cue) {
     // create the rail
     _createRail(rail, holes, scene);
 
+    // create the cue
+    _createCue(cue, scene);
+
     // return the created scene
     return scene;
   };
