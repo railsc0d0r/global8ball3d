@@ -157,25 +157,25 @@ function GAME(balls, borders, holes, rail) {
   };
 
   // creates a sphere from given config
-  var _createSphere = function(ball,scene) {
-    var name = ball.id;
-    var radius = ball.radius;
+  var _createSphere = function(sphere,scene) {
+    var name = sphere.id;
+    var radius = sphere.radius;
     var diameter = radius * 2;
-    var x = ball.position.x;
-    var y = ball.radius;
-    var z = ball.position.z;
-    var material = _surfaceMaterials[ball.color];
-    var mass = ball.mass;
+    var x = sphere.position.x;
+    var y = sphere.position.y || sphere.radius;
+    var z = sphere.position.z;
+    var material = _surfaceMaterials[sphere.color];
+    var mass = sphere.mass;
 
-    var sphere = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
-    sphere.position.x = x;
-    sphere.position.y = y;
-    sphere.position.z = z;
-    sphere.material = material;
+    var mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+    mesh.material = material;
 
-    sphere.physicsImpostor = _createPhysicsImpostor(sphere, 'SPHERE', { mass: mass, restitution: 0.98 }, scene);
+    mesh.physicsImpostor = _createPhysicsImpostor(mesh, 'SPHERE', { mass: mass, restitution: 0.98 }, scene);
 
-    return sphere;
+    return mesh;
   };
 
   // creates a polyhedron from given config
