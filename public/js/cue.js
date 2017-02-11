@@ -7,7 +7,7 @@ var CUE = [
       color: 'black',
       position: {
         x: 0,
-        y: 0.03,
+        y: 0.0025,
         z: 0
       }
     },
@@ -19,7 +19,7 @@ var CUE = [
       color: 'white',
       position: {
         x: 0,
-        y: 0.035,
+        y: 0.0275,
         z: 0
       }
     },
@@ -31,7 +31,7 @@ var CUE = [
       color: 'lightBrown',
       position: {
         x: 0,
-        y: 0.08,
+        y: 0.2,
         z: 0
       }
     },
@@ -43,7 +43,7 @@ var CUE = [
       color: 'lightBrown',
       position: {
         x: 0,
-        y: 0.38,
+        y: 0.65,
         z: 0
       }
     },
@@ -52,10 +52,10 @@ var CUE = [
       diameterTop: 0.035,
       diameterBottom: 0.035,
       height: 0.6,
-      color: 'brown',
+      color: 'black',
       position: {
         x: 0,
-        y: 0.98,
+        y: 1.25,
         z: 0
       }
     }
