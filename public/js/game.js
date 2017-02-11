@@ -199,15 +199,15 @@ function GAME(balls, borders, holes, rail, cue) {
       face: borderFaces
     };
 
-    var border = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
+    var mesh = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
 
     var material = _surfaceMaterials.blue.clone('border');
     material.specularColor = BABYLON.Color3.FromHexString('#333333');
 
-    border.material = material;
-    border.physicsImpostor = _createPhysicsImpostor(border, 'BORDER', { mass: 0, restitution: 0.8 }, scene);
+    mesh.material = material;
+    mesh.physicsImpostor = _createPhysicsImpostor(mesh, 'BORDER', { mass: 0, restitution: 0.8 }, scene);
 
-    return border;
+    return mesh;
   };
 
   // creates another polyhedron from given config
