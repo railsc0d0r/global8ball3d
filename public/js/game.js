@@ -253,6 +253,25 @@ function GAME(balls, borders, holes, rail) {
     return mesh;
   };
 
+
+  // creates a cylinder by given config
+  var _createCylinder = function(cylinder, scene) {
+    var name = cylinder.id;
+    var diameterTop = cylinder.diameterTop;
+    var diameterBottom = cylinder.diameterBottom;
+    var height = cylinder.height;
+    var x = cylinder.position.x;
+    var y = cylinder.position.y;
+    var z = cylinder.position.z;
+
+    var mesh = BABYLON.MeshBuilder.CreateCylinder(name, {diameterTop: diameterTop, diameterBottom: diameterBottom, height: height}, scene);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+
+    return mesh;
+  };
+
   // Creates all holes per given config. These holes are only temporarily added to the scene
   // and used via csg to be subtracted from other meshes. Afterwards they are disposed.
   var _createCsgHoles = function(holes, scene) {
