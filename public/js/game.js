@@ -103,7 +103,7 @@ function GAME(balls, borders, holes, rail, cue) {
     railMesh.receiveShadows = true;
 
     // create the cue
-    _cue = _createCue(cue, scene);
+    _cue = _createCue(cue, _getBreakball(), scene);
     _cue.getDescendants(true).forEach(function(child) {
       shadowGenerator.getShadowMap().renderList.push(child);
     });
