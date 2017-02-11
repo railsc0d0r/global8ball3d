@@ -227,15 +227,12 @@ function GAME(balls, borders, holes, rail) {
   // Creates a hole-mesh by given config, sets a position, creates a csg from this mesh and disposes the mesh.
   // Returns the csg-object
   var _createCsgHole = function(hole, scene) {
-    var name = hole.id;
-    var diameter = hole.radius * 2;
-    var x = hole.position.x;
-    var z = hole.position.z;
-    var height = 0.1;
+    hole.diameterTop = hole.radius * 2;
+    hole.diameterBottom = hole.radius * 2;
+    hole.height = 0.1;
+    hole.position.y = 0;
 
-    var mesh = BABYLON.MeshBuilder.CreateCylinder(name, {diameter: diameter, height: height}, scene);
-    mesh.position.x = x;
-    mesh.position.z = z;
+    var mesh = _createCylinder(hole, scene);
 
     var csg = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
