@@ -156,28 +156,6 @@ function GAME(balls, borders, holes, rail) {
     return playground;
   };
 
-  // creates a sphere from given config
-  var _createSphere = function(sphere,scene) {
-    var name = sphere.id;
-    var radius = sphere.radius;
-    var diameter = radius * 2;
-    var x = sphere.position.x;
-    var y = sphere.position.y || sphere.radius;
-    var z = sphere.position.z;
-    var material = _surfaceMaterials[sphere.color];
-    var mass = sphere.mass;
-
-    var mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
-    mesh.position.x = x;
-    mesh.position.y = y;
-    mesh.position.z = z;
-    mesh.material = material;
-
-    mesh.physicsImpostor = _createPhysicsImpostor(mesh, 'SPHERE', { mass: mass, restitution: 0.98 }, scene);
-
-    return mesh;
-  };
-
   // creates a polyhedron from given config
   var _createBorder = function(border, scene) {
     var borderVertices = [];
@@ -268,6 +246,28 @@ function GAME(balls, borders, holes, rail) {
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
+
+    return mesh;
+  };
+
+  // creates a sphere from given config
+  var _createSphere = function(sphere,scene) {
+    var name = sphere.id;
+    var radius = sphere.radius;
+    var diameter = radius * 2;
+    var x = sphere.position.x;
+    var y = sphere.position.y || sphere.radius;
+    var z = sphere.position.z;
+    var material = _surfaceMaterials[sphere.color];
+    var mass = sphere.mass;
+
+    var mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+    mesh.material = material;
+
+    mesh.physicsImpostor = _createPhysicsImpostor(mesh, 'SPHERE', { mass: mass, restitution: 0.98 }, scene);
 
     return mesh;
   };
