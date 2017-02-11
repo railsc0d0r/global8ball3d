@@ -245,9 +245,10 @@ function GAME(balls, borders, holes, rail, cue) {
   };
 
   // Creates the cue-stick
-  var _createCue = function(cue, scene) {
+  var _createCue = function(cue, parent, scene) {
     var name = 'cue';
     var compositeMesh = new BABYLON.Mesh(name, scene);
+    compositeMesh.parent = parent;
 
     cue.forEach(function(cuePart) {
       var mesh = _createCylinder(cuePart, scene);
