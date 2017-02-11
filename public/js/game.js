@@ -258,8 +258,8 @@ function GAME(balls, borders, holes, rail, cue) {
     });
 
     compositeMesh.rotation.z = ( Math.PI / 2 - Math.PI / 16);
-    compositeMesh.position.x = -0.70;
-    compositeMesh.position.y = 0.05;
+    compositeMesh.position.x = -0.08;
+    compositeMesh.position.y = 0.025;
 
     return compositeMesh;
   };
