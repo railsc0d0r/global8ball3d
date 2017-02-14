@@ -244,21 +244,31 @@ function GAME(balls, borders, holes, rail, cue) {
   };
 
   // Creates the cue-stick
-  var _createCue = function(cue, parent, scene) {
+  var _createCue = function(cue, target, scene) {
     var name = 'cue';
+
+    var axisPoints = [];
     var compositeMesh = new BABYLON.Mesh(name, scene);
-    compositeMesh.parent = parent;
+    var distanceFromTarget = 0.08;
+    compositeMesh.parent = target;
 
     cue.forEach(function(cuePart) {
+      var axisPoint = new BABYLON.Vector3(cuePart.position.x, cuePart.position.y, cuePart.position.z);
+      axisPoints.push(axisPoint);
+      axisPoints.push(axisPoint.scale(-distanceFromTarget));
       var mesh = _createCylinder(cuePart, scene);
       var material = _surfaceMaterials[cuePart.color];
       mesh.material = material;
       mesh.parent = compositeMesh;
     });
 
-    compositeMesh.rotation.z = ( Math.PI / 2 - Math.PI / 16);
-    compositeMesh.position.x = -0.08;
-    compositeMesh.position.y = 0.025;
+    var axis = BABYLON.MeshBuilder.CreateLines('cueAxis', {points: axisPoints}, scene);
+    axis.color = BABYLON.Color3.Red();
+    axis.parent = compositeMesh;
+
+    compositeMesh.position.y = distanceFromTarget;
+    var angle = ( Math.PI / 2 - Math.PI / 16);
+    compositeMesh.parent.rotate(BABYLON.Axis.Z, angle);
 
     return compositeMesh;
   };
