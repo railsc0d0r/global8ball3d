@@ -65,8 +65,6 @@ function GAME(balls, borders, holes, rail, cue) {
     scene.enablePhysics();
 
 
-    _createCamera(engine._renderingCanvas,scene);
-
     // create a spot-light 2m above the table, looking straight down
     var light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, scene);
 
@@ -108,22 +106,23 @@ function GAME(balls, borders, holes, rail, cue) {
       shadowGenerator.getShadowMap().renderList.push(child);
     });
 
+    _createCamera(_getBreakball(),engine._renderingCanvas,scene);
+
     // return the created scene
     return scene;
   };
 
-  var _createCamera = function(canvas,scene) {
-    var target = BABYLON.Vector3.Zero();
+  var _createCamera = function(target, canvas,scene) {
     var alpha = Math.PI;
     var beta = Math.PI / 8 * 3;
-    var radius = 3;
+    var radius = 2;
 
     // create a ArcRotateCamera, and set its options
     var camera = new BABYLON.ArcRotateCamera('camera1', alpha, beta, radius, target, scene);
 
     camera.upperBetaLimit = Math.PI / 2 - Math.PI / 64;
     camera.wheelPrecision = 400;
-    camera.lowerRadiusLimit = 1.5;
+    camera.lowerRadiusLimit = 0.75;
     camera.upperRadiusLimit = 4;
 
     // attach the camera to the canvas
