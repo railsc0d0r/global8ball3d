@@ -4,6 +4,7 @@
   "description": "PoC for a 8ball-pool based on babylonjs",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf public/*",
     "test": "test"
   },
   "author": "Stephan Barth",
