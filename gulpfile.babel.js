@@ -82,4 +82,4 @@ const copy_files = function (base_path, src, dest) {
 gulp.task('concatenate_and_minify', compress);
 gulp.task('concatenate_only', bundle);
 gulp.task('copy_to_public', copy_to_public);
-gulp.task('default', ['copy_to_public', 'concatenate_only']);
+gulp.task('default', ['copy_to_public', 'concatenate_and_minify']);
