@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public/*",
-    "test": "test"
+    "test": "karma start --single-run"
   },
   "author": "Stephan Barth",
   "license": "ISC",
