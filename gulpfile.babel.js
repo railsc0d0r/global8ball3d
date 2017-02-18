@@ -55,6 +55,31 @@ const write_result = function (bundler) {
     .pipe(gulp.dest('public/js'));
 };
 
+// Copies stuff
+const copy_to_public = function () {
+  const base_path = './public';
+  const stuff = [
+    {
+      src: './vendor/*.js',
+      dest: '/js/'
+    },
+    {
+      src: './templates/*.html',
+      dest: '/'
+    }
+  ];
+
+  stuff.forEach(function(element) {
+    copy_files(base_path, element.src, element.dest);
+  });
+};
+
+const copy_files = function (base_path, src, dest) {
+  gulp.src(src)
+      .pipe(gulp.dest(base_path + dest));
+};
+
 gulp.task('concatenate_and_minify', compress);
 gulp.task('concatenate_only', bundle);
-gulp.task('default', ['concatenate_and_minify', 'concatenate_only']);
+gulp.task('copy_to_public', copy_to_public);
+gulp.task('default', ['copy_to_public', 'concatenate_only']);
