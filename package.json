@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public/*",
-    "test": "karma start --single-run"
+    "test_ci": "xvfb-run karma start --single-run",
+    "test": "xvfb-run karma start"
   },
   "author": "Stephan Barth",
   "license": "ISC",
