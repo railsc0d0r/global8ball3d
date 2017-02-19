@@ -60,7 +60,15 @@ const copy_to_public = function () {
   const base_path = './public';
   const stuff = [
     {
-      src: './vendor/*.js',
+      src: './node_modules/pepjs/dist/pep.js',
+      dest: '/js/'
+    },
+    {
+      src: './node_modules/cannon/build/cannon.js',
+      dest: '/js/'
+    },
+    {
+      src: './node_modules/babylonjs/babylon.js',
       dest: '/js/'
     },
     {
