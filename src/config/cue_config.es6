@@ -1,4 +1,4 @@
-var CUE = [
+const CueConfig = [
     {
       name: 'tip',
       diameterTop: 0.014,
@@ -60,3 +60,5 @@ var CUE = [
       }
     }
 ];
+
+export default CueConfig;
