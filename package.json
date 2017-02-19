@@ -10,6 +10,9 @@
   "author": "Stephan Barth",
   "license": "ISC",
   "dependencies": {
+    "babylonjs": "^2.5.0",
+    "cannon": "^0.6.2",
+    "pepjs": "^0.4.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",
