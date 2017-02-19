@@ -22,9 +22,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'spec/fixtures/html/*.html',
-      'vendor/*.js',
+      'node_modules/cannon/build/cannon.js',
+      'node_modules/babylonjs/babylon.js',
       'src/**/*.es6',
-      'spec/**/*.js'
+      'spec/**/*.es6'
     ],
 
     // list of files to exclude
@@ -35,7 +36,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'src/**/*.es6': ['browserify'],
-      'spec/**/*.js': ['browserify']
+      'spec/**/*.es6': ['browserify']
     },
 
     browserify: {
@@ -43,7 +44,7 @@ module.exports = function(config) {
           transform: [
             ['babelify']
           ],
-          extensions: ['.es6', '.js']
+          extensions: ['.es6']
     },
 
     // test results reporter to use
