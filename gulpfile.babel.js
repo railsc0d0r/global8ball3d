@@ -58,33 +58,30 @@ const write_result = function (bundler) {
 // Copies stuff
 const copy_to_public = function () {
   const base_path = './public';
-  const stuff = [
-    {
-      src: './node_modules/pepjs/dist/pep.js',
-      dest: '/js/'
-    },
-    {
-      src: './node_modules/cannon/build/cannon.js',
-      dest: '/js/'
-    },
-    {
-      src: './node_modules/babylonjs/babylon.js',
-      dest: '/js/'
-    },
-    {
-      src: './templates/*.html',
-      dest: '/'
-    }
+
+  const javascripts = [
+    './node_modules/pepjs/dist/pep.js',
+    './node_modules/cannon/build/cannon.js',
+    './node_modules/babylonjs/babylon.js',
+    './game_config/*.js'
   ];
 
-  stuff.forEach(function(element) {
-    copy_files(base_path, element.src, element.dest);
+  const templates = [
+    './templates/*.html'
+  ];
+
+  javascripts.forEach(function(script) {
+    copy_files(script, base_path + '/js/');
+  });
+
+  templates.forEach(function(script) {
+    copy_files(script, base_path + '/');
   });
 };
 
-const copy_files = function (base_path, src, dest) {
+const copy_files = function (src, dest) {
   gulp.src(src)
-      .pipe(gulp.dest(base_path + dest));
+      .pipe(gulp.dest(dest));
 };
 
 gulp.task('concatenate_and_minify', compress);
