@@ -26,10 +26,10 @@ describe('Game', function() {
       {}
     ];
 
-    bordersConfigs.forEach(function(config) {
+    bordersConfigs.forEach((config) => {
       let throwsAnException = () => { new Game(this.ballsConfig, config) };
       expect(throwsAnException).toThrow('Game requires an array of border-definitions to be created.');
-    }, this);
+    });
   });
 
   it('requires an array of configurations for holes on creation', function() {
@@ -38,9 +38,9 @@ describe('Game', function() {
       {}
     ];
 
-    holesConfigs.forEach(function(config) {
+    holesConfigs.forEach((config) => {
       let throwsAnException = () => { new Game(this.ballsConfig, this.bordersConfig, config) };
       expect(throwsAnException).toThrow('Game requires an array of hole-definitions to be created.');
-    }, this);
+    });
   });
 });
