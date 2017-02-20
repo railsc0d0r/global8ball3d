@@ -10,7 +10,7 @@ describe('Game', function() {
 
   it('requires an array of configurations for balls on creation', function() {
     const ballsConfigs = [
-      () => { return; },
+      void 0,
       {}
     ];
 
@@ -22,7 +22,7 @@ describe('Game', function() {
 
   it('requires an array of configurations for borders on creation', function() {
     const bordersConfigs = [
-      () => { return; },
+      void 0,
       {}
     ];
 
@@ -34,7 +34,7 @@ describe('Game', function() {
 
   it('requires an array of configurations for holes on creation', function() {
     const holesConfigs = [
-      () => { return; },
+      void 0,
       {}
     ];
 
