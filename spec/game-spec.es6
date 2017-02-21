@@ -57,5 +57,9 @@ describe('Game', function() {
     it('stores given borders-config and provides a getter for it.', function() {
       expect(this.game.bordersConfig).toEqual(this.bordersConfig);
     });
+
+    it('stores given holes-config and provides a getter for it.', function() {
+      expect(this.game.holesConfig).toEqual(this.holesConfig);
+    });
   });
 });
