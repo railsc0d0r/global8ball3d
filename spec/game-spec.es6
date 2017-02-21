@@ -6,6 +6,7 @@ describe('Game', function() {
   beforeEach(function() {
     this.ballsConfig = [];
     this.bordersConfig = [];
+    this.holesConfig = [];
   });
 
   it('requires an array of configurations for balls on creation', function() {
