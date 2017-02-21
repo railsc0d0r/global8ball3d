@@ -1,4 +1,4 @@
-const Game = class{
+const Game = class {
   constructor(ballsConfig, bordersConfig, holesConfig) {
     if (typeof(ballsConfig) === 'undefined' || !(ballsConfig instanceof Array)) {
       throw "Game requires an array of ball-definitions to be created.";
@@ -11,7 +11,10 @@ const Game = class{
     if (typeof(holesConfig) === 'undefined' || !(holesConfig instanceof Array)) {
       throw "Game requires an array of hole-definitions to be created.";
     }
+
+    this.ballsConfig = ballsConfig;
   }
+
 };
 
 export default Game;
