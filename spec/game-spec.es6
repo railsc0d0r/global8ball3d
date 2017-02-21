@@ -44,4 +44,14 @@ describe('Game', function() {
       expect(throwsAnException).toThrow('Game requires an array of hole-definitions to be created.');
     });
   });
+
+  describe('as an instance', function() {
+    beforeEach(function() {
+      this.game = new Game(this.ballsConfig, this.bordersConfig, this.holesConfig);
+    });
+
+    it('stores given balls-config and provides a getter for it.', function() {
+      expect(this.game.ballsConfig).toEqual(this.ballsConfig);
+    });
+  });
 });
