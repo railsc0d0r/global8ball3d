@@ -14,6 +14,7 @@ const Game = class {
 
     this.ballsConfig = ballsConfig;
     this.bordersConfig = bordersConfig;
+    this.holesConfig = holesConfig;
   }
 
 };
