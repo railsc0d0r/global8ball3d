@@ -93,6 +93,10 @@ describe('Game', function() {
 
         expect(this.game.canvas).toEqual(expectedCanvas);
       });
+
+      it('creates an engine and stores it as property', function() {
+        expect(this.game.engine instanceof BABYLON.Engine).toBeTruthy();
+      });
     });
   });
 });
