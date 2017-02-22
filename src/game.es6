@@ -22,6 +22,12 @@ const Game = class {
     this.railConfig = railConfig;
   }
 
+  init() {
+    // the canvas element to render on
+    this.canvas = document.getElementById('renderCanvas');
+
+  };
+
 };
 
 export default Game;
