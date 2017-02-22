@@ -21,7 +21,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'spec/fixtures/html/*.html',
       'node_modules/cannon/build/cannon.js',
       'node_modules/babylonjs/babylon.js',
       'src/**/*.es6',
