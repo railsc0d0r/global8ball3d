@@ -1,5 +1,3 @@
-'use strict';
-
 import Game from '../src/game';
 import HtmlFixtures from './support/html_fixtures';
 
