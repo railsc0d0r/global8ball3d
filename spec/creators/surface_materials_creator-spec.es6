@@ -31,4 +31,36 @@ describe('SurfaceMaterialsCreator', function() {
     });
 
   });
+
+  describe('as instance', function() {
+    beforeEach(function() {
+      this.creator = new SurfaceMaterialsCreator(this.scene);
+      this.expectedColors = [
+        'red',
+        'yellow',
+        'white',
+        'black',
+        'blue',
+        'gray',
+        'green',
+        'brown',
+        'lightBrown',
+        'lightBlue'
+      ];
+    });
+
+    it('provides a property to all created materials', function() {
+      expect(this.creator.surfaceMaterials).toEqual(jasmine.any(Object));
+    });
+
+    it('created a set of specified colors', function() {
+      expect(Object.keys(this.creator.surfaceMaterials)).toEqual(this.expectedColors);
+    });
+
+    it('provides a material for every color', function() {
+      this.expectedColors.forEach(color => {
+        expect(this.creator.surfaceMaterials[color]).toEqual(jasmine.any(BABYLON.StandardMaterial));
+      });
+    });
+  });
 });
