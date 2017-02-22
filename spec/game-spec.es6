@@ -95,7 +95,11 @@ describe('Game', function() {
       });
 
       it('creates an engine and stores it as property', function() {
-        expect(this.game.engine instanceof BABYLON.Engine).toBeTruthy();
+        expect(this.game.engine).toEqual(jasmine.any(BABYLON.Engine));
+      });
+
+      it('creates a scene and stores it as property', function() {
+        expect(this.game.scene).toEqual(jasmine.any(BABYLON.Scene));
       });
     });
   });
