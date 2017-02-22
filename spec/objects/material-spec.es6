@@ -20,4 +20,24 @@ describe('Material', function() {
     expect(Material.createColor(name, color, this.scene)).toEqual(jasmine.any(BABYLON.StandardMaterial));
   });
 
+  describe('created by createColor()', function() {
+    beforeEach(function() {
+      this.name = 'red';
+      this.color = BABYLON.Color3.Red();
+
+      this.material = Material.createColor(this.name, this.color, this.scene);
+    });
+
+    it('has the given name as property', function() {
+      expect(this.material.name).toEqual(this.name);
+    });
+
+    it('has the given color set as diffuseColor', function() {
+      expect(this.material.diffuseColor).toEqual(this.color);
+    });
+
+    it('has backFaceCulling set to false', function() {
+      expect(this.material.backFaceCulling).toBeFalsy();
+    });
+  });
 });
