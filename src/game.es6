@@ -1,3 +1,5 @@
+import Scene from './scene';
+
 const Game = class {
   constructor(ballsConfig, bordersConfig, holesConfig, railConfig) {
     if (typeof(ballsConfig) === 'undefined' || !(ballsConfig instanceof Array)) {
@@ -28,6 +30,9 @@ const Game = class {
 
     // the engine used to render the world
     this.engine = new BABYLON.Engine(this.canvas, true);
+
+    // the scene to be used to render objects
+    this.scene = Scene.create(this.engine);
   };
 
 };
