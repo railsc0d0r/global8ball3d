@@ -7,6 +7,7 @@ describe('Game', function() {
     this.ballsConfig = [];
     this.bordersConfig = [];
     this.holesConfig = [];
+    this.railConfig = [];
   });
 
   it('requires an array of configurations for balls on creation', function() {
@@ -45,9 +46,21 @@ describe('Game', function() {
     });
   });
 
+  it('requires an array of configurations for the rail on creation', function() {
+    const railConfigs = [
+      void 0,
+      {}
+    ];
+
+    railConfigs.forEach((config) => {
+      let throwsAnException = () => { new Game(this.ballsConfig, this.bordersConfig, this.holesConfig, config) };
+      expect(throwsAnException).toThrow('Game requires an array of rail-definitions to be created.');
+    });
+  });
+
   describe('as an instance', function() {
     beforeEach(function() {
-      this.game = new Game(this.ballsConfig, this.bordersConfig, this.holesConfig);
+      this.game = new Game(this.ballsConfig, this.bordersConfig, this.holesConfig, this.railConfig);
     });
 
     it('stores given balls-config and provides a getter for it.', function() {
@@ -60,6 +73,10 @@ describe('Game', function() {
 
     it('stores given holes-config and provides a getter for it.', function() {
       expect(this.game.holesConfig).toEqual(this.holesConfig);
+    });
+
+    it('stores given rail-config and provides a getter for it.', function() {
+      expect(this.game.railConfig).toEqual(this.railConfig);
     });
   });
 });
