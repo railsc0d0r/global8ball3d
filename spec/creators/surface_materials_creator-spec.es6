@@ -1,5 +1,4 @@
 import Scene from '../../src/scene';
-import Material from '../../src/objects/material';
 import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creator';
 import HtmlFixtures from '../support/html_fixtures';
 
