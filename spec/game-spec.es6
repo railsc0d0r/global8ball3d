@@ -101,6 +101,10 @@ describe('Game', function() {
       it('creates a scene and stores it as property', function() {
         expect(this.game.scene).toEqual(jasmine.any(BABYLON.Scene));
       });
+
+      it('creates a light and stores it as property', function() {
+        expect(this.game.light).toEqual(jasmine.any(BABYLON.SpotLight));
+      });
     });
   });
 });
