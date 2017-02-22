@@ -33,6 +33,10 @@ const Game = class {
 
     // the scene to be used to render objects
     this.scene = Scene.create(this.engine);
+
+    // create a spot-light 2m above the table, looking straight down
+    this.light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
+
   };
 
 };
