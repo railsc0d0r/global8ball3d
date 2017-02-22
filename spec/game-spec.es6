@@ -78,7 +78,7 @@ describe('Game', function() {
       expect(this.game.railConfig).toEqual(this.railConfig);
     });
 
-    describe('can be initialized', function() {
+    describe('on init()', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
         this.game.init();
