@@ -18,4 +18,17 @@ describe('SurfaceMaterialsCreator', function() {
   it('can be created with a given scene', function() {
     expect(new SurfaceMaterialsCreator(this.scene)).toEqual(jasmine.any(SurfaceMaterialsCreator));
   });
+
+  it('throws an error if no scene or not an instance of BABYLON.Scene is given when created', function() {
+    const scenes = [
+      void 0,
+      {}
+    ];
+
+    scenes.forEach(function(scene) {
+      let throwsAnException = () => { new SurfaceMaterialsCreator(scene) };
+      expect(throwsAnException).toThrow('SurfaceMaterialsCreator requires an instance of BABYLON.Scene.');
+    });
+
+  });
 });
