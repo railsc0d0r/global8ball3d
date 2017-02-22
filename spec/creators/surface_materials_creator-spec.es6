@@ -59,6 +59,7 @@ describe('SurfaceMaterialsCreator', function() {
     it('provides a material for every color', function() {
       this.expectedColors.forEach(color => {
         expect(this.creator.surfaceMaterials[color]).toEqual(jasmine.any(BABYLON.StandardMaterial));
+        expect(this.creator.surfaceMaterials[color].name).toEqual(color);
       });
     });
   });
