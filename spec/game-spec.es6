@@ -117,6 +117,27 @@ describe('Game', function() {
       it('creates a light and stores it as property', function() {
         expect(this.game.light).toEqual(jasmine.any(BABYLON.SpotLight));
       });
+
+      it('creates all surfaceMaterials and stores them in a property', function() {
+        const expectedSurfaceMaterials = new SurfaceMaterialsCreator(this.game.scene).surfaceMaterials;
+        const expectedColors = [
+          'red',
+          'yellow',
+          'white',
+          'black',
+          'blue',
+          'gray',
+          'green',
+          'brown',
+          'lightBrown',
+          'lightBlue'
+        ];
+
+        expectedColors.forEach(color => {
+          expect(this.game.surfaceMaterials[color]).toEqual(jasmine.any(BABYLON.StandardMaterial));
+          expect(this.game.surfaceMaterials[color].name).toEqual(color);
+        });
+      });
     });
   });
 });
