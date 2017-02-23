@@ -7,6 +7,13 @@ describe('Game', function() {
     this.bordersConfig = [];
     this.holesConfig = [];
     this.railConfig = [];
+
+    this.config = {
+      ballsConfig: this.ballsConfig,
+      bordersConfig: this.bordersConfig,
+      holesConfig: this.holesConfig,
+      railConfig: this.railConfig
+    };
   });
 
   it('requires an array of configurations for balls on creation', function() {
@@ -15,8 +22,9 @@ describe('Game', function() {
       {}
     ];
 
-    ballsConfigs.forEach(function(config) {
-      let throwsAnException = () => { new Game(config) };
+    ballsConfigs.forEach( ballsConfig => {
+      this.config.ballsConfig = ballsConfig;
+      const throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of ball-definitions to be created.');
     });
   });
@@ -27,8 +35,9 @@ describe('Game', function() {
       {}
     ];
 
-    bordersConfigs.forEach((config) => {
-      let throwsAnException = () => { new Game(this.ballsConfig, config) };
+    bordersConfigs.forEach( bordersConfig => {
+      this.config.bordersConfig = bordersConfig;
+      let throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of border-definitions to be created.');
     });
   });
@@ -39,8 +48,9 @@ describe('Game', function() {
       {}
     ];
 
-    holesConfigs.forEach((config) => {
-      let throwsAnException = () => { new Game(this.ballsConfig, this.bordersConfig, config) };
+    holesConfigs.forEach((holesConfig) => {
+      this.config.holesConfig = holesConfig;
+      let throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of hole-definitions to be created.');
     });
   });
@@ -51,15 +61,16 @@ describe('Game', function() {
       {}
     ];
 
-    railConfigs.forEach((config) => {
-      let throwsAnException = () => { new Game(this.ballsConfig, this.bordersConfig, this.holesConfig, config) };
+    railConfigs.forEach((railConfig) => {
+      this.config.railConfig = railConfig;
+      let throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of rail-definitions to be created.');
     });
   });
 
   describe('as an instance', function() {
     beforeEach(function() {
-      this.game = new Game(this.ballsConfig, this.bordersConfig, this.holesConfig, this.railConfig);
+      this.game = new Game(this.config);
     });
 
     it('stores given balls-config and provides a getter for it.', function() {
