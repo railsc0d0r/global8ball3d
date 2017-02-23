@@ -1,4 +1,5 @@
 import Game from '../src/game';
+import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
 import HtmlFixtures from './support/html_fixtures';
 
 describe('Game', function() {
