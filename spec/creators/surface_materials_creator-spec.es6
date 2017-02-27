@@ -6,11 +6,12 @@ describe('SurfaceMaterialsCreator', function() {
   beforeEach(function() {
     HtmlFixtures.addCanvas();
     const canvas = document.getElementById('renderCanvas');
-    const engine = new BABYLON.Engine(canvas, true);
-    this.scene = Scene.create(engine);
+    this.engine = new BABYLON.Engine(canvas, true);
+    this.scene = Scene.create(this.engine);
   });
 
   afterEach(function() {
+    this.engine.dispose();
     HtmlFixtures.removeFixture();
   });
 

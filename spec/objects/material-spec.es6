@@ -11,6 +11,7 @@ describe('Material', function() {
   });
 
   afterEach(function() {
+    this.engine.dispose();
     HtmlFixtures.removeFixture();
   });
 

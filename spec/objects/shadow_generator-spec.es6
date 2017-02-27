@@ -6,12 +6,13 @@ describe('ShadowGenerator', function() {
   beforeEach(function() {
     HtmlFixtures.addCanvas();
     const canvas = document.getElementById('renderCanvas');
-    const engine = new BABYLON.Engine(canvas, true);
-    this.scene = Scene.create(engine);
+    this.engine = new BABYLON.Engine(canvas, true);
+    this.scene = Scene.create(this.engine);
     this.light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
   });
 
   afterEach(function() {
+    this.engine.dispose();
     HtmlFixtures.removeFixture();
   });
 

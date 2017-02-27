@@ -10,6 +10,7 @@ describe('Scene.create(engine)', function() {
   });
 
   afterEach(function() {
+    this.engine.dispose();
     HtmlFixtures.removeFixture();
   });
 

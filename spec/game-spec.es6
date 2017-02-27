@@ -80,6 +80,7 @@ describe('Game', function() {
       });
 
       afterEach(function() {
+        this.game.engine.dispose();
         HtmlFixtures.removeFixture();
       });
 
