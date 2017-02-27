@@ -57,5 +57,29 @@ describe('ObjectBuilder', function() {
 
       expect(box.name).toEqual(boxConfig.name);
     });
+
+    it('can create a sphere from given config', function() {
+      const radius = 0.4;
+      const sphereConfig = {
+        name: 'test',
+        radius: radius,
+        position: {
+          x: 0,
+          y: radius,
+          z: 0
+        }
+      };
+
+      const sphere = this.objectBuilder.createSphere(sphereConfig);
+      const realRadius = sphere.getBoundingInfo().boundingBox.extendSize.x;
+
+      expect(sphere.position.x).toEqual(sphereConfig.position.x);
+      expect(sphere.position.y).toEqual(sphereConfig.position.y);
+      expect(sphere.position.z).toEqual(sphereConfig.position.z);
+
+      expect(realRadius).toEqual(sphereConfig.radius);
+
+      expect(sphere.name).toEqual(sphereConfig.name);
+    });
   });
 });
