@@ -1,0 +1,28 @@
+const ObjectBuilder = class{
+  constructor(scene) {
+    if (typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene)) {
+      throw "ObjectBuilder requires a scene to be created.";
+    }
+
+    this.scene = scene;
+  }
+
+  createBox(boxConfig) {
+    const name = boxConfig.name;
+    const width = boxConfig.width;
+    const height = boxConfig.height;
+    const depth = boxConfig.depth;
+    const x = boxConfig.position.x;
+    const y = boxConfig.position.y;
+    const z = boxConfig.position.z;
+
+    var mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, this.scene);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+
+    return mesh;
+  }
+};
+
+export default ObjectBuilder;
