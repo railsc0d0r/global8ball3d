@@ -312,7 +312,7 @@ function GAME(balls, borders, holes, rail, cue) {
 
     var mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, scene);
     mesh.position.x = x;
-    mesh.position,y = y;
+    mesh.position.y = y;
     mesh.position.z = z;
 
     return mesh;
