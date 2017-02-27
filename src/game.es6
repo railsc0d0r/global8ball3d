@@ -4,10 +4,6 @@ import ShadowGenerator from './objects/shadow_generator';
 
 const Game = class {
   constructor(config) {
-    if (typeof(config.ballsConfig) === 'undefined' || !(config.ballsConfig instanceof Array)) {
-      throw "Game requires an array of ball-definitions to be created.";
-    }
-
     if (typeof(config.bordersConfig) === 'undefined' || !(config.bordersConfig instanceof Array)) {
       throw "Game requires an array of border-definitions to be created.";
     }
@@ -20,7 +16,6 @@ const Game = class {
       throw "Game requires an array of rail-definitions to be created.";
     }
 
-    this.ballsConfig = config.ballsConfig;
     this.bordersConfig = config.bordersConfig;
     this.holesConfig = config.holesConfig;
     this.railConfig = config.railConfig;
@@ -44,7 +39,14 @@ const Game = class {
 
     // initializes a new shadowGenerator
     this.shadowGenerator = new ShadowGenerator(this.light);
-  };
+  }
+
+  setBallsStates(ballsStates) {
+    if (typeof(ballsStates) === 'undefined' || !(ballsStates instanceof Array)) {
+      throw "setBallsStates() requires an array of ballsStates.";
+    }
+    this.ballsStates = ballsStates;
+  }
 
 };
 
