@@ -46,6 +46,9 @@ const Game = class {
       throw "setBallsStates() requires an array of ballsStates.";
     }
     this.ballsStates = ballsStates;
+
+    // to be set to false when the changes take effect
+    this.ballsStatesChanged = true;
   }
 
 };
