@@ -125,6 +125,11 @@ describe('Game', function() {
       it('creates a shadowGenerator and stores it as property', function() {
         expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
       });
+
+      it('initializes ballsStates and ballsStatesChanged', function() {
+        expect(this.game.ballsStates).toEqual([]);
+        expect(this.game.ballsStatesChanged).toBeFalsy();
+      });
     });
 
     describe('on setBallsStates()', function() {
