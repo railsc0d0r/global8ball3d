@@ -38,6 +38,23 @@ const ObjectBuilder = class{
 
     return mesh;
   }
+
+  createCylinder(cylinderConfig) {
+    const name = cylinderConfig.name;
+    const diameterTop = cylinderConfig.diameterTop;
+    const diameterBottom = cylinderConfig.diameterBottom;
+    const height = cylinderConfig.height;
+    const x = cylinderConfig.position.x;
+    const y = cylinderConfig.position.y || 0;
+    const z = cylinderConfig.position.z;
+
+    var mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameterTop: diameterTop, diameterBottom: diameterBottom, height: height }, this.scene);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+
+    return mesh;
+  }
 };
 
 export default ObjectBuilder;
