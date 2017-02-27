@@ -1,5 +1,6 @@
 import Game from '../src/game';
 import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
+import ShadowGenerator from '../src/objects/shadow_generator';
 import HtmlFixtures from './support/html_fixtures';
 
 describe('Game', function() {
@@ -137,6 +138,10 @@ describe('Game', function() {
           expect(this.game.surfaceMaterials[color]).toEqual(jasmine.any(BABYLON.StandardMaterial));
           expect(this.game.surfaceMaterials[color].name).toEqual(color);
         });
+      });
+
+      it('creates a shadowGenerator and stores it as property', function() {
+        expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
       });
     });
   });
