@@ -1,5 +1,6 @@
 import Scene from './scene';
 import SurfaceMaterialsCreator from './creators/surface_materials_creator';
+import ShadowGenerator from './objects/shadow_generator';
 
 const Game = class {
   constructor(config) {
@@ -40,6 +41,9 @@ const Game = class {
 
     // initializes the surfaceMaterials used in the game
     this.surfaceMaterials = new SurfaceMaterialsCreator(this.scene).surfaceMaterials;
+
+    // initializes a new shadowGenerator
+    this.shadowGenerator = new ShadowGenerator(this.light);
   };
 
 };
