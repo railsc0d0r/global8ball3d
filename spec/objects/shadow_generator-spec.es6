@@ -46,10 +46,14 @@ describe('ShadowGenerator', function() {
       it('w/ Darkness set to 0.18', function() {
         expect(this.generator.getDarkness()).toEqual(0.18);
       });
-    });
 
-    it('can push a given object to the renderList of the ShadowMap of the stored ShadowGenerator', function() {
-      
+      it('can push a given object to the renderList of the ShadowMap of the stored ShadowGenerator', function() {
+        spyOn(this.generator.getShadowMap().renderList, 'push');
+        const objectWithShadow = {};
+        this.shadowGenerator.renderShadowsFrom(objectWithShadow);
+
+        expect(this.generator.getShadowMap().renderList.push).toHaveBeenCalledWith(objectWithShadow);
+      });
     });
   });
 });
