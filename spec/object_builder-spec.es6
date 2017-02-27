@@ -81,5 +81,28 @@ describe('ObjectBuilder', function() {
 
       expect(sphere.name).toEqual(sphereConfig.name);
     });
+
+    it('can create a cylinder from given config', function() {
+      const radius = 0.047625347;
+      const cylinderConfig =   {
+        name: "leftTop",
+        diameterTop: radius * 2,
+        diameterBottom: radius * 2,
+        height: 0.5,
+        position: {
+          x: -1.2991,
+          y: 0,
+          z: -0.6641
+        }
+      }
+
+      const cylinder = this.objectBuilder.createCylinder(cylinderConfig);
+
+      expect(cylinder.position.x).toEqual(cylinderConfig.position.x);
+      expect(cylinder.position.y).toEqual(cylinderConfig.position.y);
+      expect(cylinder.position.z).toEqual(cylinderConfig.position.z);
+
+      expect(cylinder.name).toEqual(cylinderConfig.name);
+    });
   });
 });
