@@ -39,6 +39,12 @@ const Game = class {
 
     // initializes a new shadowGenerator
     this.shadowGenerator = new ShadowGenerator(this.light);
+
+    // initializes ballsStates
+    this.ballsStates = [];
+
+    // initializes ballsStatesChanged
+    this.ballsStatesChanged = false;
   }
 
   setBallsStates(ballsStates) {
