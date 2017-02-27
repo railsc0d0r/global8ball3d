@@ -145,6 +145,11 @@ describe('Game', function() {
         this.game.setBallsStates(this.ballsStates);
         expect(this.game.ballsStates).toEqual(this.ballsStates);
       });
+
+      it('sets a flag to tell the game-instance about states-changes', function() {
+        this.game.setBallsStates(this.ballsStates);
+        expect(this.game.ballsStatesChanged).toBeTruthy();
+      });
     });
   });
 });
