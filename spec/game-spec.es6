@@ -5,30 +5,16 @@ import HtmlFixtures from './support/html_fixtures';
 
 describe('Game', function() {
   beforeEach(function() {
-    this.ballsConfig = [];
+    this.ballsStates = [];
     this.bordersConfig = [];
     this.holesConfig = [];
     this.railConfig = [];
 
     this.config = {
-      ballsConfig: this.ballsConfig,
       bordersConfig: this.bordersConfig,
       holesConfig: this.holesConfig,
       railConfig: this.railConfig
     };
-  });
-
-  it('requires an array of configurations for balls on creation', function() {
-    const ballsConfigs = [
-      void 0,
-      {}
-    ];
-
-    ballsConfigs.forEach( ballsConfig => {
-      this.config.ballsConfig = ballsConfig;
-      const throwsAnException = () => { new Game(this.config) };
-      expect(throwsAnException).toThrow('Game requires an array of ball-definitions to be created.');
-    });
   });
 
   it('requires an array of configurations for borders on creation', function() {
@@ -73,10 +59,6 @@ describe('Game', function() {
   describe('as an instance', function() {
     beforeEach(function() {
       this.game = new Game(this.config);
-    });
-
-    it('stores given balls-config and provides a getter for it.', function() {
-      expect(this.game.ballsConfig).toEqual(this.ballsConfig);
     });
 
     it('stores given borders-config and provides a getter for it.', function() {
@@ -142,6 +124,26 @@ describe('Game', function() {
 
       it('creates a shadowGenerator and stores it as property', function() {
         expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
+      });
+    });
+
+    describe('on setBallsStates()', function() {
+      it('requires an array of ballsStates', function() {
+        const ballsStatesArray = [
+          void 0,
+          {}
+        ];
+
+        ballsStatesArray.forEach( ballsStates => {
+          this.config.ballsStates = ballsStates;
+          const throwsAnException = () => { this.game.setBallsStates(ballsStates) };
+          expect(throwsAnException).toThrow('setBallsStates() requires an array of ballsStates.');
+        });
+      });
+
+      it('stores given ballsStates and provides a getter for it.', function() {
+        this.game.setBallsStates(this.ballsStates);
+        expect(this.game.ballsStates).toEqual(this.ballsStates);
       });
     });
   });
