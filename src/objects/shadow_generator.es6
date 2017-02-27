@@ -8,6 +8,10 @@ const ShadowGenerator = class {
     this.generator.bias = 0.0001;
     this.generator.setDarkness(0.18);
   }
+
+  renderShadowsFrom(objectWithShadow) {
+    this.generator.getShadowMap().renderList.push(objectWithShadow);
+  }
 };
 
 export default ShadowGenerator;
