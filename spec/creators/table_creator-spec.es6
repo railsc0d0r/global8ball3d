@@ -21,4 +21,15 @@ describe('TableCreator', function() {
 
     expect(throwsAnException).toThrow("TableCreator requires an instance of ObjectBuilder to be created.");
   });
+
+  describe('as an instance', function() {
+    beforeEach(function() {
+      this.objectBuilder = new ObjectBuilder(this.scene);
+      this.tableCreator = new TableCreator(this.objectBuilder);
+    });
+
+    it('stores given instance of ObjectBuilder as property', function() {
+      expect(this.tableCreator.objectBuilder).toEqual(this.objectBuilder);
+    });
+  });
 });
