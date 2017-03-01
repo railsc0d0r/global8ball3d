@@ -16,7 +16,7 @@ const ObjectBuilder = class{
     const y = boxConfig.position.y;
     const z = boxConfig.position.z;
 
-    var mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, this.scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -31,7 +31,7 @@ const ObjectBuilder = class{
     const y = sphereConfig.position.y || sphereConfig.radius;
     const z = sphereConfig.position.z;
 
-    var mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, this.scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -48,7 +48,7 @@ const ObjectBuilder = class{
     const y = cylinderConfig.position.y || 0;
     const z = cylinderConfig.position.z;
 
-    var mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameterTop: diameterTop, diameterBottom: diameterBottom, height: height }, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameterTop: diameterTop, diameterBottom: diameterBottom, height: height }, this.scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
