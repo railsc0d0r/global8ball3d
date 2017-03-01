@@ -5,6 +5,8 @@ const TableCreator = class {
     if( typeof(objectBuilder) === 'undefined' || !(objectBuilder instanceof ObjectBuilder) ) {
       throw "TableCreator requires an instance of ObjectBuilder to be created.";
     }
+
+    this.objectBuilder = objectBuilder;
   }
 };
 
