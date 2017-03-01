@@ -16,7 +16,8 @@ module.exports = function(config) {
      'karma-jasmine',
      'karma-chrome-launcher',
      'karma-firefox-launcher',
-     'karma-browserify'
+     'karma-browserify',
+     'karma-coverage'
     ],
 
     // list of files / patterns to load in the browser
@@ -34,8 +35,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/**/*.es6': ['browserify'],
-      'spec/**/*.es6': ['browserify']
+      'src/**/*.es6': ['browserify', 'coverage'],
+      'spec/**/*.es6': ['browserify', 'coverage']
     },
 
     browserify: {
@@ -49,7 +50,12 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
+
+    // generates coverage on console
+    coverageReporter: {
+      type : 'text-summary'
+    },
 
     // web server port
     port: 9876,
