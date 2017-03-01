@@ -107,5 +107,34 @@ describe('ObjectBuilder', function() {
 
       expect(cylinder.name).toEqual(cylinderConfig.name);
     });
+
+    it('can create a line from given config', function() {
+      const lineConfig =   {
+        name: "axis",
+        points: [
+          new BABYLON.Vector3(0,0,0),
+          new BABYLON.Vector3(1,0,0)
+        ]
+      }
+
+      const line = this.objectBuilder.createLine(lineConfig);
+
+      expect(line instanceof BABYLON.Mesh).toBeTruthy();
+      expect(line.name).toEqual(lineConfig.name);
+    });
+
+    it('checks if given points to create a line are vectors', function() {
+      const lineConfig =   {
+        name: "axis",
+        points: [
+          new BABYLON.Vector3(0,0,0),
+          {}
+        ]
+      }
+
+      const throwsAnException = () => this.objectBuilder.createLine(lineConfig);
+
+      expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
+    });
   });
 });
