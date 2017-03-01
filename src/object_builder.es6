@@ -55,6 +55,21 @@ const ObjectBuilder = class{
 
     return mesh;
   }
+
+  createLine(lineConfig) {
+    const name = lineConfig.name;
+    const points = lineConfig.points;
+
+    points.forEach(function(point) {
+      if (!(point instanceof BABYLON.Vector3)) {
+        throw "At least one point given is not a BABYLON.Vector3-object.";
+      }
+    });
+
+    let mesh = BABYLON.MeshBuilder.CreateLines(name, {points: points}, this.scene);
+
+    return mesh;
+  }
 };
 
 export default ObjectBuilder;
