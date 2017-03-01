@@ -47,6 +47,7 @@ describe('ObjectBuilder', function() {
       const box = this.objectBuilder.createBox(boxConfig);
       const dimensions = box.getBoundingInfo().boundingBox.extendSize.scale(2);
 
+      expect(box instanceof BABYLON.Mesh).toBeTruthy();
       expect(box.position.x).toEqual(boxConfig.position.x);
       expect(box.position.y).toEqual(boxConfig.position.y);
       expect(box.position.z).toEqual(boxConfig.position.z);
@@ -73,6 +74,7 @@ describe('ObjectBuilder', function() {
       const sphere = this.objectBuilder.createSphere(sphereConfig);
       const realRadius = sphere.getBoundingInfo().boundingBox.extendSize.x;
 
+      expect(sphere instanceof BABYLON.Mesh).toBeTruthy();
       expect(sphere.position.x).toEqual(sphereConfig.position.x);
       expect(sphere.position.y).toEqual(sphereConfig.position.y);
       expect(sphere.position.z).toEqual(sphereConfig.position.z);
@@ -98,6 +100,7 @@ describe('ObjectBuilder', function() {
 
       const cylinder = this.objectBuilder.createCylinder(cylinderConfig);
 
+      expect(cylinder instanceof BABYLON.Mesh).toBeTruthy();
       expect(cylinder.position.x).toEqual(cylinderConfig.position.x);
       expect(cylinder.position.y).toEqual(cylinderConfig.position.y);
       expect(cylinder.position.z).toEqual(cylinderConfig.position.z);
