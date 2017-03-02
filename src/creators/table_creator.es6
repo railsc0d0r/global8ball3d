@@ -31,6 +31,33 @@ const TableCreator = class {
 
     return csg;
   }
+
+  createPlayground(csgHoles) {
+    const name = 'playground';
+    const width = 2.6564;
+    const height = 0.02;
+    const depth = 1.3864;
+
+    const boxConfig = {
+        id: name,
+        width: width,
+        height: height,
+        depth: depth,
+        position: {
+          x: 0,
+          y: -(height / 2),
+          z: 0
+        }
+    };
+
+    let mesh = this.objectBuilder.createBox(boxConfig);
+    let csgPlayground = BABYLON.CSG.FromMesh(mesh);
+    mesh.dispose();
+
+    csgHoles.forEach(csgHole => {
+      csgPlayground.subtractInPlace(csgHole);
+    });
+  }
 };
 
 export default TableCreator;
