@@ -50,5 +50,23 @@ describe('TableCreator', function() {
     it('stores given instance of ObjectBuilder as property', function() {
       expect(this.tableCreator.objectBuilder).toEqual(this.objectBuilder);
     });
+
+    it('creates all holes as CSG-Objects and returns them as an array', function() {
+      const csgHoles = this.tableCreator.createCsgHoles(this.holesConfig);
+
+      expect(csgHoles).toEqual(jasmine.any(Array));
+      expect(csgHoles.length).not.toEqual(0);
+
+      csgHoles.forEach(csgHole => {
+        expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
+      });
+    });
+
+    it('takes an config-object describing a hole and returns a CSG-object.', function () {
+      const firstHoleConfig = this.holesConfig.find( () => { return true; });
+      const csgHole = this.tableCreator.createCsgHole(firstHoleConfig);
+
+      expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
+    });
   });
 });
