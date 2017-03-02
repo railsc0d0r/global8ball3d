@@ -136,5 +136,17 @@ describe('ObjectBuilder', function() {
 
       expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
     });
+
+    it('checks the object given to convert a given CSG-object to a mesh to be a CSG-object', function() {
+      fail('pending');
+    });
+
+    it('requires a material to convert a given CSG-object to a mesh', function() {
+      fail('pending');
+    });
+
+    it('can convert a given CSG-object to a mesh', function() {
+      fail('pending');
+    });
   });
 });
