@@ -24,6 +24,25 @@ describe('TableCreator', function() {
 
   describe('as an instance', function() {
     beforeEach(function() {
+      const hole_radius = 0.047625347;
+      this.holesConfig = [
+        {
+          id: "leftTop",
+          position: {
+            x: -1.2991,
+            z: -0.6641
+          },
+          radius: hole_radius
+        }, {
+          id: "leftBottom",
+          position: {
+            x: -1.2991,
+            z: 0.6641
+          },
+          radius: hole_radius
+        }
+      ];
+
       this.objectBuilder = new ObjectBuilder(this.scene);
       this.tableCreator = new TableCreator(this.objectBuilder);
     });
