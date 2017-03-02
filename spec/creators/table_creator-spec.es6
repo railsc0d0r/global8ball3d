@@ -68,5 +68,32 @@ describe('TableCreator', function() {
 
       expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
     });
+
+    describe('with given CSG-holes', function() {
+      beforeEach(function() {
+        this.csgHoles = this.tableCreator.createCsgHoles(this.holesConfig);
+      });
+
+      it('can create a playground', function() {
+        const playground = this.tableCreator.createPlayground(this.csgHoles);
+
+        expect(playground instanceof BABYLON.Mesh).toBeTruthy();
+
+        const dimensions = playground.getBoundingInfo().boundingBox.extendSize.scale(2);
+        const expectedWidth = 2.6564;
+        const expectedHeight = 0.02;
+        const expectedDepth = 1.3864;
+
+        expect(playground.position.x).toEqual(0);
+        expect(playground.position.y).toEqual(-(expectedHeight / 2));
+        expect(playground.position.z).toEqual(0);
+
+        expect(dimensions.x).toEqual(expectedWidth);
+        expect(dimensions.y).toEqual(expectedHeight);
+        expect(dimensions.z).toEqual(expectedDepth);
+
+        expect(playground.name).toEqual('playground');
+      });
+    });
   });
 });
