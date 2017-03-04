@@ -69,7 +69,15 @@ describe('TableCreator', function() {
       expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
     });
 
-    describe('with given CSG-holes', function() {
+    it('requires a material to create a playground', function() {
+      fail('pending');
+    });
+
+    it('requires an array of CSG-holes to create a playground', function() {
+      fail('pending');
+    });
+
+    describe('with given material and CSG-holes', function() {
       beforeEach(function() {
         this.csgHoles = this.tableCreator.createCsgHoles(this.holesConfig);
       });
