@@ -84,7 +84,7 @@ const ObjectBuilder = class{
       throw "Material given to create a mesh from a CSG-object with is not a Material.";
     }
 
-
+    return csgObject.toMesh(name, material, this.scene, false);
   }
 };
 
