@@ -198,6 +198,8 @@ describe('ObjectBuilder', function() {
       it('returns a mesh with given name and material', function() {
         const mesh = this.objectBuilder.convertCsgToMesh(this.name, this.csgSphere, this.material);
         expect(mesh).toEqual(jasmine.any(BABYLON.Mesh));
+        expect(mesh.name).toEqual(this.name);
+        expect(mesh.material).toEqual(this.material);
       });
     });
   });
