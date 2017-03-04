@@ -70,6 +70,22 @@ const ObjectBuilder = class{
 
     return mesh;
   }
+
+  convertCsgToMesh(name, csgObject, material) {
+    if ( !( typeof name === "string" || name instanceof String ) ) {
+      throw "Name given for mesh to be created from CSG-object is not a valid string.";
+    }
+
+    if ( typeof(csgObject) === 'undefined' || !( csgObject instanceof BABYLON.CSG ) ) {
+      throw "Object given to convert to mesh is not a CSG-object.";
+    }
+
+    if ( typeof(material) === 'undefined' || !( material instanceof BABYLON.StandardMaterial ) ) {
+      throw "Material given to create a mesh from a CSG-object with is not a Material.";
+    }
+
+
+  }
 };
 
 export default ObjectBuilder;
