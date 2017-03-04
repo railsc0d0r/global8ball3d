@@ -1,5 +1,6 @@
 import ObjectBuilder from '../src/object_builder';
 import Scene from '../src/scene';
+import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
 import HtmlFixtures from './support/html_fixtures';
 
 describe('ObjectBuilder', function() {
@@ -137,16 +138,67 @@ describe('ObjectBuilder', function() {
       expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
     });
 
-    it('checks the object given to convert a given CSG-object to a mesh to be a CSG-object', function() {
-      fail('pending');
-    });
+    describe('if converting a given CSG-Object', function() {
+      beforeEach(function() {
+        this.name = "myMesh";
 
-    it('requires a material to convert a given CSG-object to a mesh', function() {
-      fail('pending');
-    });
+        const radius = 0.4;
+        const sphereConfig = {
+          name: 'test',
+          radius: radius,
+          position: {
+            x: 0,
+            y: radius,
+            z: 0
+          }
+        };
 
-    it('can convert a given CSG-object to a mesh', function() {
-      fail('pending');
+        const sphere = this.objectBuilder.createSphere(sphereConfig);
+        this.csgSphere = BABYLON.CSG.FromMesh(sphere);
+
+        this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
+      });
+
+      it('requires a name', function() {
+        const nonStrings = [
+          void 0,
+          {}
+        ];
+
+        nonStrings.forEach(nonString => {
+          const throwsAnException = () => { this.objectBuilder.convertCsgToMesh(nonString) }
+          expect(throwsAnException).toThrow("Name given for mesh to be created from CSG-object is not a valid string.");
+        });
+      });
+
+      it('checks the object given to be a CSG-object', function() {
+        const nonCsgObjects = [
+          void 0,
+          {}
+        ];
+
+        nonCsgObjects.forEach(nonCsgObject => {
+          const throwsAnException = () => { this.objectBuilder.convertCsgToMesh(this.name, nonCsgObject) }
+          expect(throwsAnException).toThrow("Object given to convert to mesh is not a CSG-object.");
+        });
+      });
+
+      it('requires a material', function() {
+        const nonMaterials = [
+          void 0,
+          {}
+        ];
+
+        nonMaterials.forEach(nonMaterial => {
+          const throwsAnException = () => { this.objectBuilder.convertCsgToMesh(this.name, this.csgSphere, nonMaterial) }
+          expect(throwsAnException).toThrow("Material given to create a mesh from a CSG-object with is not a Material.");
+        });
+      });
+
+      it('returns a mesh with given name and material', function() {
+        const mesh = this.objectBuilder.convertCsgToMesh(this.name, this.csgSphere, this.material);
+        expect(mesh).toEqual(jasmine.any(BABYLON.Mesh));
+      });
     });
   });
 });
