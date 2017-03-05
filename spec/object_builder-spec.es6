@@ -2,6 +2,7 @@ import ObjectBuilder from '../src/object_builder';
 import Scene from '../src/scene';
 import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
 import HtmlFixtures from './support/html_fixtures';
+import NonValues from './support/non_values';
 
 describe('ObjectBuilder', function() {
   beforeEach(function() {
@@ -160,10 +161,7 @@ describe('ObjectBuilder', function() {
       });
 
       it('requires a name', function() {
-        const nonStrings = [
-          void 0,
-          {}
-        ];
+        const nonStrings = NonValues;
 
         nonStrings.forEach(nonString => {
           const throwsAnException = () => { this.objectBuilder.convertCsgToMesh(nonString) }
@@ -172,10 +170,7 @@ describe('ObjectBuilder', function() {
       });
 
       it('checks the object given to be a CSG-object', function() {
-        const nonCsgObjects = [
-          void 0,
-          {}
-        ];
+        const nonCsgObjects = NonValues;
 
         nonCsgObjects.forEach(nonCsgObject => {
           const throwsAnException = () => { this.objectBuilder.convertCsgToMesh(this.name, nonCsgObject) }
@@ -184,10 +179,7 @@ describe('ObjectBuilder', function() {
       });
 
       it('requires a material', function() {
-        const nonMaterials = [
-          void 0,
-          {}
-        ];
+        const nonMaterials = NonValues;
 
         nonMaterials.forEach(nonMaterial => {
           const throwsAnException = () => { this.objectBuilder.convertCsgToMesh(this.name, this.csgSphere, nonMaterial) }
