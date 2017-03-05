@@ -1,5 +1,6 @@
 import ObjectBuilder from '../../src/object_builder';
 import Scene from '../../src/scene';
+import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creator';
 import TableCreator from '../../src/creators/table_creator';
 import HtmlFixtures from '../support/html_fixtures';
 
