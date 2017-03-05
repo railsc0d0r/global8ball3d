@@ -2,6 +2,7 @@ import Game from '../src/game';
 import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
 import ShadowGenerator from '../src/objects/shadow_generator';
 import HtmlFixtures from './support/html_fixtures';
+import NonValues from './support/non_values';
 
 describe('Game', function() {
   beforeEach(function() {
@@ -18,10 +19,7 @@ describe('Game', function() {
   });
 
   it('requires an array of configurations for borders on creation', function() {
-    const bordersConfigs = [
-      void 0,
-      {}
-    ];
+    const bordersConfigs = NonValues;
 
     bordersConfigs.forEach( bordersConfig => {
       this.config.bordersConfig = bordersConfig;
@@ -31,10 +29,7 @@ describe('Game', function() {
   });
 
   it('requires an array of configurations for holes on creation', function() {
-    const holesConfigs = [
-      void 0,
-      {}
-    ];
+    const holesConfigs = NonValues;
 
     holesConfigs.forEach((holesConfig) => {
       this.config.holesConfig = holesConfig;
@@ -44,10 +39,7 @@ describe('Game', function() {
   });
 
   it('requires an array of configurations for the rail on creation', function() {
-    const railConfigs = [
-      void 0,
-      {}
-    ];
+    const railConfigs = NonValues;
 
     railConfigs.forEach((railConfig) => {
       this.config.railConfig = railConfig;
@@ -135,10 +127,7 @@ describe('Game', function() {
 
     describe('on setBallsStates()', function() {
       it('requires an array of ballsStates', function() {
-        const ballsStatesArray = [
-          void 0,
-          {}
-        ];
+        const ballsStatesArray = NonValues;
 
         ballsStatesArray.forEach( ballsStates => {
           this.config.ballsStates = ballsStates;
