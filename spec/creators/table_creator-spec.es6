@@ -3,6 +3,7 @@ import Scene from '../../src/scene';
 import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creator';
 import TableCreator from '../../src/creators/table_creator';
 import HtmlFixtures from '../support/html_fixtures';
+import NonValues from '../support/non_values';
 
 describe('TableCreator', function() {
   beforeEach(function() {
@@ -71,10 +72,7 @@ describe('TableCreator', function() {
     });
 
     it('requires a material to create a playground', function() {
-      const nonMaterialsArray = [
-        void 0,
-        {}
-      ];
+      const nonMaterialsArray = NonValues;
 
       nonMaterialsArray.forEach( nonMaterial => {
         const throwsAnException = () => { this.tableCreator.createPlayground(nonMaterial) };
