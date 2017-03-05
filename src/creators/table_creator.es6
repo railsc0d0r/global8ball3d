@@ -7,18 +7,16 @@ const TableCreator = class {
     }
 
     this.objectBuilder = objectBuilder;
+    this.csgHoles = [];
   }
 
   createCsgHoles(holesConfig) {
-    let csgHoles = []
     holesConfig.forEach(holeConfig => {
-      csgHoles.push(this.createCsgHole(holeConfig));
+      this.csgHoles.push(this._createCsgHole(holeConfig));
     });
-
-    return csgHoles;
   }
 
-  createCsgHole(holeConfig) {
+  _createCsgHole(holeConfig) {
     holeConfig.diameterTop = holeConfig.radius * 2;
     holeConfig.diameterBottom = holeConfig.radius * 2;
     holeConfig.height = 0.1;
@@ -32,7 +30,7 @@ const TableCreator = class {
     return csg;
   }
 
-  createPlayground(material, csgHoles) {
+  createPlayground(material) {
     if (typeof(material) === 'undefined' || !(material instanceof BABYLON.StandardMaterial)) {
       throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
     }
@@ -58,7 +56,7 @@ const TableCreator = class {
     let csgPlayground = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
 
-    csgHoles.forEach(csgHole => {
+    this.csgHoles.forEach(csgHole => {
       csgPlayground.subtractInPlace(csgHole);
     });
   }
