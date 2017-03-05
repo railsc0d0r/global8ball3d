@@ -71,7 +71,15 @@ describe('TableCreator', function() {
     });
 
     it('requires a material to create a playground', function() {
-      fail('pending');
+      const nonMaterialsArray = [
+        void 0,
+        {}
+      ];
+
+      nonMaterialsArray.forEach( nonMaterial => {
+        const throwsAnException = () => { this.tableCreator.createPlayground(nonMaterial) };
+        expect(throwsAnException).toThrow("A material of type BABYLON.StandardMaterial has to be given to create a playground.");
+      });
     });
 
     it('requires an array of CSG-holes to create a playground', function() {
