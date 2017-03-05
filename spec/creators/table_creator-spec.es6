@@ -53,20 +53,24 @@ describe('TableCreator', function() {
       expect(this.tableCreator.objectBuilder).toEqual(this.objectBuilder);
     });
 
-    it('creates all holes as CSG-Objects and returns them as an array', function() {
-      const csgHoles = this.tableCreator.createCsgHoles(this.holesConfig);
+    it('initializes csgHoles as an empty Array', function() {
+      expect(this.tableCreator.csgHoles).toEqual([]);
+    });
 
-      expect(csgHoles).toEqual(jasmine.any(Array));
-      expect(csgHoles.length).not.toEqual(0);
+    it('creates all holes as CSG-Objects and stores them as an array', function() {
+      this.tableCreator.createCsgHoles(this.holesConfig);
 
-      csgHoles.forEach(csgHole => {
+      expect(this.tableCreator.csgHoles).toEqual(jasmine.any(Array));
+      expect(this.tableCreator.csgHoles.length).not.toEqual(0);
+
+      this.tableCreator.csgHoles.forEach(csgHole => {
         expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
       });
     });
 
     it('takes an config-object describing a hole and returns a CSG-object.', function () {
       const firstHoleConfig = this.holesConfig.find( () => { return true; });
-      const csgHole = this.tableCreator.createCsgHole(firstHoleConfig);
+      const csgHole = this.tableCreator._createCsgHole(firstHoleConfig);
 
       expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
     });
@@ -80,18 +84,14 @@ describe('TableCreator', function() {
       });
     });
 
-    it('requires an array of CSG-holes to create a playground', function() {
-      fail('pending');
-    });
-
-    describe('with given material and CSG-holes', function() {
+    describe('with given material', function() {
       beforeEach(function() {
-        this.csgHoles = this.tableCreator.createCsgHoles(this.holesConfig);
+        this.tableCreator.createCsgHoles(this.holesConfig);
         this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
       });
 
       it('can create a playground', function() {
-        const playground = this.tableCreator.createPlayground(this.csgHoles);
+        const playground = this.tableCreator.createPlayground(this.material);
 
         expect(playground instanceof BABYLON.Mesh).toBeTruthy();
 
