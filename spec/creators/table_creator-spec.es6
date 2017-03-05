@@ -89,6 +89,7 @@ describe('TableCreator', function() {
     describe('with given material and CSG-holes', function() {
       beforeEach(function() {
         this.csgHoles = this.tableCreator.createCsgHoles(this.holesConfig);
+        this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
       });
 
       it('can create a playground', function() {
