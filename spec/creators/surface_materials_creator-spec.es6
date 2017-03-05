@@ -1,6 +1,7 @@
 import Scene from '../../src/scene';
 import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creator';
 import HtmlFixtures from '../support/html_fixtures';
+import NonValues from '../support/non_values';
 
 describe('SurfaceMaterialsCreator', function() {
   beforeEach(function() {
@@ -20,10 +21,7 @@ describe('SurfaceMaterialsCreator', function() {
   });
 
   it('throws an error if no scene or not an instance of BABYLON.Scene is given when created', function() {
-    const scenes = [
-      void 0,
-      {}
-    ];
+    const scenes = NonValues;
 
     scenes.forEach(function(scene) {
       let throwsAnException = () => { new SurfaceMaterialsCreator(scene) };
