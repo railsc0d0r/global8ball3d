@@ -32,7 +32,11 @@ const TableCreator = class {
     return csg;
   }
 
-  createPlayground(csgHoles) {
+  createPlayground(material, csgHoles) {
+    if (typeof(material) === 'undefined' || !(material instanceof BABYLON.StandardMaterial)) {
+      throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
+    }
+
     const name = 'playground';
     const width = 2.6564;
     const height = 0.02;
