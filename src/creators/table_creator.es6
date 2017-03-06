@@ -62,6 +62,10 @@ const TableCreator = class {
     this.csgHoles.forEach(csgHole => {
       csgPlayground.subtractInPlace(csgHole);
     });
+
+    let playground = this.objectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial);
+
+    return playground;
   }
 };
 
