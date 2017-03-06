@@ -105,9 +105,9 @@ describe('TableCreator', function() {
         expect(playground.position.y).toEqual(-(expectedHeight / 2));
         expect(playground.position.z).toEqual(0);
 
-        expect(dimensions.x).toEqual(expectedWidth);
-        expect(dimensions.y).toEqual(expectedHeight);
-        expect(dimensions.z).toEqual(expectedDepth);
+        expect(NumberRound(dimensions.x, 4)).toEqual(expectedWidth);
+        expect(NumberRound(dimensions.y, 4)).toEqual(expectedHeight);
+        expect(NumberRound(dimensions.z, 4)).toEqual(expectedDepth);
 
         expect(playground.name).toEqual('playground');
       });
