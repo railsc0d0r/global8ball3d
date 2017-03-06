@@ -111,6 +111,10 @@ describe('TableCreator', function() {
 
         expect(playground.name).toEqual('playground');
       });
+
+      it('can create a playground w/ physics_impostor', function() {
+        fail('pending');
+      });
     });
   });
 });
