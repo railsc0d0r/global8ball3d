@@ -139,6 +139,18 @@ describe('ObjectBuilder', function() {
       expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
     });
 
+    it('requires an object of type BABYLON.Mesh if creating a physics_impostor for an object', function() {
+      fail('pending');
+    });
+
+    it('requires an impostor_class if creating a physics_impostor for an object', function() {
+      fail('pending');
+    });
+
+    it('can create a physics_impostor for an object w/ given options', function() {
+      fail('pending');
+    });
+
     describe('if converting a given CSG-Object', function() {
       beforeEach(function() {
         this.name = "myMesh";
