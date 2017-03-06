@@ -35,6 +35,9 @@ const TableCreator = class {
       throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
     }
 
+    let playgroundMaterial = material.clone('playground');
+    playgroundMaterial.specularColor = BABYLON.Color3.FromHexString('#333333');
+
     const name = 'playground';
     const width = 2.6564;
     const height = 0.02;
