@@ -4,6 +4,7 @@ import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creato
 import TableCreator from '../../src/creators/table_creator';
 import HtmlFixtures from '../support/html_fixtures';
 import NonValues from '../support/non_values';
+import NumberRound from '../support/number_round';
 
 describe('TableCreator', function() {
   beforeEach(function() {
