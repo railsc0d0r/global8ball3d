@@ -86,6 +86,25 @@ const ObjectBuilder = class{
 
     return csgObject.toMesh(name, material, this.scene, false);
   }
+
+  createPhysicsImpostor(object, impostor_class, options={}) {
+    // maps objects to PhysicsImpostor-classes
+    const physicsImpostors = {
+      SPHERE: BABYLON.PhysicsImpostor.SphereImpostor,
+      BORDER: BABYLON.PhysicsImpostor.MeshImpostor,
+      GROUND: BABYLON.PhysicsImpostor.BoxImpostor
+    };
+
+    if ( typeof object === 'undefined' || !(object instanceof BABYLON.Mesh) ) {
+      throw "Object given to create a PhysicsImpostor for has to be an instance of mesh.";
+    }
+
+    if ( typeof impostor_class === 'undefined' || !Object.keys(physicsImpostors).includes(impostor_class) ) {
+      throw "You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or MESH.";
+    }
+
+    return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, this.scene);
+  };
 };
 
 export default ObjectBuilder;
