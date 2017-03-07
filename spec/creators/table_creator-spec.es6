@@ -88,32 +88,34 @@ describe('TableCreator', function() {
     describe('with given material', function() {
       beforeEach(function() {
         this.tableCreator.createCsgHoles(this.holesConfig);
-        this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
+        const material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
+        this.playground = this.tableCreator.createPlayground(material);
       });
 
       it('can create a playground', function() {
-        const playground = this.tableCreator.createPlayground(this.material);
 
-        expect(playground instanceof BABYLON.Mesh).toBeTruthy();
+        expect(this.playground instanceof BABYLON.Mesh).toBeTruthy();
 
-        const dimensions = playground.getBoundingInfo().boundingBox.extendSize.scale(2);
+        const dimensions = this.playground.getBoundingInfo().boundingBox.extendSize.scale(2);
         const expectedWidth = 2.6564;
         const expectedHeight = 0.02;
         const expectedDepth = 1.3864;
 
-        expect(playground.position.x).toEqual(0);
-        expect(playground.position.y).toEqual(-(expectedHeight / 2));
-        expect(playground.position.z).toEqual(0);
+        expect(this.playground.position.x).toEqual(0);
+        expect(this.playground.position.y).toEqual(-(expectedHeight / 2));
+        expect(this.playground.position.z).toEqual(0);
 
         expect(NumberRound(dimensions.x, 4)).toEqual(expectedWidth);
         expect(NumberRound(dimensions.y, 4)).toEqual(expectedHeight);
         expect(NumberRound(dimensions.z, 4)).toEqual(expectedDepth);
 
-        expect(playground.name).toEqual('playground');
+        expect(this.playground.name).toEqual('playground');
       });
 
       it('can create a playground w/ physics_impostor', function() {
-        fail('pending');
+        expect(this.playground.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+        expect(this.playground.physicsImpostor.getParam("mass")).toEqual(0);
+        expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.98);
       });
     });
   });
