@@ -161,6 +161,10 @@ describe('ObjectBuilder', function() {
         };
 
         this.mesh = this.objectBuilder.createSphere(sphereConfig);
+        this.meshOptions = {
+          mass: 0,
+          restitution: 0.98
+        };
       });
 
       it('requires an impostor_class if creating a physics_impostor for an object', function() {
