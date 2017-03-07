@@ -140,15 +140,38 @@ describe('ObjectBuilder', function() {
     });
 
     it('requires an object of type BABYLON.Mesh if creating a physics_impostor for an object', function() {
-      fail('pending');
+      NonValues.forEach(nonValue => {
+        const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(nonValue) };
+
+        expect(throwsAnException).toThrow("Object given to create a PhysicsImpostor for has to be an instance of mesh.");
+      })
     });
 
-    it('requires an impostor_class if creating a physics_impostor for an object', function() {
-      fail('pending');
-    });
+    describe('w/ given mesh', function() {
+      beforeEach(function() {
+        const radius = 0.4;
+        const sphereConfig = {
+          name: 'test',
+          radius: radius,
+          position: {
+            x: 0,
+            y: radius,
+            z: 0
+          }
+        };
 
-    it('can create a physics_impostor for an object w/ given options', function() {
-      fail('pending');
+        this.mesh = this.objectBuilder.createSphere(sphereConfig);
+      });
+
+      it('requires an impostor_class if creating a physics_impostor for an object', function() {
+        const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(this.mesh) };
+
+        expect(throwsAnException).toThrow("You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or MESH.");
+      });
+
+      it('can create a physics_impostor for an object w/ given options', function() {
+        fail('pending');
+      });
     });
 
     describe('if converting a given CSG-Object', function() {
