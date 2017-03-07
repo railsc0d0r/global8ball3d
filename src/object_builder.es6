@@ -100,7 +100,7 @@ const ObjectBuilder = class{
     }
 
     if ( typeof impostor_class === 'undefined' || !Object.keys(physicsImpostors).includes(impostor_class) ) {
-      throw "You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or MESH.";
+      throw "You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or GROUND.";
     }
 
     return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, this.scene);
