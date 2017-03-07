@@ -42,6 +42,8 @@ const TableCreator = class {
     const width = 2.6564;
     const height = 0.02;
     const depth = 1.3864;
+    const mass = 0;
+    const restitution = 0.98;
 
     const boxConfig = {
         id: name,
