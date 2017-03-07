@@ -174,7 +174,11 @@ describe('ObjectBuilder', function() {
       });
 
       it('can create a physics_impostor for an object w/ given options', function() {
-        fail('pending');
+        const physicsImpostor = this.objectBuilder.createPhysicsImpostor(this.mesh, "SPHERE", this.meshOptions);
+
+        expect(physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+        expect(physicsImpostor.getParam("mass")).toEqual(this.meshOptions.mass);
+        expect(physicsImpostor.getParam("restitution")).toEqual(this.meshOptions.restitution);
       });
     });
 
