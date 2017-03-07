@@ -170,7 +170,7 @@ describe('ObjectBuilder', function() {
       it('requires an impostor_class if creating a physics_impostor for an object', function() {
         const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(this.mesh) };
 
-        expect(throwsAnException).toThrow("You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or MESH.");
+        expect(throwsAnException).toThrow("You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or GROUND.");
       });
 
       it('can create a physics_impostor for an object w/ given options', function() {
