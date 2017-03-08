@@ -1,12 +1,12 @@
 {
   "name": "global8ball3d",
   "version": "0.0.1",
-  "description": "PoC for a 8ball-pool based on babylonjs",
+  "description": "A 8ball-pool-game based on babylonjs",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public/*",
     "test_ci": "xvfb-run karma start --single-run",
-    "test": "xvfb-run karma start"
+    "test": "karma start"
   },
   "author": "Stephan Barth",
   "license": "ISC",
@@ -46,6 +46,8 @@
   "keywords": [
     "pool",
     "8ball",
-    "3d"
+    "3d",
+    "game",
+    "babylonjs"
   ]
 }
