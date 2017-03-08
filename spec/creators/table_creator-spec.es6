@@ -27,7 +27,13 @@ describe('TableCreator', function() {
   });
 
   it('requires an instance of ShadowGenerator to be created', function() {
-    fail('pending');
+    const objectBuilder = new ObjectBuilder(this.scene);
+    const nonShadowGenerators = NonValues;
+
+    nonShadowGenerators.forEach(nonShadowGenerator => {
+      const throwsAnException = () => { new TableCreator(objectBuilder, nonShadowGenerator) };
+      expect(throwsAnException).toThrow("TableCreator requires an instance of ShadowGenerator to be created.");
+    });
   });
 
   describe('as an instance', function() {
