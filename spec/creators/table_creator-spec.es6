@@ -1,5 +1,6 @@
 import ObjectBuilder from '../../src/object_builder';
 import Scene from '../../src/scene';
+import ShadowGenerator from '../../src/objects/shadow_generator';
 import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creator';
 import TableCreator from '../../src/creators/table_creator';
 import HtmlFixtures from '../support/html_fixtures';
@@ -47,6 +48,9 @@ describe('TableCreator', function() {
       ];
 
       this.objectBuilder = new ObjectBuilder(this.scene);
+      const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
+      this.shadowGenerator = new ShadowGenerator(light);
+
       this.tableCreator = new TableCreator(this.objectBuilder);
     });
 
