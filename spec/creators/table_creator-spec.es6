@@ -124,6 +124,13 @@ describe('TableCreator', function() {
         it('with a mat material', function() {
           expect(this.playground.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
         });
+
+        it('that receives shadows', function() {
+          expect(this.playground.receiveShadows).toBeTruthy();
+        });
+      });
+
+      describe('can create borders', function() {
       });
     });
   });
