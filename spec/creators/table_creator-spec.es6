@@ -26,6 +26,10 @@ describe('TableCreator', function() {
     expect(throwsAnException).toThrow("TableCreator requires an instance of ObjectBuilder to be created.");
   });
 
+  it('requires an instance of ShadowGenerator to be created', function() {
+    fail('pending');
+  });
+
   describe('as an instance', function() {
     beforeEach(function() {
       const hole_radius = 0.047625347;
