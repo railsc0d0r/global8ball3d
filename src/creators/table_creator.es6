@@ -67,6 +67,7 @@ const TableCreator = class {
 
     let playground = this.objectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial);
     playground.physicsImpostor = this.objectBuilder.createPhysicsImpostor(playground, "GROUND", { mass: mass, restitution: restitution});
+    playground.receiveShadows = true;
 
     return playground;
   }
