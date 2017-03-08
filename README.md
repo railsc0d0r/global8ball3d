@@ -9,7 +9,7 @@ Contributing
 Clone the the repo
 
 ```bash
-git clone ssh://git@p2501.twilightparadox.com:33333/home/git/git_repos/game3d_poc.git
+git clone ssh://git@p2501.twilightparadox.com:33333/home/git/git_repos/global8ball3d.git
 ```
 Install dependencies
 ```bash
