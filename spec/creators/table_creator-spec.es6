@@ -61,11 +61,15 @@ describe('TableCreator', function() {
       const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
       this.shadowGenerator = new ShadowGenerator(light);
 
-      this.tableCreator = new TableCreator(this.objectBuilder);
+      this.tableCreator = new TableCreator(this.objectBuilder, this.shadowGenerator);
     });
 
     it('stores given instance of ObjectBuilder as property', function() {
       expect(this.tableCreator.objectBuilder).toEqual(this.objectBuilder);
+    });
+
+    it('stores given instance of ShadowGenerator as property', function() {
+      expect(this.tableCreator.shadowGenerator).toEqual(this.shadowGenerator);
     });
 
     it('initializes csgHoles as an empty Array', function() {
