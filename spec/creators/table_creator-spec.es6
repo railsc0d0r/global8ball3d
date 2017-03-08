@@ -120,6 +120,10 @@ describe('TableCreator', function() {
           expect(this.playground.physicsImpostor.getParam("mass")).toEqual(0);
           expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.98);
         });
+
+        it('with a mat material', function() {
+          expect(this.playground.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+        });
       });
     });
   });
