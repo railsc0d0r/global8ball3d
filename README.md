@@ -19,9 +19,9 @@ Start the server and open the browser on http://localhost:4000/
 ```bash
 ./server.js
 ```
-To use the testrunner, you need to install xvfb and firefox. On Ubuntu:
+To use the testrunner, you need to install chromium and firefox. On Ubuntu:
 ```bash
-sudo apt-get install xvfb firefox
+sudo apt-get install chromium-browser firefox
 ```
 After installing the requires dependencies, run
 ```bash
