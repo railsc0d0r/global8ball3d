@@ -18,7 +18,8 @@ module.exports = function(config) {
      'karma-firefox-launcher',
      'karma-browserify',
      'karma-coverage',
-     'karma-longest-reporter'
+     'karma-longest-reporter',
+     'karma-jasmine-html-reporter'
     ],
 
     // list of files / patterns to load in the browser
@@ -51,7 +52,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage', 'longest'],
+    reporters: ['progress', 'coverage', 'longest', 'kjhtml'],
 
     // generates coverage on console
     coverageReporter: {
