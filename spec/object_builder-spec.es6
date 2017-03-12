@@ -182,6 +182,13 @@ describe('ObjectBuilder', function() {
       expect(polyhedron.name).toEqual(name);
     });
 
+    it('can frost a material by setting its specularColor', function() {
+      let material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue.clone('mattBlue');
+      this.objectBuilder.frostMaterial(material);
+
+      expect(material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+    });
+
     it('requires an object of type BABYLON.Mesh if creating a physics_impostor for an object', function() {
       NonValues.forEach(nonValue => {
         const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(nonValue) };
