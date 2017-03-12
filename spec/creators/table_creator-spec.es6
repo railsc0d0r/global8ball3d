@@ -235,6 +235,12 @@ describe('TableCreator', function() {
             expect(border.physicsImpostor.getParam("restitution")).toEqual(0.8);
           });
         });
+
+        it('that receive shadows', function() {
+          this.borders.forEach(border => {
+            expect(border.receiveShadows).toBeTruthy();
+          });
+        });
       });
     });
   });
