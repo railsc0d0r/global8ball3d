@@ -154,7 +154,7 @@ describe('TableCreator', function() {
           const nose_height = ball_diameter * 0.65;
           const rail_height = 0.04445;
 
-          this.bordersConfig = [{
+          this.borderConfigs = [{
             id: "left",
             vertices: [{
               x: -1.27,
@@ -210,7 +210,7 @@ describe('TableCreator', function() {
             }]
           }]
 
-          this.borders = this.tableCreator.createBorders(this.bordersConfig);
+          this.borders = this.tableCreator.createBorders(this.borderConfigs, this.material);
         });
 
         it('returning an array of meshes', function() {
