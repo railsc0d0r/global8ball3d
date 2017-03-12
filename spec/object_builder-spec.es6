@@ -139,6 +139,49 @@ describe('ObjectBuilder', function() {
       expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
     });
 
+    it('can create a polyhedron from given config', function() {
+      const ball_diameter = 0.0291 * 2;
+      const nose_height = ball_diameter * 0.65;
+      const rail_height = 0.04445;
+
+      const faces = [
+            [0,1,2],
+            [3,4,5],
+            [0,1,4,3],
+            [0,2,5,3],
+            [1,4,5,2]
+      ];
+
+      const vertices = [
+        [
+          -1.27, nose_height, -0.560916126
+        ], [
+          -1.3282, 0, -0.624416589
+        ], [
+          -1.3282, rail_height, -0.624416589
+        ], [
+          -1.27, nose_height, 0.560916126
+        ], [
+          -1.3282, 0, 0.624416589
+        ], [
+          -1.3282, rail_height, 0.624416589
+        ]
+      ];
+
+      const name = "left";
+
+      const polyhedronConfig = {
+        name: "left",
+        vertex: vertices,
+        face: faces
+      };
+
+      const polyhedron = this.objectBuilder.createPolyhedron(polyhedronConfig);
+
+      expect(polyhedron).toEqual(jasmine.any(BABYLON.Mesh));
+      expect(polyhedron.name).toEqual(name);
+    });
+
     it('requires an object of type BABYLON.Mesh if creating a physics_impostor for an object', function() {
       NonValues.forEach(nonValue => {
         const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(nonValue) };
