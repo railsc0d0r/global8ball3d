@@ -71,6 +71,18 @@ const ObjectBuilder = class{
     return mesh;
   }
 
+  createPolyhedron(polyhedronConfig) {
+    const name = polyhedronConfig.name;
+    const customOptions = {
+      vertex: polyhedronConfig.vertex,
+      face: polyhedronConfig.face
+    };
+
+    let mesh = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, this.scene);
+
+    return mesh;
+  }
+
   convertCsgToMesh(name, csgObject, material) {
     if ( !( typeof name === "string" || name instanceof String ) ) {
       throw "Name given for mesh to be created from CSG-object is not a valid string.";
