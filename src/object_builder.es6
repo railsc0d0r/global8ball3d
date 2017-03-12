@@ -119,6 +119,10 @@ const ObjectBuilder = class{
   }
 
   frostMaterial(material) {
+    if ( typeof material === 'undefined' || !(material instanceof BABYLON.StandardMaterial) ) {
+      throw "Given object to be frosted is not a material.";
+    }
+
     material.specularColor = BABYLON.Color3.FromHexString('#333333');
   }
 };
