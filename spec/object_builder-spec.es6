@@ -182,6 +182,14 @@ describe('ObjectBuilder', function() {
       expect(polyhedron.name).toEqual(name);
     });
 
+    it('validates given material if called to frost it', function() {
+      NonValues.forEach(nonMaterial => {
+        const throwsAnException = () => { this.objectBuilder.frostMaterial(nonMaterial) };
+
+        expect(throwsAnException).toThrow('Given object to be frosted is not a material.');
+      });
+    });
+
     it('can frost a material by setting its specularColor', function() {
       let material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue.clone('mattBlue');
       this.objectBuilder.frostMaterial(material);
