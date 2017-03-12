@@ -220,7 +220,15 @@ describe('TableCreator', function() {
           this.borders.forEach(border => {
             expect(border).toEqual(jasmine.any(BABYLON.Mesh));
           });
-        })
+        });
+
+        it('with certain physics-params', function() {
+          this.borders.forEach(border => {
+            expect(border.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+            expect(border.physicsImpostor.getParam("mass")).toEqual(0);
+            expect(border.physicsImpostor.getParam("restitution")).toEqual(0.8);
+          });
+        });
       });
     });
   });
