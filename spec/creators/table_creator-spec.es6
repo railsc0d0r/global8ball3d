@@ -222,6 +222,12 @@ describe('TableCreator', function() {
           });
         });
 
+        it('with a mat material', function() {
+          this.borders.forEach(border => {
+            expect(border.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+          });
+        });
+
         it('with certain physics-params', function() {
           this.borders.forEach(border => {
             expect(border.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
