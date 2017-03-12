@@ -118,6 +118,8 @@ const TableCreator = class {
       border.material = borderMaterial;
       border.physicsImpostor = this.objectBuilder.createPhysicsImpostor(border, "BORDER", physicsConfig);
 
+      border.receiveShadows = true;
+
       borders.push(border);
     });
 
