@@ -42,7 +42,7 @@ const TableCreator = class {
     }
 
     let playgroundMaterial = material.clone('playground');
-    playgroundMaterial.specularColor = BABYLON.Color3.FromHexString('#333333');
+    this.objectBuilder.frostMaterial(playgroundMaterial);
 
     const name = 'playground';
     const width = 2.6564;
