@@ -78,8 +78,50 @@ const TableCreator = class {
     return playground;
   }
 
-  createBorders(bordersConfig, material) {
+  createBorders(borderConfigs, material) {
+    let borders = [];
 
+    const borderFaces = [
+      [0,1,2],
+      [3,4,5],
+      [0,1,4,3],
+      [0,2,5,3],
+      [1,4,5,2]
+    ];
+
+    const borderMaterial = material.clone('border');
+    borderMaterial.specularColor = BABYLON.Color3.FromHexString('#333333');
+
+    const physicsConfig = {
+      mass: 0,
+      restitution: 0.8
+    };
+
+
+    borderConfigs.forEach(borderConfig => {
+      let borderVertices = [];
+
+      borderConfig.vertices.forEach(function(vertex) {
+        borderVertices.push([vertex.x, vertex.y, vertex.z]);
+      });
+
+      const name = borderConfig.id;
+
+      const polyhedronConfig = {
+        name: name,
+        vertex: borderVertices,
+        face: borderFaces
+      };
+
+      let border = this.objectBuilder.createPolyhedron(polyhedronConfig);
+
+      border.material = borderMaterial;
+      border.physicsImpostor = this.objectBuilder.createPhysicsImpostor(border, "BORDER", physicsConfig);
+
+      borders.push(border);
+    });
+
+    return borders;
   }
 };
 
