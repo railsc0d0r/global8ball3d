@@ -77,6 +77,10 @@ const TableCreator = class {
 
     return playground;
   }
+
+  createBorders(bordersConfig, material) {
+
+  }
 };
 
 export default TableCreator;
