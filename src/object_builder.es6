@@ -116,7 +116,11 @@ const ObjectBuilder = class{
     }
 
     return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, this.scene);
-  };
+  }
+
+  frostMaterial(material) {
+    material.specularColor = BABYLON.Color3.FromHexString('#333333');
+  }
 };
 
 export default ObjectBuilder;
