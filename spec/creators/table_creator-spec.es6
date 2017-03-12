@@ -241,6 +241,10 @@ describe('TableCreator', function() {
             expect(border.receiveShadows).toBeTruthy();
           });
         });
+
+        it('that generate shadows', function() {
+          expect(this.tableCreator.shadowGenerator.generator.getShadowMap().renderList).toEqual(this.borders);
+        });
       });
     });
   });
