@@ -101,7 +101,7 @@ const TableCreator = class {
     borderConfigs.forEach(borderConfig => {
       let borderVertices = [];
 
-      borderConfig.vertices.forEach(function(vertex) {
+      borderConfig.vertices.forEach(vertex => {
         borderVertices.push([vertex.x, vertex.y, vertex.z]);
       });
 
