@@ -249,50 +249,54 @@ describe('TableCreator', function() {
 
       describe('can create the rail', function() {
         beforeEach(function() {
-          this.railConfig = [
-            {
-              id: "left",
-              width: 0.15,
-              height: 0.0889,
-              depth: 1.6864,
-              position: {
-                x: 1.4032,
-                y: 0,
-                z: 0
+          this.railConfig = {
+            boxes: [
+              {
+                id: "left",
+                width: 0.15,
+                height: 0.0889,
+                depth: 1.6864,
+                position: {
+                  x: 1.4032,
+                  y: 0,
+                  z: 0
+                }
+              }, {
+                id: "right",
+                width: 0.15,
+                height: 0.0889,
+                depth:1.6864,
+                position: {
+                  x: -1.4032,
+                  y: 0,
+                  z: 0
+                }
+              }, {
+                id: "top",
+                width: 2.9564,
+                height: 0.0889,
+                depth: 0.15,
+                position: {
+                  x: 0,
+                  y: 0,
+                  z: 0.7682
+                }
+              }, {
+                id: "bottom",
+                width: 2.9564,
+                height: 0.0889,
+                depth: 0.15,
+                position: {
+                  x: 0,
+                  y: 0,
+                  z:
+                  -0.7682
+                }
               }
-            }, {
-              id: "right",
-              width: 0.15,
-              height: 0.0889,
-              depth:1.6864,
-              position: {
-                x: -1.4032,
-                y: 0,
-                z: 0
-              }
-            }, {
-              id: "top",
-              width: 2.9564,
-              height: 0.0889,
-              depth: 0.15,
-              position: {
-                x: 0,
-                y: 0,
-                z: 0.7682
-              }
-            }, {
-              id: "bottom",
-              width: 2.9564,
-              height: 0.0889,
-              depth: 0.15,
-              position: {
-                x: 0,
-                y: 0,
-                z:
-                -0.7682
-              }
-            }
-          ];
+            ],
+            mass: 0,
+            restitution: 0.98
+          };
 
           this.rail = this.tableCreator.createRail(this.railConfig, this.material);
         });
