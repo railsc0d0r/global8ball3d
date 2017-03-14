@@ -246,6 +246,66 @@ describe('TableCreator', function() {
           expect(this.tableCreator.shadowGenerator.generator.getShadowMap().renderList).toEqual(this.borders);
         });
       });
+
+      describe('can create the rail', function() {
+        beforeEach(function() {
+          this.railConfig = [
+            {
+              id: "left",
+              width: 0.15,
+              height: 0.0889,
+              depth: 1.6864,
+              position: {
+                x: 1.4032,
+                y: 0,
+                z: 0
+              }
+            }, {
+              id: "right",
+              width: 0.15,
+              height: 0.0889,
+              depth:1.6864,
+              position: {
+                x: -1.4032,
+                y: 0,
+                z: 0
+              }
+            }, {
+              id: "top",
+              width: 2.9564,
+              height: 0.0889,
+              depth: 0.15,
+              position: {
+                x: 0,
+                y: 0,
+                z: 0.7682
+              }
+            }, {
+              id: "bottom",
+              width: 2.9564,
+              height: 0.0889,
+              depth: 0.15,
+              position: {
+                x: 0,
+                y: 0,
+                z:
+                -0.7682
+              }
+            }
+          ];
+
+          this.rail = this.tableCreator.createRail(this.railConfig, this.material);
+        });
+
+        it('returning a mesh', function() {
+          expect(this.rail).toEqual(jasmine.any(BABYLON.Mesh));
+        });
+
+        it('with a mat material', function() {
+          expect(this.rail.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+        });
+
+      });
     });
   });
 });
