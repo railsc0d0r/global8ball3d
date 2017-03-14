@@ -5,7 +5,8 @@ var x_outer_limit = 1.4782;
 var z_inner_limit = 0.6932;
 var z_outer_limit = 0.8432;
 
-var RAIL_BOXES = [
+var RAIL_CONFIG = {
+  boxes: [
     {
       id: "left",
       width: x_outer_limit - x_inner_limit,
@@ -50,4 +51,7 @@ var RAIL_BOXES = [
         z: -(z_outer_limit - (z_outer_limit - z_inner_limit) / 2)
       }
     }
-];
+  ],
+  mass: 0,
+  restitution: 0.98
+};
