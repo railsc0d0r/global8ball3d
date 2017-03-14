@@ -305,6 +305,11 @@ describe('TableCreator', function() {
           expect(this.rail.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
         });
 
+        it('with certain physics-params', function() {
+          expect(this.rail.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+          expect(this.rail.physicsImpostor.getParam("mass")).toEqual(0);
+          expect(this.rail.physicsImpostor.getParam("restitution")).toEqual(0.98);
+        });
       });
     });
   });
