@@ -132,13 +132,13 @@ const TableCreator = class {
   createRail(railConfig, material) {
     let railBoxes = [];
     const name = "rail";
-    const mass = 0;
-    const restitution = 0.98;
+    const mass = railConfig.mass;
+    const restitution = railConfig.restitution;
 
     let railMaterial = material.clone(name);
     railMaterial.specularColor = BABYLON.Color3.FromHexString('#333333');
 
-    railConfig.forEach(box => {
+    railConfig.boxes.forEach(box => {
       railBoxes.push(this.objectBuilder.createBox(box));
     });
 
