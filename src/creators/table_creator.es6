@@ -63,10 +63,12 @@ const TableCreator = class {
         }
     };
 
+    // creates the CSG-representation of the playground
     let mesh = this.objectBuilder.createBox(boxConfig);
     let csgPlayground = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
 
+    // drills the holes
     this.csgHoles.forEach(csgHole => {
       csgPlayground.subtractInPlace(csgHole);
     });
