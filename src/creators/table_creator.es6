@@ -128,6 +128,36 @@ const TableCreator = class {
 
     return borders;
   }
+
+  createRail(railConfig, material) {
+    let railBoxes = [];
+    const name = "rail";
+    const mass = 0;
+    const restitution = 0.98;
+
+    let railMaterial = material.clone(name);
+    railMaterial.specularColor = BABYLON.Color3.FromHexString('#333333');
+
+    railConfig.forEach(box => {
+      railBoxes.push(this.objectBuilder.createBox(box));
+    });
+
+    // creates the CSG-representation of the rail
+    let mesh = BABYLON.Mesh.MergeMeshes(railBoxes);
+    let csgRail = BABYLON.CSG.FromMesh(mesh);
+    mesh.dispose();
+
+    // drills the holes
+    this.csgHoles.forEach(csgHole => {
+      csgRail.subtractInPlace(csgHole);
+    });
+
+    let rail = this.objectBuilder.convertCsgToMesh(name, csgRail, railMaterial);
+    rail.physicsImpostor = this.objectBuilder.createPhysicsImpostor(rail, "BORDER", { mass: mass, restitution: restitution});
+    rail.receiveShadows = true;
+
+    return rail;
+  }
 };
 
 export default TableCreator;
