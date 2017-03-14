@@ -310,6 +310,10 @@ describe('TableCreator', function() {
           expect(this.rail.physicsImpostor.getParam("mass")).toEqual(0);
           expect(this.rail.physicsImpostor.getParam("restitution")).toEqual(0.98);
         });
+
+        it('that receive shadows', function() {
+          expect(this.rail.receiveShadows).toBeTruthy();
+        });
       });
     });
   });
