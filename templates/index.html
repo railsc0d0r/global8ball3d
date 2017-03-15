@@ -31,8 +31,17 @@
   <body>
     <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
-      var game = new GAME(BALLS, BORDERS, HOLES, RAIL_BOXES, CUE);
-      window.addEventListener('DOMContentLoaded', game.init);
+      function initializeGame() {
+        var tableConfig = {
+          bordersConfig: BORDERS,
+          holesConfig: HOLES,
+          playgroundConfig: PLAYGROUND,
+          railConfig: RAIL
+        };
+        var game = new Global8ball.Game3D(tableConfig);
+        game.init();
+      }
+      window.addEventListener('DOMContentLoaded', initializeGame);
     </script>
   </body>
 </html>
