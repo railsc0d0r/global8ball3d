@@ -20,9 +20,14 @@ const Game = class {
       throw "Game requires an array of box-definitions to describe the rail to be created.";
     }
 
+    if (typeof(config.playgroundConfig) === 'undefined') {
+      throw "Game requires a hash of config-options for the playground to be created.";
+    }
+
     this.bordersConfig = config.bordersConfig;
     this.holesConfig = config.holesConfig;
     this.railConfig = config.railConfig;
+    this.playgroundConfig = config.playgroundConfig;
   }
 
   init() {
