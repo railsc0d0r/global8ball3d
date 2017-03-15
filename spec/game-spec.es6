@@ -42,13 +42,13 @@ describe('Game', function() {
     });
   });
 
-  it('requires an array of configurations for the rail on creation', function() {
-    const railConfigs = NonValues;
+  it('requires an array of configurations for the rail-boxes on creation', function() {
+    const boxDefinitions = NonValues;
 
-    railConfigs.forEach((railConfig) => {
-      this.config.railConfig = railConfig;
+    boxDefinitions.forEach((nonBoxDefinition) => {
+      this.config.railConfig.boxes = nonBoxDefinition;
       let throwsAnException = () => { new Game(this.config) };
-      expect(throwsAnException).toThrow('Game requires an array of rail-definitions to be created.');
+      expect(throwsAnException).toThrow('Game requires an array of box-definitions to describe the rail to be created.');
     });
   });
 
