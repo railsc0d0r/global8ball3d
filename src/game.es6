@@ -12,6 +12,10 @@ const Game = class {
       throw "Game requires an array of hole-definitions to be created.";
     }
 
+    if (typeof(config.railConfig) === 'undefined') {
+      throw "Game requires a hash of config-options for the rail to be created.";
+    }
+
     if (typeof(config.railConfig.boxes) === 'undefined' || !(config.railConfig.boxes instanceof Array)) {
       throw "Game requires an array of box-definitions to describe the rail to be created.";
     }
