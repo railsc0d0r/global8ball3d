@@ -9,11 +9,15 @@ describe('Game', function() {
     this.ballsStates = [];
     this.bordersConfig = [];
     this.holesConfig = [];
-    this.railConfig = [];
+    this.playgroundConfig = {};
+    this.railConfig = {
+      boxes: []
+    };
 
     this.config = {
       bordersConfig: this.bordersConfig,
       holesConfig: this.holesConfig,
+      playgroundConfig: this.playgroundConfig,
       railConfig: this.railConfig
     };
   });
