@@ -38,6 +38,12 @@ describe('Game', function() {
     expect(throwsAnException).toThrow('Game requires a hash of config-options for the rail to be created.');
   });
 
+  it('requires a hash of configuration-options for the playground on creation', function() {
+    this.config.playgroundConfig = void 0;
+    const throwsAnException = () => { new Game(this.config) };
+    expect(throwsAnException).toThrow('Game requires a hash of config-options for the playground to be created.');
+  });
+
   it('requires an array of configurations for holes on creation', function() {
     const holesConfigs = NonValues;
 
