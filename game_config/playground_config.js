@@ -1,6 +1,6 @@
 var height = 0.02;
 
-var PLAYGROUND_CONFIG = {
+var PLAYGROUND = {
     id: 'playground',
     width: 2.6564,
     height: height,

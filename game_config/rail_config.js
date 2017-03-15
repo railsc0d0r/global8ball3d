@@ -5,7 +5,7 @@ var x_outer_limit = 1.4782;
 var z_inner_limit = 0.6932;
 var z_outer_limit = 0.8432;
 
-var RAIL_CONFIG = {
+var RAIL = {
   boxes: [
     {
       id: "left",
