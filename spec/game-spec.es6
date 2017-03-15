@@ -27,9 +27,15 @@ describe('Game', function() {
 
     bordersConfigs.forEach( bordersConfig => {
       this.config.bordersConfig = bordersConfig;
-      let throwsAnException = () => { new Game(this.config) };
+      const throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of border-definitions to be created.');
     });
+  });
+
+  it('requires a hash of configuration-options for the rail on creation', function() {
+    this.config.railConfig = void 0;
+    const throwsAnException = () => { new Game(this.config) };
+    expect(throwsAnException).toThrow('Game requires a hash of config-options for the rail to be created.');
   });
 
   it('requires an array of configurations for holes on creation', function() {
@@ -37,7 +43,7 @@ describe('Game', function() {
 
     holesConfigs.forEach((holesConfig) => {
       this.config.holesConfig = holesConfig;
-      let throwsAnException = () => { new Game(this.config) };
+      const throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of hole-definitions to be created.');
     });
   });
@@ -47,7 +53,7 @@ describe('Game', function() {
 
     boxDefinitions.forEach((nonBoxDefinition) => {
       this.config.railConfig.boxes = nonBoxDefinition;
-      let throwsAnException = () => { new Game(this.config) };
+      const throwsAnException = () => { new Game(this.config) };
       expect(throwsAnException).toThrow('Game requires an array of box-definitions to describe the rail to be created.');
     });
   });
