@@ -29,7 +29,7 @@ const transpile = function (entries) {
   const bundler = browserify({
     entries: 'src/main.es6',
     extensions: ['.js', '.es6'],
-    standalone: 'Game3D',
+    standalone: 'Global8ball',
     debug: true
   });
   bundler.transform(babelify);
