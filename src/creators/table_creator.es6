@@ -36,20 +36,27 @@ const TableCreator = class {
     return csg;
   }
 
-  createPlayground(material) {
+  createPlayground(material, playgroundConfig) {
     if (typeof(material) === 'undefined' || !(material instanceof BABYLON.StandardMaterial)) {
       throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
+    }
+
+    if (typeof(playgroundConfig) === 'undefined') {
+      throw "A hash of config-options has to be given to create a playground.";
     }
 
     let playgroundMaterial = material.clone('playground');
     this.objectBuilder.frostMaterial(playgroundMaterial);
 
-    const name = 'playground';
-    const width = 2.6564;
-    const height = 0.02;
-    const depth = 1.3864;
-    const mass = 0;
-    const restitution = 0.98;
+    const name = playgroundConfig.id;
+    const width = playgroundConfig.width;
+    const height = playgroundConfig.height;
+    const depth = playgroundConfig.depth;
+    const mass = playgroundConfig.mass;
+    const restitution = playgroundConfig.restitution;
+    const x = playgroundConfig.position.x;
+    const y = playgroundConfig.position.y;
+    const z = playgroundConfig.position.z;
 
     const boxConfig = {
         id: name,
@@ -57,9 +64,9 @@ const TableCreator = class {
         height: height,
         depth: depth,
         position: {
-          x: 0,
-          y: -(height / 2),
-          z: 0
+          x: x,
+          y: y,
+          z: z
         }
     };
 
