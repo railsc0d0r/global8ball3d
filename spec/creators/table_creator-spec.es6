@@ -109,9 +109,30 @@ describe('TableCreator', function() {
         this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
       });
 
+      it('requires a config-object to create a playground', function() {
+        const throwsAnException = () => { this.tableCreator.createPlayground(this.material) };
+        expect(throwsAnException).toThrow("A hash of config-options has to be given to create a playground.");
+      });
+
       describe('can create a playground', function() {
         beforeEach(function() {
-          this.playground = this.tableCreator.createPlayground(this.material);
+          let height = 0.02;
+
+          this.playgroundConfig = {
+              id: 'playground',
+              width: 2.6564,
+              height: height,
+              depth: 1.3864,
+              mass: 0,
+              restitution: 0.98,
+              position: {
+                x: 0,
+                y: -(height / 2),
+                z: 0
+              }
+          };
+
+          this.playground = this.tableCreator.createPlayground(this.material, this.playgroundConfig);
         });
 
         it('with the right dimensions and the right position', function() {
