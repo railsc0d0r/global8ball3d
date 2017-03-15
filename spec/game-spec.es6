@@ -81,6 +81,10 @@ describe('Game', function() {
       expect(this.game.railConfig).toEqual(this.railConfig);
     });
 
+    it('stores given playground-config and provides a getter for it.', function() {
+      expect(this.game.playgroundConfig).toEqual(this.playgroundConfig);
+    });
+
     describe('on init()', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
