@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public/*",
-    "test_ci": "xvfb-run karma start --single-run",
+    "test_ci": "DISPLAY=:100 karma start --browsers Firefox --single-run",
     "test": "karma start"
   },
   "author": "Stephan Barth",
