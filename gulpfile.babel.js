@@ -8,28 +8,47 @@ import uglify from 'gulp-uglify';
 import rename from 'gulp-rename';
 
 // Defines main-entry-points
-const entries = 'src/game3d.es6';
+const scripts = [
+  {
+    entries: 'src/game3d.es6',
+    namespace: 'Global8ball',
+    filename: 'game3d.js'
+  },
+  {
+    entries: 'game_config/table_config.es6',
+    namespace: 'TableConfig',
+    filename: 'table_config.js'
+  },
+  {
+    entries: 'game_config/balls_config.es6',
+    namespace: 'BallsConfig',
+    filename: 'balls_config.js'
+  }
+];
 
 // Task to bundle, transpile, minify and write results to dist/
 const compress = function () {
-  const bundler = transpile(entries);
-
-  minify(bundler);
-  write_result(bundler);
+  scripts.forEach(script => {
+    const bundler = transpile(script);
+    minify(bundler);
+    write_result(bundler);
+  });
 };
 
 // Default task to bundle, transpile and write results to dist/
 const bundle = function () {
-  const bundler = transpile(entries);
-  write_result(bundler);
+  scripts.forEach(script => {
+    const bundler = transpile(script);
+    write_result(bundler);
+  });
 };
 
 // Browserifies and babelifies, inits sourcemaps
-const transpile = function (entries) {
+const transpile = function (script) {
   const bundler = browserify({
-    entries: 'src/main.es6',
+    entries: script.entries,
     extensions: ['.js', '.es6'],
-    standalone: 'Global8ball',
+    standalone: script.namespace,
     debug: true
   });
   bundler.transform(babelify);
@@ -37,7 +56,7 @@ const transpile = function (entries) {
     .on('error', function (err) {
       console.error(err);
     })
-    .pipe(source('game3d.js'))
+    .pipe(source(script.filename))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}));
   return bundle;
@@ -62,8 +81,7 @@ const copy_to_public = function () {
   const javascripts = [
     './node_modules/pepjs/dist/pep.js',
     './node_modules/cannon/build/cannon.js',
-    './node_modules/babylonjs/babylon.js',
-    './game_config/*.js'
+    './node_modules/babylonjs/babylon.js'
   ];
 
   const templates = [
