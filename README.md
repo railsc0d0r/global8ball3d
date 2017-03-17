@@ -17,7 +17,7 @@ npm install
 ```
 Start the server and open the browser on http://localhost:4000/
 ```bash
-./server.js
+npm start
 ```
 To use the testrunner, you need to install chromium and firefox. On Ubuntu:
 ```bash
@@ -32,5 +32,14 @@ For convenience, install some npm-packages globally
 npm install -g karma-cli gulp-cli
 ```
 I recommend nvm to handle node-versions and npm-packages w/o hassle.
+
+Running test on CI-server
+--------------------
+
+Because we use BabylonJs directly in unit-tests, we need a WebGL-context provided by the browser. To run the tests headless on a CI-server you need to install firefox and [xpra](https://www.xpra.org/trac/wiki/Xdummy) and start the server using Xdummy as driver on DISPLAY :100. After this you can run the tests once with
+
+```bash
+npm run test_ci
+```
 
 Happy hacking...
