@@ -73,7 +73,7 @@ module.exports = function(config) {
     autoWatch: true,
 
     // tells karma how long to wait for browser-activity
-    browserNoActivityTimeout: 30000,
+    browserNoActivityTimeout: 40000,
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
