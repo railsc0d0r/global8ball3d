@@ -86,6 +86,10 @@ describe('Game', function() {
       expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
     });
 
+    it('intializes a table as empty object and provides a getter for it.', function() {
+      expect(this.game.table).toEqual({});
+    });
+
     describe('on init()', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
