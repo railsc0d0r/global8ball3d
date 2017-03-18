@@ -2,6 +2,7 @@ import ObjectBuilder from './object_builder';
 import Scene from './scene';
 import SurfaceMaterialsCreator from './creators/surface_materials_creator';
 import ShadowGenerator from './objects/shadow_generator';
+import TableCreator from './creators/table_creator';
 
 const Game = class {
   constructor(config) {
@@ -54,6 +55,9 @@ const Game = class {
 
     // initializes a new objectBuilder
     this.objectBuilder = new ObjectBuilder(this.scene);
+
+    // initializes a new TableCreator
+    this.tableCreator = new TableCreator(this.objectBuilder, this.shadowGenerator);
 
     // initializes ballsStates
     this.ballsStates = [];
