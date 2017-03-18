@@ -153,6 +153,10 @@ describe('Game', function() {
         expect(this.game.objectBuilder).toEqual(jasmine.any(ObjectBuilder));
       });
 
+      it('creates a tableCreator and stores it as property', function() {
+        expect(this.game.tableCreator).toEqual(jasmine.any(TableCreator));
+      });
+
       describe('creates a table', function() {
         it('with a playground', function() {
           expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
