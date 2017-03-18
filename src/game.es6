@@ -76,6 +76,11 @@ const Game = class {
     this.ballsStatesChanged = true;
   }
 
+  createTable() {
+    this.tableCreator.createCsgHoles(this.holesConfig);
+    this.table.playground = this.tableCreator.createPlayground(this.surfaceMaterials.lightBlue, this.playgroundConfig);
+  }
+
 };
 
 export default Game;
