@@ -148,6 +148,13 @@ describe('Game', function() {
         expect(this.game.ballsStates).toEqual([]);
         expect(this.game.ballsStatesChanged).toBeFalsy();
       });
+
+      describe('creates a table', function() {
+        it('with a playground', function() {
+          expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(this.game.table.playground.name).toEqual('playground');
+        });
+      });
     });
 
     describe('on setBallsStates()', function() {
