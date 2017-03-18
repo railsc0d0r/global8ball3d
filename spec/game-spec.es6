@@ -1,8 +1,12 @@
 import Game from '../src/game';
+import ObjectBuilder from '../src/object_builder';
 import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
 import ShadowGenerator from '../src/objects/shadow_generator';
+import TableCreator from '../src/creators/table_creator';
+
 import HtmlFixtures from './support/html_fixtures';
 import NonValues from './support/non_values';
+
 import * as TableConfig from '../game_config/table_config';
 
 describe('Game', function() {
