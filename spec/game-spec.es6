@@ -149,6 +149,10 @@ describe('Game', function() {
         expect(this.game.ballsStatesChanged).toBeFalsy();
       });
 
+      it('creates a objectBuilder and stores it as property', function() {
+        expect(this.game.objectBuilder).toEqual(jasmine.any(ObjectBuilder));
+      });
+
       describe('creates a table', function() {
         it('with a playground', function() {
           expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
