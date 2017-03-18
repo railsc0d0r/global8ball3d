@@ -28,6 +28,8 @@ const Game = class {
     this.holesConfig = config.holesConfig;
     this.railConfig = config.railConfig;
     this.playgroundConfig = config.playgroundConfig;
+
+    this.table = {};
   }
 
   init() {
