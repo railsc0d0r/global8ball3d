@@ -28,8 +28,8 @@
   <body>
     <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
+      var game = new Global8ball.Game3D(TableConfig);
       function initializeGame() {
-        var game = new Global8ball.Game3D(TableConfig);
         game.init();
       }
       window.addEventListener('DOMContentLoaded', initializeGame);
