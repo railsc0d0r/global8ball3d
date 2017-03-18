@@ -67,23 +67,23 @@ describe('Game', function() {
 
   describe('as an instance', function() {
     beforeEach(function() {
-      this.game = new Game(this.config);
+      this.game = new Game(TableConfig);
     });
 
     it('stores given borders-config and provides a getter for it.', function() {
-      expect(this.game.bordersConfig).toEqual(this.bordersConfig);
+      expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
     });
 
     it('stores given holes-config and provides a getter for it.', function() {
-      expect(this.game.holesConfig).toEqual(this.holesConfig);
+      expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
     });
 
     it('stores given rail-config and provides a getter for it.', function() {
-      expect(this.game.railConfig).toEqual(this.railConfig);
+      expect(this.game.railConfig).toEqual(TableConfig.railConfig);
     });
 
     it('stores given playground-config and provides a getter for it.', function() {
-      expect(this.game.playgroundConfig).toEqual(this.playgroundConfig);
+      expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
     });
 
     describe('on init()', function() {
