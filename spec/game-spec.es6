@@ -162,9 +162,19 @@ describe('Game', function() {
       });
 
       describe('creates a table', function() {
+        beforeEach(function() {
+          let tableCreatorSpy = jasmine.createSpyObj('TableCreator', ['createCsgHoles', 'createPlayground']);
+          this.game.tableCreator = tableCreatorSpy;
+
+          this.game.createTable();
+        });
+
+        it('with holes', function() {
+          expect(this.game.tableCreator.createCsgHoles).toHaveBeenCalledWith(TableConfig.holesConfig);
+        });
+
         it('with a playground', function() {
-          expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(this.game.table.playground.name).toEqual('playground');
+          expect(this.game.tableCreator.createPlayground).toHaveBeenCalledWith(this.game.surfaceMaterials.lightBlue,TableConfig.playgroundConfig);
         });
       });
     });
