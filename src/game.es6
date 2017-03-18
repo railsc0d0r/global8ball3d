@@ -1,3 +1,4 @@
+import ObjectBuilder from './object_builder';
 import Scene from './scene';
 import SurfaceMaterialsCreator from './creators/surface_materials_creator';
 import ShadowGenerator from './objects/shadow_generator';
