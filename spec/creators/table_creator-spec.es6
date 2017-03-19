@@ -336,7 +336,7 @@ describe('TableCreator', function() {
           expect(this.rail.physicsImpostor.getParam("restitution")).toEqual(0.98);
         });
 
-        it('that receive shadows', function() {
+        it('that receives shadows', function() {
           expect(this.rail.receiveShadows).toBeTruthy();
         });
       });
