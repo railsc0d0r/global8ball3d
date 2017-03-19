@@ -182,6 +182,11 @@ describe('Game', function() {
           expect(this.game.table.playground).toBeDefined();
           expect(this.game.table.playground.name).toEqual('playground');
         });
+
+        it('with an array of borders stored as a property', function() {
+          expect(this.game.tableCreator.createBorders).toHaveBeenCalledWith(TableConfig.bordersConfig, this.game.surfaceMaterials.blue);
+          expect(this.game.table.borders).toEqual(jasmine.any(Array));
+        });
       });
     });
 
