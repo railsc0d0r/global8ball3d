@@ -36,13 +36,13 @@ const TableCreator = class {
     return csg;
   }
 
-  createPlayground(material, playgroundConfig) {
-    if (typeof(material) === 'undefined' || !(material instanceof BABYLON.StandardMaterial)) {
-      throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
-    }
-
+  createPlayground(playgroundConfig, material) {
     if (typeof(playgroundConfig) === 'undefined') {
       throw "A hash of config-options has to be given to create a playground.";
+    }
+
+    if (typeof(material) === 'undefined' || !(material instanceof BABYLON.StandardMaterial)) {
+      throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
     }
 
     let playgroundMaterial = material.clone('playground');
