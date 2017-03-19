@@ -94,24 +94,10 @@ describe('TableCreator', function() {
       expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
     });
 
-    it('requires a material to create a playground', function() {
-      const nonMaterialsArray = NonValues;
-
-      nonMaterialsArray.forEach( nonMaterial => {
-        const throwsAnException = () => { this.tableCreator.createPlayground(nonMaterial) };
-        expect(throwsAnException).toThrow("A material of type BABYLON.StandardMaterial has to be given to create a playground.");
-      });
-    });
-
     describe('with given material', function() {
       beforeEach(function() {
         this.tableCreator.createCsgHoles(this.holesConfig);
         this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
-      });
-
-      it('requires a config-object to create a playground', function() {
-        const throwsAnException = () => { this.tableCreator.createPlayground(this.material) };
-        expect(throwsAnException).toThrow("A hash of config-options has to be given to create a playground.");
       });
 
       describe('can create a playground', function() {
@@ -132,7 +118,21 @@ describe('TableCreator', function() {
               }
           };
 
-          this.playground = this.tableCreator.createPlayground(this.material, this.playgroundConfig);
+          this.playground = this.tableCreator.createPlayground(this.playgroundConfig, this.material);
+        });
+
+        it('validating the config-object given', function() {
+          const throwsAnException = () => { this.tableCreator.createPlayground() };
+          expect(throwsAnException).toThrow("A hash of config-options has to be given to create a playground.");
+        });
+
+        it('validating the material given', function() {
+          const nonMaterialsArray = NonValues;
+
+          nonMaterialsArray.forEach( nonMaterial => {
+            const throwsAnException = () => { this.tableCreator.createPlayground(this.playgroundConfig, nonMaterial) };
+            expect(throwsAnException).toThrow("A material of type BABYLON.StandardMaterial has to be given to create a playground.");
+          });
         });
 
         it('with the right dimensions and the right position', function() {
