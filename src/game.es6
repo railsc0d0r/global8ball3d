@@ -78,7 +78,7 @@ const Game = class {
 
   createTable() {
     this.tableCreator.createCsgHoles(this.holesConfig);
-    this.table.playground = this.tableCreator.createPlayground(this.surfaceMaterials.lightBlue, this.playgroundConfig);
+    this.table.playground = this.tableCreator.createPlayground(this.playgroundConfig, this.surfaceMaterials.lightBlue);
     this.table.borders = this.tableCreator.createBorders(this.bordersConfig, this.surfaceMaterials.blue);
     this.table.rail = this.tableCreator.createRail(this.railConfig, this.surfaceMaterials.brown);
   }
