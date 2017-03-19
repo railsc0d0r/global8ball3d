@@ -193,6 +193,12 @@ describe('Game', function() {
           expect(this.game.tableCreator.createBorders).toHaveBeenCalledWith(TableConfig.bordersConfig, this.game.surfaceMaterials.blue);
           expect(this.game.table.borders).toEqual(jasmine.any(Array));
         });
+
+        it('with a rail stored as a property', function() {
+          expect(this.game.tableCreator.createRail).toHaveBeenCalledWith(TableConfig.railConfig, this.game.surfaceMaterials.brown);
+          expect(this.game.table.rail).toBeDefined();
+          expect(this.game.table.rail.name).toEqual('rail');
+        });
       });
     });
 
