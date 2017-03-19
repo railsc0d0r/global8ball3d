@@ -176,8 +176,10 @@ describe('Game', function() {
           expect(this.game.tableCreator.createCsgHoles).toHaveBeenCalledWith(TableConfig.holesConfig);
         });
 
-        it('with a playground', function() {
+        it('with a playground stored as a property', function() {
           expect(this.game.tableCreator.createPlayground).toHaveBeenCalledWith(this.game.surfaceMaterials.lightBlue,TableConfig.playgroundConfig);
+          expect(this.game.table.playground).toBeDefined();
+          expect(this.game.table.playground.name).toEqual('playground');
         });
       });
     });
