@@ -80,6 +80,7 @@ const Game = class {
     this.tableCreator.createCsgHoles(this.holesConfig);
     this.table.playground = this.tableCreator.createPlayground(this.surfaceMaterials.lightBlue, this.playgroundConfig);
     this.table.borders = this.tableCreator.createBorders(this.bordersConfig, this.surfaceMaterials.blue);
+    this.table.rail = this.tableCreator.createRail(this.railConfig, this.surfaceMaterials.brown);
   }
 
 };
