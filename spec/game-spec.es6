@@ -163,10 +163,16 @@ describe('Game', function() {
 
       describe('creates a table', function() {
         beforeEach(function() {
-          let tableCreatorSpy = jasmine.createSpyObj('TableCreator', ['createCsgHoles', 'createPlayground', 'createBorders']);
+          let tableCreatorSpy = jasmine.createSpyObj('TableCreator', [
+            'createCsgHoles',
+            'createPlayground',
+            'createBorders',
+            'createRail'
+          ]);
 
           tableCreatorSpy.createPlayground.and.returnValue({name: 'playground'});
           tableCreatorSpy.createBorders.and.returnValue([]);
+          tableCreatorSpy.createRail.and.returnValue({name: 'rail'});
 
           this.game.tableCreator = tableCreatorSpy;
 
