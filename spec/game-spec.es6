@@ -1,5 +1,5 @@
 import Game from '../src/game';
-import ObjectBuilder from '../src/object_builder';
+import ObjectBuilder from '../src/libs/object_builder';
 import SurfaceMaterialsCreator from '../src/libs/surface_materials_creator';
 import ShadowGenerator from '../src/models/shadow_generator';
 import TableCreator from '../src/libs/table_creator';

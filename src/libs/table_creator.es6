@@ -1,4 +1,4 @@
-import ObjectBuilder from '../object_builder';
+import ObjectBuilder from './object_builder';
 import ShadowGenerator from '../models/shadow_generator';
 
 const TableCreator = class {
