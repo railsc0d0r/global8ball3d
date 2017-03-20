@@ -10,7 +10,7 @@ import rename from 'gulp-rename';
 // Defines main-entry-points
 const scripts = [
   {
-    entries: 'src/game3d.es6',
+    entries: 'game3d.es6',
     namespace: 'Global8ball',
     filename: 'game3d.js'
   },
