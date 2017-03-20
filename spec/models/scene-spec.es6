@@ -1,5 +1,5 @@
-import Scene from '../src/scene';
-import HtmlFixtures from './support/html_fixtures';
+import Scene from '../../src/models/scene';
+import HtmlFixtures from '../support/html_fixtures';
 
 describe('Scene.create(engine)', function() {
   beforeEach(function() {

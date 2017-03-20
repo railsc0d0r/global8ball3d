@@ -1,4 +1,4 @@
-import Scene from '../../src/scene';
+import Scene from '../../src/models/scene';
 import Material from '../../src/models/material';
 import HtmlFixtures from '../support/html_fixtures';
 

@@ -1,4 +1,4 @@
-import Scene from '../../src/scene';
+import Scene from '../../src/models/scene';
 import ShadowGenerator from '../../src/models/shadow_generator';
 import HtmlFixtures from '../support/html_fixtures';
 

@@ -1,5 +1,5 @@
 import ObjectBuilder from '../../src/object_builder';
-import Scene from '../../src/scene';
+import Scene from '../../src/models/scene';
 import ShadowGenerator from '../../src/models/shadow_generator';
 import SurfaceMaterialsCreator from '../../src/libs/surface_materials_creator';
 import TableCreator from '../../src/libs/table_creator';
