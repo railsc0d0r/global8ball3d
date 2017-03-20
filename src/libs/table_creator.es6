@@ -1,5 +1,5 @@
 import ObjectBuilder from '../object_builder';
-import ShadowGenerator from '../objects/shadow_generator';
+import ShadowGenerator from '../models/shadow_generator';
 
 const TableCreator = class {
   constructor(objectBuilder, shadowGenerator) {

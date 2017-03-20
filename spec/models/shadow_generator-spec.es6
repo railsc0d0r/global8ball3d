@@ -1,5 +1,5 @@
 import Scene from '../../src/scene';
-import ShadowGenerator from '../../src/objects/shadow_generator';
+import ShadowGenerator from '../../src/models/shadow_generator';
 import HtmlFixtures from '../support/html_fixtures';
 
 describe('ShadowGenerator', function() {

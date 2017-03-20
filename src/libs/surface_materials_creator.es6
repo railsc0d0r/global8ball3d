@@ -1,4 +1,4 @@
-import Material from '../objects/material';
+import Material from '../models/material';
 
 const SurfaceMaterialsCreator = class {
   constructor(scene) {

@@ -1,5 +1,5 @@
 import Scene from '../../src/scene';
-import Material from '../../src/objects/material';
+import Material from '../../src/models/material';
 import HtmlFixtures from '../support/html_fixtures';
 
 describe('Material', function() {

@@ -1,8 +1,8 @@
 import Game from '../src/game';
 import ObjectBuilder from '../src/object_builder';
-import SurfaceMaterialsCreator from '../src/creators/surface_materials_creator';
-import ShadowGenerator from '../src/objects/shadow_generator';
-import TableCreator from '../src/creators/table_creator';
+import SurfaceMaterialsCreator from '../src/libs/surface_materials_creator';
+import ShadowGenerator from '../src/models/shadow_generator';
+import TableCreator from '../src/libs/table_creator';
 
 import HtmlFixtures from './support/html_fixtures';
 import NonValues from './support/non_values';

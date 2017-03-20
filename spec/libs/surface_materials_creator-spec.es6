@@ -1,5 +1,5 @@
 import Scene from '../../src/scene';
-import SurfaceMaterialsCreator from '../../src/creators/surface_materials_creator';
+import SurfaceMaterialsCreator from '../../src/libs/surface_materials_creator';
 import HtmlFixtures from '../support/html_fixtures';
 import NonValues from '../support/non_values';
 

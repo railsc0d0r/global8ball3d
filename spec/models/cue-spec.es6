@@ -1,4 +1,4 @@
-import Cue from '../../src/objects/cue';
+import Cue from '../../src/models/cue';
 
 describe('Cue', () => {
   it('can be instanciated', () => {
