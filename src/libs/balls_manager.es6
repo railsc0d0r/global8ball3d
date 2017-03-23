@@ -15,6 +15,18 @@ const BallsManager = class {
       throw "BallsManager requires an array of materials to be created.";
     }
 
+    let containsOnlyMaterials = true;
+
+    materials.forEach(material => {
+      if (!(material instanceof BABYLON.StandardMaterial)) {
+        containsOnlyMaterials = false;
+      }
+    });
+
+    if ( materials.length === 0 || !containsOnlyMaterials ) {
+      throw "Given array must contain only materials and not be empty.";
+    }
+
     this.objectBuilder = objectBuilder;
     this.shadowGenerator = shadowGenerator;
   }
