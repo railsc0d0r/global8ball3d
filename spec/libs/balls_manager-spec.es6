@@ -40,11 +40,26 @@ describe('BallsManager', function() {
     const objectBuilder = new ObjectBuilder(this.scene);
     const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
     const shadowGenerator = new ShadowGenerator(light);
-    const nonMaterials = NonValues;
+    const nonArrays = NonValues;
 
-    nonMaterials.forEach(nonMaterial => {
-      const throwsAnException = () => { new BallsManager(objectBuilder, shadowGenerator, nonMaterial) };
+    nonArrays.forEach(nonArray => {
+      const throwsAnException = () => { new BallsManager(objectBuilder, shadowGenerator, nonArray) };
       expect(throwsAnException).toThrow("BallsManager requires an array of materials to be created.");
+    });
+  });
+
+  it('requires given array to contain only materials', function() {
+    const objectBuilder = new ObjectBuilder(this.scene);
+    const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
+    const shadowGenerator = new ShadowGenerator(light);
+    const nonValidArrays = [
+      [],
+      [{}]
+    ];
+
+    nonValidArrays.forEach(nonValidArray => {
+      const throwsAnException = () => { new BallsManager(objectBuilder, shadowGenerator, nonValidArray) };
+      expect(throwsAnException).toThrow("Given array must contain only materials and not be empty.");
     });
   });
 
