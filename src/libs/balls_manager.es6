@@ -32,6 +32,12 @@ const BallsManager = class {
     this.materials = materials;
   }
 
+  createBall(config) {
+    let mesh = this.objectBuilder.createSphere(config);
+
+    return mesh;
+  }
+
 };
 
 export default BallsManager;
