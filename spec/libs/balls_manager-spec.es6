@@ -20,4 +20,10 @@ describe('BallsManager', function() {
     HtmlFixtures.removeFixture();
   });
 
+  it('requires an instance of ObjectBuilder to be created', function() {
+    const throwsAnException = () => new BallsManager;
+
+    expect(throwsAnException).toThrow("BallsManager requires an instance of ObjectBuilder to be created.");
+  });
+
 });
