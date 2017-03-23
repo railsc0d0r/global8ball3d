@@ -92,5 +92,29 @@ describe('BallsManager', function() {
       expect(this.ballsManager.materials).toEqual(this.materials);
     });
 
+    describe('can create a ball with given config', function() {
+      beforeEach(function() {
+        const ballRadius = 0.0291;
+        const ballMass = 0.17;
+
+        this.ballConfig = {
+          id: 1,
+          type: "breakball",
+          color: "white",
+          radius: ballRadius,
+          mass: ballMass,
+          position: {
+              x: -0.635,
+              z: 0
+          }
+        };
+
+        this.ball = this.ballsManager.createBall(this.ballConfig);
+      });
+
+      it('being a mesh', function() {
+        expect(this.ball).toEqual(jasmine.any(BABYLON.Mesh));
+      });
+    });
   });
 });
