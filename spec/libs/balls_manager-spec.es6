@@ -88,5 +88,9 @@ describe('BallsManager', function() {
       expect(this.ballsManager.shadowGenerator).toEqual(this.shadowGenerator);
     });
 
+    it('stores given array of materials as property', function() {
+      expect(this.ballsManager.materials).toEqual(this.materials);
+    });
+
   });
 });
