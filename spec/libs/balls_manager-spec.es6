@@ -26,4 +26,13 @@ describe('BallsManager', function() {
     expect(throwsAnException).toThrow("BallsManager requires an instance of ObjectBuilder to be created.");
   });
 
+  it('requires an instance of ShadowGenerator to be created', function() {
+    const objectBuilder = new ObjectBuilder(this.scene);
+    const nonShadowGenerators = NonValues;
+
+    nonShadowGenerators.forEach(nonShadowGenerator => {
+      const throwsAnException = () => { new BallsManager(objectBuilder, nonShadowGenerator) };
+      expect(throwsAnException).toThrow("BallsManager requires an instance of ShadowGenerator to be created.");
+    });
+  });
 });
