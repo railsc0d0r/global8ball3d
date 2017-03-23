@@ -115,6 +115,21 @@ describe('BallsManager', function() {
       it('being a mesh', function() {
         expect(this.ball).toEqual(jasmine.any(BABYLON.Mesh));
       });
+
+      it('with given radius', function() {
+        const realRadius = this.ball.getBoundingInfo().boundingBox.extendSize.x;
+        expect(realRadius).toEqual(this.ballConfig.radius);
+      });
+
+      it('at the given position', function() {
+        expect(this.ball.position.x).toEqual(this.ballConfig.position.x);
+        expect(this.ball.position.y).toEqual(this.ballConfig.radius);
+        expect(this.ball.position.z).toEqual(this.ballConfig.position.z);
+      });
+
+      it('with given id', function() {
+        expect(this.ball.name).toEqual(this.ballConfig.id);
+      });
     });
   });
 });
