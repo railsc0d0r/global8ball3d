@@ -25,7 +25,7 @@ const ObjectBuilder = class{
   }
 
   createSphere(sphereConfig) {
-    const name = sphereConfig.name;
+    const name = sphereConfig.name || sphereConfig.id;
     const diameter = sphereConfig.radius * 2;
     const x = sphereConfig.position.x;
     const y = sphereConfig.position.y || sphereConfig.radius;
