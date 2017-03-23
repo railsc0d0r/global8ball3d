@@ -29,6 +29,7 @@ const BallsManager = class {
 
     this.objectBuilder = objectBuilder;
     this.shadowGenerator = shadowGenerator;
+    this.materials = materials;
   }
 
 };
