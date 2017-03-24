@@ -56,5 +56,9 @@ describe('ShadowGenerator', function() {
 
       expect(renderListSpy).toHaveBeenCalledWith(objectWithShadow);
     });
+
+    it('provides a shortcut to the renderList of its generators shadowMap', function() {
+      expect(this.shadowGenerator.renderList).toEqual(this.shadowGenerator.generator.getShadowMap().renderList);
+    });
   });
 });
