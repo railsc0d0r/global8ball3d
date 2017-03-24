@@ -146,7 +146,7 @@ describe('BallsManager', function() {
       });
 
       it('that generates a shadow', function() {
-        expect(this.ballsManager.shadowGenerator.generator.getShadowMap().renderList).toContain(this.ball);
+        expect(this.ballsManager.shadowGenerator.renderList).toContain(this.ball);
       });
     });
   });
