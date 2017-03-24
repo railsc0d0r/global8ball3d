@@ -264,7 +264,7 @@ describe('TableCreator', function() {
         });
 
         it('that generate shadows', function() {
-          expect(this.tableCreator.shadowGenerator.generator.getShadowMap().renderList).toEqual(this.borders);
+          expect(this.tableCreator.shadowGenerator.renderList).toEqual(this.borders);
         });
       });
 
