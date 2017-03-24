@@ -44,6 +44,8 @@ const BallsManager = class {
 
     mesh.physicsImpostor = this.objectBuilder.createPhysicsImpostor(mesh, "SPHERE", { mass: mass, restitution: restitution});
 
+    this.shadowGenerator.renderShadowsFrom(mesh);
+
     return mesh;
   }
 
