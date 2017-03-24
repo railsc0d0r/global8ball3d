@@ -39,6 +39,11 @@ const BallsManager = class {
       return material.name === config.color;
     });
 
+    const mass = config.mass;
+    const restitution = 0.98;
+
+    mesh.physicsImpostor = this.objectBuilder.createPhysicsImpostor(mesh, "SPHERE", { mass: mass, restitution: restitution});
+
     return mesh;
   }
 
