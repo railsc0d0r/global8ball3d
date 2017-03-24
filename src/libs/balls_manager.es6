@@ -35,6 +35,10 @@ const BallsManager = class {
   createBall(config) {
     let mesh = this.objectBuilder.createSphere(config);
 
+    mesh.material = this.materials.find(material => {
+      return material.name === config.color;
+    });
+
     return mesh;
   }
 
