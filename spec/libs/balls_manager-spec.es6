@@ -144,6 +144,10 @@ describe('BallsManager', function() {
         expect(this.ball.physicsImpostor.getParam("mass")).toEqual(this.ballConfig.mass);
         expect(this.ball.physicsImpostor.getParam("restitution")).toEqual(0.98);
       });
+
+      it('that generates a shadow', function() {
+        expect(this.ballsManager.shadowGenerator.generator.getShadowMap().renderList).toContain(this.ball);
+      });
     });
   });
 });
