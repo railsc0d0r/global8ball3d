@@ -130,6 +130,14 @@ describe('BallsManager', function() {
       it('with given id', function() {
         expect(this.ball.name).toEqual(this.ballConfig.id);
       });
+
+      it('with given material', function() {
+        const expectedMaterial = this.materials.find(material => {
+          return material.name === this.ballConfig.color;
+        });
+
+        expect(this.ball.material).toEqual(expectedMaterial);
+      });
     });
   });
 });
