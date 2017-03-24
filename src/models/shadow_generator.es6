@@ -10,7 +10,7 @@ const ShadowGenerator = class {
   }
 
   renderShadowsFrom(objectWithShadow) {
-    this.generator.getShadowMap().renderList.push(objectWithShadow);
+    this.renderList.push(objectWithShadow);
   }
 
   get renderList() {
