@@ -56,6 +56,10 @@ const BallsManager = class {
     ball.position.x = x;
     ball.position.z = z;
   }
+
+  disposeBall(ball) {
+    ball.dispose();
+  }
 };
 
 export default BallsManager;
