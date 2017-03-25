@@ -92,7 +92,7 @@ describe('BallsManager', function() {
       expect(this.ballsManager.materials).toEqual(this.materials);
     });
 
-    describe('can create a ball with given config', function() {
+    describe('given a config', function() {
       beforeEach(function() {
         const ballRadius = 0.0291;
         const ballMass = 0.17;
@@ -112,41 +112,60 @@ describe('BallsManager', function() {
         this.ball = this.ballsManager.createBall(this.ballConfig);
       });
 
-      it('being a mesh', function() {
-        expect(this.ball).toEqual(jasmine.any(BABYLON.Mesh));
-      });
-
-      it('with given radius', function() {
-        const realRadius = this.ball.getBoundingInfo().boundingBox.extendSize.x;
-        expect(realRadius).toEqual(this.ballConfig.radius);
-      });
-
-      it('at the given position', function() {
-        expect(this.ball.position.x).toEqual(this.ballConfig.position.x);
-        expect(this.ball.position.y).toEqual(this.ballConfig.radius);
-        expect(this.ball.position.z).toEqual(this.ballConfig.position.z);
-      });
-
-      it('with given id', function() {
-        expect(this.ball.name).toEqual(this.ballConfig.id);
-      });
-
-      it('with given material', function() {
-        const expectedMaterial = this.materials.find(material => {
-          return material.name === this.ballConfig.color;
+      describe('can create a ball', function() {
+        it('being a mesh', function() {
+          expect(this.ball).toEqual(jasmine.any(BABYLON.Mesh));
         });
 
-        expect(this.ball.material).toEqual(expectedMaterial);
+        it('with given radius', function() {
+          const realRadius = this.ball.getBoundingInfo().boundingBox.extendSize.x;
+          expect(realRadius).toEqual(this.ballConfig.radius);
+        });
+
+        it('at the given position', function() {
+          expect(this.ball.position.x).toEqual(this.ballConfig.position.x);
+          expect(this.ball.position.y).toEqual(this.ballConfig.radius);
+          expect(this.ball.position.z).toEqual(this.ballConfig.position.z);
+        });
+
+        it('with given id', function() {
+          expect(this.ball.name).toEqual(this.ballConfig.id);
+        });
+
+        it('with given material', function() {
+          const expectedMaterial = this.materials.find(material => {
+            return material.name === this.ballConfig.color;
+          });
+
+          expect(this.ball.material).toEqual(expectedMaterial);
+        });
+
+        it('with certain physics-attributes', function() {
+          expect(this.ball.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+          expect(this.ball.physicsImpostor.getParam("mass")).toEqual(this.ballConfig.mass);
+          expect(this.ball.physicsImpostor.getParam("restitution")).toEqual(0.98);
+        });
+
+        it('that generates a shadow', function() {
+          expect(this.ballsManager.shadowGenerator.renderList).toContain(this.ball);
+        });
       });
 
-      it('with certain physics-attributes', function() {
-        expect(this.ball.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
-        expect(this.ball.physicsImpostor.getParam("mass")).toEqual(this.ballConfig.mass);
-        expect(this.ball.physicsImpostor.getParam("restitution")).toEqual(0.98);
-      });
+      describe('can update a ball', function() {
+        beforeEach(function() {
+          this.ballConfig.position = {
+            x: 0.635,
+            z: 0.15875
+          };
 
-      it('that generates a shadow', function() {
-        expect(this.ballsManager.shadowGenerator.renderList).toContain(this.ball);
+          this.ballsManager.updateBall(this.ball, this.ballConfig);
+        });
+
+        it('setting the position given', function() {
+          expect(this.ball.position.x).toEqual(this.ballConfig.position.x);
+          expect(this.ball.position.y).toEqual(this.ballConfig.radius);
+          expect(this.ball.position.z).toEqual(this.ballConfig.position.z);
+        });
       });
     });
   });
