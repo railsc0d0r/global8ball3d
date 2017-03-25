@@ -167,6 +167,16 @@ describe('BallsManager', function() {
           expect(this.ball.position.z).toEqual(this.ballConfig.position.z);
         });
       });
+
+      describe('can remove a ball', function() {
+        beforeEach(function() {
+          this.ballsManager.disposeBall(this.ball);
+        });
+
+        it('telling BABYLON to dispose the mesh and free resources', function() {
+          expect(this.ball.isDisposed()).toBeTruthy();
+        });
+      });
     });
   });
 });
