@@ -49,6 +49,13 @@ const BallsManager = class {
     return mesh;
   }
 
+  updateBall(ball, config) {
+    const x = config.position.x;
+    const z = config.position.z;
+
+    ball.position.x = x;
+    ball.position.z = z;
+  }
 };
 
 export default BallsManager;
