@@ -1,4 +1,5 @@
 import BallsManager from '../../src/libs/balls_manager';
+import BallsConfig from '../../game_config/balls_config';
 import ObjectBuilder from '../../src/libs/object_builder';
 import Scene from '../../src/models/scene';
 import ShadowGenerator from '../../src/models/shadow_generator';
@@ -175,6 +176,30 @@ describe('BallsManager', function() {
 
         it('telling BABYLON to dispose the mesh and free resources', function() {
           expect(this.ball.isDisposed()).toBeTruthy();
+        });
+      });
+    });
+
+    describe('with given ballsStates and an array of balls', function() {
+      beforeEach(function() {
+        this.balls = [];
+        BallsConfig.forEach(ballConfig => {
+          let ball = this.ballsManager.createBall(ballConfig);
+          this.balls.push(ball);
+        });
+      });
+
+      describe('can tell which balls to', function() {
+        it('create', function() {
+          fail('pending');
+        });
+
+        it('update', function() {
+          fail('pending');
+        });
+
+        it('dispose', function() {
+          fail('pending');
         });
       });
     });
