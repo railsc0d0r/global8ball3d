@@ -60,6 +60,39 @@ const BallsManager = class {
   disposeBall(ball) {
     ball.dispose();
   }
+
+  evaluatePendingOperations(balls, states) {
+    let pendingOperations = {};
+    let ballsIds = [];
+    let stateIds = [];
+
+    // get the ids of all currently existing balls
+    balls.forEach(ball => {
+      ballsIds.push(ball.name);
+    });
+
+    // get the ids of all balls described in states
+    states.forEach(state => {
+      stateIds.push(state.id);
+    });
+
+    // set the ids of all balls to be created from given state
+    pendingOperations.create = stateIds.filter(id => {
+      return !ballsIds.includes(id);
+    });
+
+    // set the ids of all balls to be updated with given state
+    pendingOperations.update = stateIds.filter(id => {
+      return ballsIds.includes(id);
+    });
+
+    // set the ids of all balls to be disposed
+    pendingOperations.dispose = ballsIds.filter(id => {
+      return !stateIds.includes(id);
+    });
+
+    return pendingOperations;
+  }
 };
 
 export default BallsManager;
