@@ -32,6 +32,19 @@ const BallsManager = class {
     this.materials = materials;
   }
 
+  manageBalls(balls, states) {
+    const pendingOperations = this.evaluatePendingOperations(balls, states);
+
+    pendingOperations.create.forEach(ballId => {
+      const ballConfig = states.find(state => {
+        return state.id === ballId;
+      })
+
+      let ball = this.createBall(ballConfig);
+      balls.push(ball);
+    });
+  }
+
   createBall(config) {
     let mesh = this.objectBuilder.createSphere(config);
 
