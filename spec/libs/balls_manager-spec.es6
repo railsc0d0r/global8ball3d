@@ -183,16 +183,15 @@ describe('BallsManager', function() {
     describe('with given ballsStates and an array of balls', function() {
       beforeEach(function() {
         this.balls = [];
-        BallsConfig.forEach(ballConfig => {
+        BallsConfig.slice(8).forEach(ballConfig => {
           let ball = this.ballsManager.createBall(ballConfig);
           this.balls.push(ball);
         });
+        this.ballsConfig = BallsConfig.slice(0,11);
       });
 
       describe('can tell the ids of the balls to', function() {
         beforeEach(function() {
-          this.ballsConfig = BallsConfig.slice(0,11);
-          this.balls = this.balls.slice(8);
           this.pendingOperations = this.ballsManager.evaluatePendingOperations(this.balls, this.ballsConfig);
         });
 
