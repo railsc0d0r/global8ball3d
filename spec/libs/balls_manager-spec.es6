@@ -205,7 +205,7 @@ describe('BallsManager', function() {
         });
 
         it('dispose', function() {
-          fail('pending');
+          expect(this.pendingOperations.dispose).toEqual([12,13,14,15,16]);
         });
       });
     });
