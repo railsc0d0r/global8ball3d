@@ -201,7 +201,7 @@ describe('BallsManager', function() {
         });
 
         it('update', function() {
-          fail('pending');
+          expect(this.pendingOperations.update).toEqual([9,10,11]);
         });
 
         it('dispose', function() {
