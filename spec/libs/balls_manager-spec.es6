@@ -189,9 +189,15 @@ describe('BallsManager', function() {
         });
       });
 
-      describe('can tell which balls to', function() {
+      describe('can tell the ids of the balls to', function() {
+        beforeEach(function() {
+          this.ballsConfig = BallsConfig.slice(0,11);
+          this.balls = this.balls.slice(8);
+          this.pendingOperations = this.ballsManager.evaluatePendingOperations(this.balls, this.ballsConfig);
+        });
+
         it('create', function() {
-          fail('pending');
+          expect(this.pendingOperations.create).toEqual([1,2,3,4,5,6,7,8]);
         });
 
         it('update', function() {
