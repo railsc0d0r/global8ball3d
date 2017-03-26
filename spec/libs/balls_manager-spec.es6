@@ -206,6 +206,27 @@ describe('BallsManager', function() {
           expect(this.pendingOperations.dispose).toEqual([12,13,14,15,16]);
         });
       });
+
+      describe('updates the balls', function() {
+        beforeEach(function() {
+          spyOn(this.ballsManager, 'createBall').and.callThrough();
+          spyOn(this.ballsManager, 'updateBall').and.callThrough();
+          spyOn(this.ballsManager, 'disposeBall').and.callThrough();
+          this.ballsManager.manageBalls(this.balls, this.ballsConfig);
+
+          this.managedBallsIds = this.balls.map(ball => {
+            return ball.name
+          });
+        });
+
+        it('creating the balls not already existing', function() {
+          const expectedBallsIds = [1,2,3,4,5,6,7,8];
+          expect(this.ballsManager.createBall.calls.count()).toEqual(8);
+          expectedBallsIds.forEach(id => {
+            expect(this.managedBallsIds).toContain(id);
+          });
+        });
+      });
     });
   });
 });
