@@ -228,6 +228,22 @@ describe('BallsManager', function() {
             expect(this.managedBallsIds).toContain(id);
           });
         });
+
+        it('updating the balls already existing with the position given in state', function() {
+          const expectedBallsIds = [9,10,11];
+          expect(this.ballsManager.updateBall.calls.count()).toEqual(3);
+          expectedBallsIds.forEach(id => {
+            const ball = this.balls.find(ball => {
+              return ball.name === id;
+            });
+            const ballConfig = this.ballsConfig.find(config => {
+              return config.id === id;
+            });
+            expect(this.managedBallsIds).toContain(id);
+            expect(ball.position.x).toEqual(ballConfig.position.x);
+            expect(ball.position.z).toEqual(ballConfig.position.z);
+          });
+        });
       });
     });
   });
