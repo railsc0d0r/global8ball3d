@@ -187,6 +187,8 @@ describe('BallsManager', function() {
           this.balls.push(ball);
         });
         this.ballsConfig = BallsConfig.slice(0,11);
+        this.ballsConfig[8].position.x = -0.6864026785002544;
+        this.ballsConfig[8].position.z = 0.0281;
       });
 
       describe('can tell the ids of the balls to', function() {
