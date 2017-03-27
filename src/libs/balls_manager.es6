@@ -38,10 +38,22 @@ const BallsManager = class {
     pendingOperations.create.forEach(ballId => {
       const ballConfig = states.find(state => {
         return state.id === ballId;
-      })
+      });
 
-      let ball = this.createBall(ballConfig);
+      const ball = this.createBall(ballConfig);
       balls.push(ball);
+    });
+
+    pendingOperations.update.forEach(ballId => {
+      const ball = balls.find(ball => {
+        return ball.name === ballId;
+      });
+
+      const ballConfig = states.find(state => {
+        return state.id === ballId;
+      });
+
+      this.updateBall(ball, ballConfig);
     });
   }
 
