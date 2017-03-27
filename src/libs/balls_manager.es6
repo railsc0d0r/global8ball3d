@@ -55,6 +55,19 @@ const BallsManager = class {
 
       this.updateBall(ball, ballConfig);
     });
+
+    pendingOperations.dispose.forEach(ballId => {
+      const ball = balls.find(ball => {
+        return ball.name === ballId;
+      });
+
+      this.disposeBall(ball);
+
+      const ballIndex = balls.indexOf(ball);
+      if(ballIndex != -1) {
+        balls.splice(ballIndex, 1);
+      }
+    });
   }
 
   createBall(config) {
