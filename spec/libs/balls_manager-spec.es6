@@ -244,6 +244,14 @@ describe('BallsManager', function() {
             expect(ball.position.z).toEqual(ballConfig.position.z);
           });
         });
+
+        it('deleting the balls not existing in given states anymore', function() {
+          const expectedBallsIds = [12,13,14,15,16];
+          expect(this.ballsManager.disposeBall.calls.count()).toEqual(5);
+          expectedBallsIds.forEach(id => {
+            expect(this.managedBallsIds).not.toContain(id);
+          });
+        });
       });
     });
   });
