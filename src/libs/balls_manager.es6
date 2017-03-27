@@ -15,6 +15,7 @@ const BallsManager = class {
       throw "BallsManager requires an array of materials to be created.";
     }
 
+    // validates if given array of materials is not empty and contains only materials
     let containsOnlyMaterials = true;
 
     materials.forEach(material => {
@@ -41,6 +42,8 @@ const BallsManager = class {
       });
 
       const ball = this.createBall(ballConfig);
+
+      // adds ball to given array of balls.
       balls.push(ball);
     });
 
@@ -63,6 +66,7 @@ const BallsManager = class {
 
       this.disposeBall(ball);
 
+      // removes ball from given array of balls.
       const ballIndex = balls.indexOf(ball);
       if(ballIndex != -1) {
         balls.splice(ballIndex, 1);
