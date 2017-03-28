@@ -23,5 +23,12 @@ describe('Event', function() {
     it('provides an empty array of callbacks', function() {
       expect(this.event.callbacks).toEqual([]);
     });
+
+    it('can register a callback', function() {
+      const callback = () => {};
+      this.event.registerCallback(callback);
+
+      expect(this.event.callbacks).toContain(callback);
+    });
   });
 });
