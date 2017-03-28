@@ -13,6 +13,15 @@ const Game = class {
     // creates an empty object as placeholder for the table
     this.table = {};
 
+    // initializes tableConfig
+    this.bordersConfig = {};
+    this.holesConfig = {};
+    this.railConfig = {};
+    this.playgroundConfig = {};
+
+    // initializes tableConfigChanged
+    this.tableConfigChanged = false;
+
     // initializes ballsStates
     this.ballsStates = [];
 
