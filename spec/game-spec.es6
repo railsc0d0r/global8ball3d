@@ -99,10 +99,21 @@ describe('Game', function() {
       expect(this.game.events).toEqual({});
     });
 
-    it('can register events with given name', function() {
-      const eventName = 'myEvent';
-      this.game.registerEvent(eventName);
-      expect(this.game.events[eventName]).toEqual(jasmine.any(Event));
+    describe('handling events', function() {
+      beforeEach(function() {
+        this.eventName = 'myEvent';
+        this.game.registerEvent(this.eventName);
+      });
+
+      it('can register an event with given name', function() {
+        expect(this.game.events[this.eventName]).toEqual(jasmine.any(Event));
+      });
+
+      it('can add an event-listener to a registered event', function() {
+        const callback = () => {};
+        this.game.addEventListener(this.eventName, callback);
+        expect(this.game.events[this.eventName].callbacks).toContain(callback);
+      });
     });
 
     describe('on init()', function() {
