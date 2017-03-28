@@ -1,3 +1,4 @@
+import Event from './models/event';
 import ObjectBuilder from './libs/object_builder';
 import Scene from './models/scene';
 import SurfaceMaterialsCreator from './libs/surface_materials_creator';
@@ -83,6 +84,11 @@ const Game = class {
     this.table.playground = this.tableCreator.createPlayground(this.playgroundConfig, this.surfaceMaterials.lightBlue);
     this.table.borders = this.tableCreator.createBorders(this.bordersConfig, this.surfaceMaterials.blue);
     this.table.rail = this.tableCreator.createRail(this.railConfig, this.surfaceMaterials.brown);
+  }
+
+  registerEvent(eventName) {
+    const event = new Event(eventName);
+    this.events[eventName] = event;
   }
 
 };
