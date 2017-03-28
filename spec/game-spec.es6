@@ -255,5 +255,49 @@ describe('Game', function() {
         expect(this.game.ballsStatesChanged).toBeTruthy();
       });
     });
+
+    describe('on setTableConfig()', function() {
+      it('requires an array of configurations for borders', function() {
+        const bordersConfigs = NonValues;
+
+        bordersConfigs.forEach( bordersConfig => {
+          this.config.bordersConfig = bordersConfig;
+          const throwsAnException = () => { this.game.setTableConfig(this.config) };
+          expect(throwsAnException).toThrow('Game requires an array of border-definitions to describe the table.');
+        });
+      });
+
+      it('requires a hash of configuration-options for the rail', function() {
+        this.config.railConfig = void 0;
+        const throwsAnException = () => { this.game.setTableConfig(this.config) };
+        expect(throwsAnException).toThrow('Game requires a hash of config-options for the rail to describe the table.');
+      });
+
+      it('requires an array of configurations for the rail-boxes', function() {
+        const boxDefinitions = NonValues;
+
+        boxDefinitions.forEach((nonBoxDefinition) => {
+          this.config.railConfig.boxes = nonBoxDefinition;
+          const throwsAnException = () => { this.game.setTableConfig(this.config) };
+          expect(throwsAnException).toThrow('Game requires an array of box-definitions to describe the rail for the table.');
+        });
+      });
+
+      it('requires a hash of configuration-options for the playground', function() {
+        this.config.playgroundConfig = void 0;
+        const throwsAnException = () => { this.game.setTableConfig(this.config) };
+        expect(throwsAnException).toThrow('Game requires a hash of config-options for the playground to describe the table.');
+      });
+
+      it('requires an array of configurations for holes', function() {
+        const holesConfigs = NonValues;
+
+        holesConfigs.forEach((holesConfig) => {
+          this.config.holesConfig = holesConfig;
+          const throwsAnException = () => { this.game.setTableConfig(this.config) };
+          expect(throwsAnException).toThrow('Game requires an array of hole-definitions to describe the table.');
+        });
+      });
+    });
   });
 });
