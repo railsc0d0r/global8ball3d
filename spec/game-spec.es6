@@ -134,45 +134,55 @@ describe('Game', function() {
       it('creates a tableCreator and stores it as property', function() {
         expect(this.game.tableCreator).toEqual(jasmine.any(TableCreator));
       });
+    });
 
-      describe('creates a table', function() {
-        beforeEach(function() {
-          let tableCreatorSpy = jasmine.createSpyObj('TableCreator', [
-            'createCsgHoles',
-            'createPlayground',
-            'createBorders',
-            'createRail'
-          ]);
+    describe('creates a table', function() {
+      beforeEach(function() {
+        HtmlFixtures.addCanvas();
+        this.game.init();
 
-          tableCreatorSpy.createPlayground.and.returnValue({name: 'playground'});
-          tableCreatorSpy.createBorders.and.returnValue([]);
-          tableCreatorSpy.createRail.and.returnValue({name: 'rail'});
+        this.game.setTableConfig(TableConfig);
 
-          this.game.tableCreator = tableCreatorSpy;
+        let tableCreatorSpy = jasmine.createSpyObj('TableCreator', [
+          'createCsgHoles',
+          'createPlayground',
+          'createBorders',
+          'createRail'
+        ]);
 
-          this.game.createTable();
-        });
+        tableCreatorSpy.createPlayground.and.returnValue({name: 'playground'});
+        tableCreatorSpy.createBorders.and.returnValue([]);
+        tableCreatorSpy.createRail.and.returnValue({name: 'rail'});
 
-        it('with holes', function() {
-          expect(this.game.tableCreator.createCsgHoles).toHaveBeenCalledWith(TableConfig.holesConfig);
-        });
+        this.game.tableCreator = tableCreatorSpy;
 
-        it('with a playground stored as a property', function() {
-          expect(this.game.tableCreator.createPlayground).toHaveBeenCalledWith(TableConfig.playgroundConfig, this.game.surfaceMaterials.lightBlue);
-          expect(this.game.table.playground).toBeDefined();
-          expect(this.game.table.playground.name).toEqual('playground');
-        });
+        this.game.createTable();
+      });
 
-        it('with an array of borders stored as a property', function() {
-          expect(this.game.tableCreator.createBorders).toHaveBeenCalledWith(TableConfig.bordersConfig, this.game.surfaceMaterials.blue);
-          expect(this.game.table.borders).toEqual(jasmine.any(Array));
-        });
+      afterEach(function() {
+        this.game.engine.dispose();
+        HtmlFixtures.removeFixture();
+      });
 
-        it('with a rail stored as a property', function() {
-          expect(this.game.tableCreator.createRail).toHaveBeenCalledWith(TableConfig.railConfig, this.game.surfaceMaterials.brown);
-          expect(this.game.table.rail).toBeDefined();
-          expect(this.game.table.rail.name).toEqual('rail');
-        });
+      it('with holes', function() {
+        expect(this.game.tableCreator.createCsgHoles).toHaveBeenCalledWith(TableConfig.holesConfig);
+      });
+
+      it('with a playground stored as a property', function() {
+        expect(this.game.tableCreator.createPlayground).toHaveBeenCalledWith(TableConfig.playgroundConfig, this.game.surfaceMaterials.lightBlue);
+        expect(this.game.table.playground).toBeDefined();
+        expect(this.game.table.playground.name).toEqual('playground');
+      });
+
+      it('with an array of borders stored as a property', function() {
+        expect(this.game.tableCreator.createBorders).toHaveBeenCalledWith(TableConfig.bordersConfig, this.game.surfaceMaterials.blue);
+        expect(this.game.table.borders).toEqual(jasmine.any(Array));
+      });
+
+      it('with a rail stored as a property', function() {
+        expect(this.game.tableCreator.createRail).toHaveBeenCalledWith(TableConfig.railConfig, this.game.surfaceMaterials.brown);
+        expect(this.game.table.rail).toBeDefined();
+        expect(this.game.table.rail.name).toEqual('rail');
       });
     });
 
@@ -241,17 +251,21 @@ describe('Game', function() {
         });
       });
 
-      it('stores given tableConfig and provides a getter to config-options.', function() {
-        this.game.setTableConfig(this.config);
-        expect(this.game.bordersConfig).toEqual(this.config.bordersConfig);
-        expect(this.game.holesConfig).toEqual(this.config.holesConfig);
-        expect(this.game.railConfig).toEqual(this.config.railConfig);
-        expect(this.game.playgroundConfig).toEqual(this.config.playgroundConfig);
-      });
+      describe('with a valid config', function() {
+        beforeEach(function() {
+          this.game.setTableConfig(TableConfig);
+        });
 
-      it('sets a flag to tell the game-instance about config-changes', function() {
-        this.game.setTableConfig(this.config);
-        expect(this.game.tableConfigChanged).toBeTruthy();
+        it('stores given tableConfig and provides a getter to config-options.', function() {
+          expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
+          expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
+          expect(this.game.railConfig).toEqual(TableConfig.railConfig);
+          expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
+        });
+
+        it('sets a flag to tell the game-instance about config-changes', function() {
+          expect(this.game.tableConfigChanged).toBeTruthy();
+        });
       });
     });
   });
