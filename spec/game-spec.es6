@@ -114,6 +114,16 @@ describe('Game', function() {
         this.game.addEventListener(this.eventName, callback);
         expect(this.game.events[this.eventName].callbacks).toContain(callback);
       });
+
+      it('can dispatch a registered event with arguments', function() {
+        const callback = jasmine.createSpy('eventCallback');
+        const eventArguments = "i was called";
+        this.game.addEventListener(this.eventName, callback);
+        this.game.dispatch(this.eventName, eventArguments);
+
+        expect(callback.calls.count()).toEqual(1);
+        expect(callback).toHaveBeenCalledWith(eventArguments);
+      });
     });
 
     describe('on init()', function() {
