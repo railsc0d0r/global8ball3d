@@ -91,6 +91,10 @@ const Game = class {
     this.events[eventName] = event;
   }
 
+  addEventListener(eventName, callback) {
+    this.events[eventName].registerCallback(callback);
+  }
+
 };
 
 export default Game;
