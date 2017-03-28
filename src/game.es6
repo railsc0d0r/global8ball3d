@@ -69,6 +69,28 @@ const Game = class {
     this.ballsStatesChanged = false;
   }
 
+  setTableConfig(config) {
+    if (typeof(config.bordersConfig) === 'undefined' || !(config.bordersConfig instanceof Array)) {
+      throw "Game requires an array of border-definitions to describe the table.";
+    }
+
+    if (typeof(config.holesConfig) === 'undefined' || !(config.holesConfig instanceof Array)) {
+      throw "Game requires an array of hole-definitions to describe the table.";
+    }
+
+    if (typeof(config.railConfig) === 'undefined') {
+      throw "Game requires a hash of config-options for the rail to describe the table.";
+    }
+
+    if (typeof(config.railConfig.boxes) === 'undefined' || !(config.railConfig.boxes instanceof Array)) {
+      throw "Game requires an array of box-definitions to describe the rail for the table.";
+    }
+
+    if (typeof(config.playgroundConfig) === 'undefined') {
+      throw "Game requires a hash of config-options for the playground to describe the table.";
+    }
+  }
+
   setBallsStates(ballsStates) {
     if (typeof(ballsStates) === 'undefined' || !(ballsStates instanceof Array)) {
       throw "setBallsStates() requires an array of ballsStates.";
