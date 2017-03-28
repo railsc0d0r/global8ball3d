@@ -32,6 +32,8 @@ const Game = class {
     this.playgroundConfig = config.playgroundConfig;
 
     this.table = {};
+
+    this.events = {};
   }
 
   init() {
