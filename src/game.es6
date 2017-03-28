@@ -6,35 +6,18 @@ import ShadowGenerator from './models/shadow_generator';
 import TableCreator from './libs/table_creator';
 
 const Game = class {
-  constructor(config) {
-    if (typeof(config.bordersConfig) === 'undefined' || !(config.bordersConfig instanceof Array)) {
-      throw "Game requires an array of border-definitions to be created.";
-    }
+  constructor() {
+    // creates an object to hold the events registered on the game
+    this.events = {};
 
-    if (typeof(config.holesConfig) === 'undefined' || !(config.holesConfig instanceof Array)) {
-      throw "Game requires an array of hole-definitions to be created.";
-    }
-
-    if (typeof(config.railConfig) === 'undefined') {
-      throw "Game requires a hash of config-options for the rail to be created.";
-    }
-
-    if (typeof(config.railConfig.boxes) === 'undefined' || !(config.railConfig.boxes instanceof Array)) {
-      throw "Game requires an array of box-definitions to describe the rail to be created.";
-    }
-
-    if (typeof(config.playgroundConfig) === 'undefined') {
-      throw "Game requires a hash of config-options for the playground to be created.";
-    }
-
-    this.bordersConfig = config.bordersConfig;
-    this.holesConfig = config.holesConfig;
-    this.railConfig = config.railConfig;
-    this.playgroundConfig = config.playgroundConfig;
-
+    // creates an empty object as placeholder for the table
     this.table = {};
 
-    this.events = {};
+    // initializes ballsStates
+    this.ballsStates = [];
+
+    // initializes ballsStatesChanged
+    this.ballsStatesChanged = false;
   }
 
   init() {
@@ -61,12 +44,6 @@ const Game = class {
 
     // initializes a new TableCreator
     this.tableCreator = new TableCreator(this.objectBuilder, this.shadowGenerator);
-
-    // initializes ballsStates
-    this.ballsStates = [];
-
-    // initializes ballsStatesChanged
-    this.ballsStatesChanged = false;
   }
 
   setTableConfig(config) {
