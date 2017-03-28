@@ -46,6 +46,14 @@ describe('Game', function() {
       expect(this.game.ballsStatesChanged).toBeFalsy();
     });
 
+    it('initializes tableConfig and tableConfigChanged', function() {
+      expect(this.game.bordersConfig).toEqual({});
+      expect(this.game.holesConfig).toEqual({});
+      expect(this.game.railConfig).toEqual({});
+      expect(this.game.playgroundConfig).toEqual({});
+      expect(this.game.tableConfigChanged).toBeFalsy();
+    });
+
     describe('handling events', function() {
       beforeEach(function() {
         this.eventName = 'myEvent';
