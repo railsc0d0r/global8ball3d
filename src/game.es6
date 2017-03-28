@@ -89,6 +89,13 @@ const Game = class {
     if (typeof(config.playgroundConfig) === 'undefined') {
       throw "Game requires a hash of config-options for the playground to describe the table.";
     }
+
+    this.bordersConfig = config.bordersConfig;
+    this.holesConfig = config.holesConfig;
+    this.railConfig = config.railConfig;
+    this.playgroundConfig = config.playgroundConfig;
+
+    this.tableConfigChanged = true;
   }
 
   setBallsStates(ballsStates) {
