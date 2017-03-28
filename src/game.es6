@@ -95,6 +95,12 @@ const Game = class {
     this.events[eventName].registerCallback(callback);
   }
 
+  dispatch(eventName, eventArgs) {
+    this.events[eventName].callbacks.forEach(function(callback){
+      callback(eventArgs);
+    });
+  }
+
 };
 
 export default Game;
