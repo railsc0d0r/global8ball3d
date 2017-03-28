@@ -1,3 +1,4 @@
+import Event from '../src/models/event';
 import Game from '../src/game';
 import ObjectBuilder from '../src/libs/object_builder';
 import SurfaceMaterialsCreator from '../src/libs/surface_materials_creator';
@@ -96,7 +97,13 @@ describe('Game', function() {
 
     it('initializes an hash to hold the events', function() {
       expect(this.game.events).toEqual({});
-    })
+    });
+
+    it('can register events with given name', function() {
+      const eventName = 'myEvent';
+      this.game.registerEvent(eventName);
+      expect(this.game.events[eventName]).toEqual(jasmine.any(Event));
+    });
 
     describe('on init()', function() {
       beforeEach(function() {
