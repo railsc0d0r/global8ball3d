@@ -298,6 +298,19 @@ describe('Game', function() {
           expect(throwsAnException).toThrow('Game requires an array of hole-definitions to describe the table.');
         });
       });
+
+      it('stores given tableConfig and provides a getter to config-options.', function() {
+        this.game.setTableConfig(this.config);
+        expect(this.game.bordersConfig).toEqual(this.config.bordersConfig);
+        expect(this.game.holesConfig).toEqual(this.config.holesConfig);
+        expect(this.game.railConfig).toEqual(this.config.railConfig);
+        expect(this.game.playgroundConfig).toEqual(this.config.playgroundConfig);
+      });
+
+      it('sets a flag to tell the game-instance about config-changes', function() {
+        this.game.setTableConfig(this.config);
+        expect(this.game.tableConfigChanged).toBeTruthy();
+      });
     });
   });
 });
