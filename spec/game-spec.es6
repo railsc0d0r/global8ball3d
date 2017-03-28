@@ -94,6 +94,10 @@ describe('Game', function() {
       expect(this.game.table).toEqual({});
     });
 
+    it('initializes an hash to hold the events', function() {
+      expect(this.game.events).toEqual({});
+    })
+
     describe('on init()', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
