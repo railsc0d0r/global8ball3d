@@ -28,67 +28,9 @@ describe('Game', function() {
     };
   });
 
-  it('requires an array of configurations for borders on creation', function() {
-    const bordersConfigs = NonValues;
-
-    bordersConfigs.forEach( bordersConfig => {
-      this.config.bordersConfig = bordersConfig;
-      const throwsAnException = () => { new Game(this.config) };
-      expect(throwsAnException).toThrow('Game requires an array of border-definitions to be created.');
-    });
-  });
-
-  it('requires a hash of configuration-options for the rail on creation', function() {
-    this.config.railConfig = void 0;
-    const throwsAnException = () => { new Game(this.config) };
-    expect(throwsAnException).toThrow('Game requires a hash of config-options for the rail to be created.');
-  });
-
-  it('requires a hash of configuration-options for the playground on creation', function() {
-    this.config.playgroundConfig = void 0;
-    const throwsAnException = () => { new Game(this.config) };
-    expect(throwsAnException).toThrow('Game requires a hash of config-options for the playground to be created.');
-  });
-
-  it('requires an array of configurations for holes on creation', function() {
-    const holesConfigs = NonValues;
-
-    holesConfigs.forEach((holesConfig) => {
-      this.config.holesConfig = holesConfig;
-      const throwsAnException = () => { new Game(this.config) };
-      expect(throwsAnException).toThrow('Game requires an array of hole-definitions to be created.');
-    });
-  });
-
-  it('requires an array of configurations for the rail-boxes on creation', function() {
-    const boxDefinitions = NonValues;
-
-    boxDefinitions.forEach((nonBoxDefinition) => {
-      this.config.railConfig.boxes = nonBoxDefinition;
-      const throwsAnException = () => { new Game(this.config) };
-      expect(throwsAnException).toThrow('Game requires an array of box-definitions to describe the rail to be created.');
-    });
-  });
-
   describe('as an instance', function() {
     beforeEach(function() {
-      this.game = new Game(TableConfig);
-    });
-
-    it('stores given borders-config and provides a getter for it.', function() {
-      expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
-    });
-
-    it('stores given holes-config and provides a getter for it.', function() {
-      expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
-    });
-
-    it('stores given rail-config and provides a getter for it.', function() {
-      expect(this.game.railConfig).toEqual(TableConfig.railConfig);
-    });
-
-    it('stores given playground-config and provides a getter for it.', function() {
-      expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
+      this.game = new Game();
     });
 
     it('intializes a table as empty object and provides a getter for it.', function() {
@@ -97,6 +39,11 @@ describe('Game', function() {
 
     it('initializes an hash to hold the events', function() {
       expect(this.game.events).toEqual({});
+    });
+
+    it('initializes ballsStates and ballsStatesChanged', function() {
+      expect(this.game.ballsStates).toEqual([]);
+      expect(this.game.ballsStatesChanged).toBeFalsy();
     });
 
     describe('handling events', function() {
@@ -178,11 +125,6 @@ describe('Game', function() {
 
       it('creates a shadowGenerator and stores it as property', function() {
         expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
-      });
-
-      it('initializes ballsStates and ballsStatesChanged', function() {
-        expect(this.game.ballsStates).toEqual([]);
-        expect(this.game.ballsStatesChanged).toBeFalsy();
       });
 
       it('creates a objectBuilder and stores it as property', function() {
