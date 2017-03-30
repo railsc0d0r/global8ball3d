@@ -14,7 +14,8 @@ const Game = class {
     const eventNames = [
       'getConfig',
       'setConfig',
-      'getStates'
+      'getStates',
+      'setStates'
     ];
 
     eventNames.forEach(eventName => {
