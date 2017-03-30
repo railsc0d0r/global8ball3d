@@ -11,7 +11,10 @@ const Game = class {
     this.events = {};
 
     // registers events
-    const eventNames = ['getConfig'];
+    const eventNames = [
+      'getConfig',
+      'setConfig'
+    ];
 
     eventNames.forEach(eventName => {
       this.registerEvent(eventName);
