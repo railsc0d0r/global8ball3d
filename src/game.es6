@@ -10,6 +10,13 @@ const Game = class {
     // creates an object to hold the events registered on the game
     this.events = {};
 
+    // registers events
+    const eventNames = ['getConfig'];
+
+    eventNames.forEach(eventName => {
+      this.registerEvent(eventName);
+    });
+
     // creates an empty object as placeholder for the table
     this.table = {};
 
