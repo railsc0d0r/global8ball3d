@@ -53,6 +53,10 @@ describe('Game', function() {
       it('getStates', function() {
         expect(this.expectedEvents).toContain('getStates');
       });
+
+      it('setStates', function() {
+        expect(this.expectedEvents).toContain('setStates');
+      });
     });
 
     it('initializes ballsStates and ballsStatesChanged', function() {
