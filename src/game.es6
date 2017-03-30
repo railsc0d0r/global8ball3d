@@ -16,7 +16,8 @@ const Game = class {
       'setConfig',
       'getStates',
       'setStates',
-      'sendShot'
+      'sendShot',
+      'receiveShot'
     ];
 
     eventNames.forEach(eventName => {
