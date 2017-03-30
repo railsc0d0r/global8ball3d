@@ -13,7 +13,8 @@ const Game = class {
     // registers events
     const eventNames = [
       'getConfig',
-      'setConfig'
+      'setConfig',
+      'getStates'
     ];
 
     eventNames.forEach(eventName => {
