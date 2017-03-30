@@ -37,8 +37,14 @@ describe('Game', function() {
       expect(this.game.table).toEqual({});
     });
 
-    it('initializes an hash to hold the events', function() {
-      expect(this.game.events).toEqual({});
+    describe('provides certain events:', function() {
+      beforeEach(function() {
+        this.expectedEvents = Object.keys(this.game.events);
+      });
+
+      it('getConfig', function() {
+        expect(this.expectedEvents).toContain('getConfig');
+      });
     });
 
     it('initializes ballsStates and ballsStatesChanged', function() {
