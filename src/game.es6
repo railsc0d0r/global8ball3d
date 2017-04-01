@@ -41,6 +41,9 @@ const Game = class {
 
     // initializes ballsStatesChanged
     this.ballsStatesChanged = false;
+
+    // adds event-listeners
+    this.addEventListener('setStates', this.setBallsStates);
   }
 
   init() {
