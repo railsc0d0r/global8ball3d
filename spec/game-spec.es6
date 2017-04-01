@@ -9,6 +9,7 @@ import HtmlFixtures from './support/html_fixtures';
 import NonValues from './support/non_values';
 
 import * as TableConfig from '../game_config/table_config';
+import BallsStates from '../game_config/balls_config';
 
 describe('Game', function() {
   beforeEach(function() {
