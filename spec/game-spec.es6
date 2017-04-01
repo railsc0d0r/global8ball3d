@@ -114,17 +114,6 @@ describe('Game', function() {
       });
     });
 
-    it('sets the tableConfig with given arguments if "setConfig" is dipatched', function() {
-      this.game.dispatch('setConfig', TableConfig);
-
-      expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
-      expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
-      expect(this.game.railConfig).toEqual(TableConfig.railConfig);
-      expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
-      expect(this.game.tableConfigChanged).toBeTruthy();
-    });
-
-
     it('sets the ballsStates with given arguments if "setStates" is dipatched', function() {
       this.game.dispatch('setStates', BallsStates);
 
@@ -326,6 +315,16 @@ describe('Game', function() {
           expect(this.game.tableConfigChanged).toBeTruthy();
         });
       });
+    });
+
+    it('sets the tableConfig with given arguments if "setConfig" is dipatched', function() {
+      this.game.dispatch('setConfig', TableConfig);
+
+      expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
+      expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
+      expect(this.game.railConfig).toEqual(TableConfig.railConfig);
+      expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
+      expect(this.game.tableConfigChanged).toBeTruthy();
     });
   });
 });
