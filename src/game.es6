@@ -44,6 +44,7 @@ const Game = class {
 
     // adds event-listeners
     this.addEventListener('setStates', this.setBallsStates);
+    this.addEventListener('setConfig', this.setTableConfig);
   }
 
   init() {
