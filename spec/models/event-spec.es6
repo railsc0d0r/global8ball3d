@@ -24,11 +24,11 @@ describe('Event', function() {
       expect(this.event.callbacks).toEqual([]);
     });
 
-    it('can register a callback', function() {
+    it('can register a callback and its context', function() {
       const callback = () => {};
-      this.event.registerCallback(callback);
+      this.event.registerCallback(callback, this);
 
-      expect(this.event.callbacks).toContain(callback);
+      expect(this.event.callbacks).toContain({function: callback, context: this});
     });
   });
 });
