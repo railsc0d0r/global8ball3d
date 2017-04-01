@@ -120,13 +120,14 @@ const Game = class {
     this.events[eventName] = event;
   }
 
-  addEventListener(eventName, callback) {
-    this.events[eventName].registerCallback(callback);
+  addEventListener(eventName, callback, context) {
+    this.events[eventName].registerCallback(callback, context);
   }
 
-  dispatch(eventName, eventArgs) {
-    this.events[eventName].callbacks.forEach(function(callback){
-      callback(eventArgs);
+  dispatch(eventName, ...eventArgs) {
+    this.events[eventName].callbacks.forEach((callback) => {
+      let context = (typeof callback.context === 'undefined') ? this : callback.context;
+      callback.function.apply(context, eventArgs);
     });
   }
 
