@@ -28,8 +28,10 @@
   <body>
     <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
-      var game = new Global8ball.Game3D(TableConfig);
+      var game = new Global8ball.Game3D();
       function initializeGame() {
+        game.dispatch('setConfig', TableConfig);
+        game.dispatch('setStates', BallsConfig.default);
         game.init();
         game.createTable();
       }
