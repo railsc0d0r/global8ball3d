@@ -114,13 +114,6 @@ describe('Game', function() {
       });
     });
 
-    it('sets the ballsStates with given arguments if "setStates" is dipatched', function() {
-      this.game.dispatch('setStates', BallsStates);
-
-      expect(this.game.ballsStates).toEqual(BallsStates);
-      expect(this.game.ballsStatesChanged).toBeTruthy();
-    });
-
     describe('on init()', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
@@ -254,6 +247,13 @@ describe('Game', function() {
         this.game.setBallsStates(this.ballsStates);
         expect(this.game.ballsStatesChanged).toBeTruthy();
       });
+    });
+
+    it('sets the ballsStates with given arguments if "setStates" is dipatched', function() {
+      this.game.dispatch('setStates', BallsStates);
+
+      expect(this.game.ballsStates).toEqual(BallsStates);
+      expect(this.game.ballsStatesChanged).toBeTruthy();
     });
 
     describe('on setTableConfig()', function() {
