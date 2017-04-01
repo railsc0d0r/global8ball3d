@@ -94,7 +94,13 @@ describe('Game', function() {
       it('can add an event-listener to a registered event', function() {
         const callback = () => {};
         this.game.addEventListener(this.eventName, callback);
-        expect(this.game.events[this.eventName].callbacks).toContain(callback);
+        expect(this.game.events[this.eventName].callbacks).toContain({function: callback, context: void 0});
+      });
+
+      it('can add an event-listener to a registered event, specifying its context', function() {
+        const callback = () => {};
+        this.game.addEventListener(this.eventName, callback, this);
+        expect(this.game.events[this.eventName].callbacks).toContain({function: callback, context: this});
       });
 
       it('can dispatch a registered event with arguments', function() {
