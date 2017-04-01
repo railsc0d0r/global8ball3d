@@ -8,8 +8,8 @@ const Event = class {
     this.callbacks = [];
   }
 
-  registerCallback(callback) {
-    this.callbacks.push(callback);
+  registerCallback(callback, context) {
+    this.callbacks.push({function: callback, context: context});
   }
 };
 
