@@ -67,6 +67,14 @@ describe('TableCreator', function() {
       expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
     });
 
+    it('validates objectBuilder before creating csgHoles from given config', function() {
+      const nonObjectBuilders = NonValues;
+      nonObjectBuilders.forEach(nonObjectBuilder => {
+        const throwsAnException = () => TableCreator.createCsgHoles(TableConfig.holesConfig, nonObjectBuilder);
+        expect(throwsAnException).toThrow("Given object is not an instance of ObjectBuilder.");
+      });
+    });
+
     it('creates all holes as CSG-Objects from given config', function() {
       const expectedCsgHoles = TableCreator.createCsgHoles(TableConfig.holesConfig, this.objectBuilder);
 
