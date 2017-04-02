@@ -13,27 +13,43 @@ const TableCreator = class {
 
     this.objectBuilder = objectBuilder;
     this.shadowGenerator = shadowGenerator;
-    this.csgHoles = [];
   }
 
-  createCsgHoles(holesConfig) {
+  static createCsgHoles(holesConfig, objectBuilder) {
+    TableCreator.validateObjectBuilder(objectBuilder);
+
+    const csgHoles = [];
     holesConfig.forEach(holeConfig => {
-      this.csgHoles.push(this._createCsgHole(holeConfig));
+      csgHoles.push(TableCreator._createCsgHole(holeConfig, objectBuilder));
     });
+
+    return csgHoles;
   }
 
-  _createCsgHole(holeConfig) {
+  static _createCsgHole(holeConfig, objectBuilder) {
     holeConfig.diameterTop = holeConfig.radius * 2;
     holeConfig.diameterBottom = holeConfig.radius * 2;
     holeConfig.height = 0.1;
     holeConfig.position.y = 0;
 
-    let mesh = this.objectBuilder.createCylinder(holeConfig);
+    const mesh = objectBuilder.createCylinder(holeConfig);
 
-    let csg = BABYLON.CSG.FromMesh(mesh);
+    const csg = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
 
     return csg;
+  }
+
+  static validateObjectBuilder(objectBuilder) {
+    if( typeof(objectBuilder) === 'undefined' || !(objectBuilder instanceof ObjectBuilder) ) {
+      throw "Given object is not an instance of ObjectBuilder.";
+    }
+  }
+
+  static validateShadowGenerator(shadowGenerator) {
+    if( typeof(shadowGenerator) === 'undefined' || !(shadowGenerator instanceof ShadowGenerator) ) {
+      throw "Given object is not an instance of ShadowGenerator.";
+    }
   }
 
   createPlayground(playgroundConfig, material) {
