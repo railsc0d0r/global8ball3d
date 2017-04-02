@@ -115,28 +115,6 @@ describe('TableCreator', function() {
       expect(this.tableCreator.shadowGenerator).toEqual(this.shadowGenerator);
     });
 
-    it('initializes csgHoles as an empty Array', function() {
-      expect(this.tableCreator.csgHoles).toEqual([]);
-    });
-
-    it('creates all holes as CSG-Objects and stores them as an array', function() {
-      this.tableCreator.createCsgHoles(this.holesConfig);
-
-      expect(this.tableCreator.csgHoles).toEqual(jasmine.any(Array));
-      expect(this.tableCreator.csgHoles.length).not.toEqual(0);
-
-      this.tableCreator.csgHoles.forEach(csgHole => {
-        expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
-      });
-    });
-
-    it('takes an config-object describing a hole and returns a CSG-object.', function () {
-      const firstHoleConfig = this.holesConfig.find( () => { return true; });
-      const csgHole = this.tableCreator._createCsgHole(firstHoleConfig);
-
-      expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
-    });
-
     describe('with given material', function() {
       beforeEach(function() {
         this.tableCreator.createCsgHoles(this.holesConfig);
