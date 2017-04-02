@@ -55,6 +55,30 @@ describe('TableCreator', function() {
     });
   });
 
+  describe('given an instance of ObjectBuilder', function() {
+    beforeEach(function() {
+      this.objectBuilder = new ObjectBuilder(this.scene);
+    });
+
+    it('takes an config-object describing a hole and returns a CSG-object.', function () {
+      const firstHoleConfig = TableConfig.holesConfig.find( () => { return true; });
+      const csgHole = TableCreator._createCsgHole(firstHoleConfig, this.objectBuilder);
+
+      expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
+    });
+
+    it('creates all holes as CSG-Objects from given config', function() {
+      const expectedCsgHoles = TableCreator.createCsgHoles(TableConfig.holesConfig, this.objectBuilder);
+
+      expect(expectedCsgHoles).toEqual(jasmine.any(Array));
+      expect(expectedCsgHoles.length).not.toEqual(0);
+
+      expectedCsgHoles.forEach(csgHole => {
+        expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
+      });
+    });
+  });
+
   describe('as an instance', function() {
     beforeEach(function() {
       const hole_radius = 0.047625347;
