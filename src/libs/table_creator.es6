@@ -52,6 +52,12 @@ const TableCreator = class {
     }
   }
 
+  static validateConfig(config) {
+    if ( typeof(config) === 'undefined' || Object.keys(config).length === 0 ) {
+      throw "Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.";
+    }
+  }
+
   createPlayground(playgroundConfig, material) {
     if (typeof(playgroundConfig) === 'undefined') {
       throw "A hash of config-options has to be given to create a playground.";
