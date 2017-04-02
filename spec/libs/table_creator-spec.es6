@@ -21,8 +21,8 @@ describe('TableCreator', function() {
     HtmlFixtures.removeFixture();
   });
 
-  describe('validates given object to be', function() {
-    it('an instance of ObjectBuilder', function() {
+  describe('validates given object to', function() {
+    it('be an instance of ObjectBuilder', function() {
       const nonObjectBuilders = NonValues;
       nonObjectBuilders.forEach(nonObjectBuilder => {
         const throwsAnException = () => TableCreator.validateObjectBuilder(nonObjectBuilder);
@@ -30,11 +30,19 @@ describe('TableCreator', function() {
       });
     });
 
-    it('an instance of ShadowGenerator', function() {
+    it('be an instance of ShadowGenerator', function() {
       const nonShadowGenerators = NonValues;
       nonShadowGenerators.forEach(nonShadowGenerator => {
         const throwsAnException = () => TableCreator.validateShadowGenerator(nonShadowGenerator);
         expect(throwsAnException).toThrow("Given object is not an instance of ShadowGenerator.");
+      });
+    });
+
+    it('be a hash of options and contain the expected config-hashes', function() {
+      const nonConfigs = NonValues;
+      nonConfigs.forEach(nonConfig => {
+        const throwsAnException = () => TableCreator.validateConfig(nonConfig);
+        expect(throwsAnException).toThrow("Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.");
       });
     });
   });
