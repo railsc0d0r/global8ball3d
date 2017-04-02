@@ -39,22 +39,6 @@ describe('TableCreator', function() {
     });
   });
 
-  it('requires an instance of ObjectBuilder to be created', function() {
-    const throwsAnException = () => new TableCreator;
-
-    expect(throwsAnException).toThrow("TableCreator requires an instance of ObjectBuilder to be created.");
-  });
-
-  it('requires an instance of ShadowGenerator to be created', function() {
-    const objectBuilder = new ObjectBuilder(this.scene);
-    const nonShadowGenerators = NonValues;
-
-    nonShadowGenerators.forEach(nonShadowGenerator => {
-      const throwsAnException = () => { new TableCreator(objectBuilder, nonShadowGenerator) };
-      expect(throwsAnException).toThrow("TableCreator requires an instance of ShadowGenerator to be created.");
-    });
-  });
-
   describe('given an instance of ObjectBuilder', function() {
     beforeEach(function() {
       this.objectBuilder = new ObjectBuilder(this.scene);
