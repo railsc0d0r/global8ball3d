@@ -6,6 +6,7 @@ import TableCreator from '../../src/libs/table_creator';
 import HtmlFixtures from '../support/html_fixtures';
 import NonValues from '../support/non_values';
 import NumberRound from '../support/number_round';
+import * as TableConfig from '../../game_config/table_config';
 
 describe('TableCreator', function() {
   beforeEach(function() {
