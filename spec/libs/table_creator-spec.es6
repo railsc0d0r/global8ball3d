@@ -21,6 +21,24 @@ describe('TableCreator', function() {
     HtmlFixtures.removeFixture();
   });
 
+  describe('validates given object to be', function() {
+    it('an instance of ObjectBuilder', function() {
+      const nonObjectBuilders = NonValues;
+      nonObjectBuilders.forEach(nonObjectBuilder => {
+        const throwsAnException = () => TableCreator.validateObjectBuilder(nonObjectBuilder);
+        expect(throwsAnException).toThrow("Given object is not an instance of ObjectBuilder.");
+      });
+    });
+
+    it('an instance of ShadowGenerator', function() {
+      const nonShadowGenerators = NonValues;
+      nonShadowGenerators.forEach(nonShadowGenerator => {
+        const throwsAnException = () => TableCreator.validateShadowGenerator(nonShadowGenerator);
+        expect(throwsAnException).toThrow("Given object is not an instance of ShadowGenerator.");
+      });
+    });
+  });
+
   it('requires an instance of ObjectBuilder to be created', function() {
     const throwsAnException = () => new TableCreator;
 
