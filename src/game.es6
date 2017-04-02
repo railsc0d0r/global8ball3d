@@ -68,9 +68,6 @@ const Game = class {
 
     // initializes a new objectBuilder
     this.objectBuilder = new ObjectBuilder(this.scene);
-
-    // initializes a new TableCreator
-    this.tableCreator = new TableCreator(this.objectBuilder, this.shadowGenerator);
   }
 
   setTableConfig(config) {
