@@ -45,6 +45,14 @@ describe('TableCreator', function() {
         expect(throwsAnException).toThrow("Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.");
       });
     });
+
+    it('be an instance of BABYLON.StandardMaterial', function() {
+      const nonMaterials = NonValues;
+      nonMaterials.forEach(nonMaterial => {
+        const throwsAnException = () => TableCreator.validateMaterial(nonMaterial);
+        expect(throwsAnException).toThrow("Given material is not valid. Expected an object of type BABYLON.StandardMaterial.");
+      });
+    });
   });
 
   describe('given an instance of ObjectBuilder', function() {
