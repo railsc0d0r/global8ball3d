@@ -99,14 +99,6 @@ describe('TableCreator', function() {
       this.tableCreator = new TableCreator(this.objectBuilder, this.shadowGenerator);
     });
 
-    it('stores given instance of ObjectBuilder as property', function() {
-      expect(this.tableCreator.objectBuilder).toEqual(this.objectBuilder);
-    });
-
-    it('stores given instance of ShadowGenerator as property', function() {
-      expect(this.tableCreator.shadowGenerator).toEqual(this.shadowGenerator);
-    });
-
     describe('with given material', function() {
       beforeEach(function() {
         this.tableCreator.createCsgHoles(this.holesConfig);
