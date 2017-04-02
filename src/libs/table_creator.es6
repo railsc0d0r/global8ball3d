@@ -58,17 +58,21 @@ const TableCreator = class {
     }
   }
 
-  createPlayground(playgroundConfig, material) {
-    if (typeof(playgroundConfig) === 'undefined') {
-      throw "A hash of config-options has to be given to create a playground.";
-    }
-
+  static validateMaterial(material) {
     if (typeof(material) === 'undefined' || !(material instanceof BABYLON.StandardMaterial)) {
-      throw "A material of type BABYLON.StandardMaterial has to be given to create a playground.";
+      throw "Given material is not valid. Expected an object of type BABYLON.StandardMaterial.";
     }
+  }
+
+  static createPlayground(config, material, objectBuilder) {
+    this.validateConfig(config);
+    this.validateMaterial(material);
+    this.validateObjectBuilder(objectBuilder);
 
     let playgroundMaterial = material.clone('playground');
-    this.objectBuilder.frostMaterial(playgroundMaterial);
+    objectBuilder.frostMaterial(playgroundMaterial);
+
+    const playgroundConfig = config.playgroundConfig;
 
     const name = playgroundConfig.id;
     const width = playgroundConfig.width;
@@ -93,17 +97,19 @@ const TableCreator = class {
     };
 
     // creates the CSG-representation of the playground
-    let mesh = this.objectBuilder.createBox(boxConfig);
+    let mesh = objectBuilder.createBox(boxConfig);
     let csgPlayground = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
 
+    const csgHoles = this.createCsgHoles(config, objectBuilder);
+
     // drills the holes
-    this.csgHoles.forEach(csgHole => {
+    csgHoles.forEach(csgHole => {
       csgPlayground.subtractInPlace(csgHole);
     });
 
-    let playground = this.objectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial);
-    playground.physicsImpostor = this.objectBuilder.createPhysicsImpostor(playground, "GROUND", { mass: mass, restitution: restitution});
+    let playground = objectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial);
+    playground.physicsImpostor = objectBuilder.createPhysicsImpostor(playground, "GROUND", { mass: mass, restitution: restitution});
     playground.receiveShadows = true;
 
     return playground;
