@@ -16,7 +16,7 @@ const TableCreator = class {
   }
 
   static createCsgHoles(holesConfig, objectBuilder) {
-    TableCreator.validateObjectBuilder(objectBuilder);
+    this.validateObjectBuilder(objectBuilder);
 
     const csgHoles = [];
     holesConfig.forEach(holeConfig => {
