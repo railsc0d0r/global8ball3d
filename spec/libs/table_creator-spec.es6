@@ -60,7 +60,7 @@ describe('TableCreator', function() {
     });
 
     it('creates all holes as CSG-Objects from given config', function() {
-      const expectedCsgHoles = TableCreator.createCsgHoles(TableConfig.holesConfig, this.objectBuilder);
+      const expectedCsgHoles = TableCreator.createCsgHoles(TableConfig, this.objectBuilder);
 
       expect(expectedCsgHoles).toEqual(jasmine.any(Array));
       expect(expectedCsgHoles.length).not.toEqual(0);
