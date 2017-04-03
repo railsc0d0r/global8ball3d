@@ -22,11 +22,11 @@ describe('TableCreator', function() {
   });
 
   describe('validates given object to', function() {
-    it('be an instance of ObjectBuilder', function() {
-      const nonObjectBuilders = NonValues;
-      nonObjectBuilders.forEach(nonObjectBuilder => {
-        const throwsAnException = () => TableCreator.validateObjectBuilder(nonObjectBuilder);
-        expect(throwsAnException).toThrow("Given object is not an instance of ObjectBuilder.");
+    it('be an instance of BABYLON.Scene', function() {
+      const nonScenes = NonValues;
+      nonScenes.forEach(nonScene => {
+        const throwsAnException = () => TableCreator.validateScene(nonScene);
+        expect(throwsAnException).toThrow("Given object is not an instance of BABYLON.Scene.");
       });
     });
 
