@@ -15,12 +15,12 @@ const TableCreator = class {
     this.shadowGenerator = shadowGenerator;
   }
 
-  static createCsgHoles(config, objectBuilder) {
-    this.validateObjectBuilder(objectBuilder);
+  static createCsgHoles(config, scene) {
+    this.validateScene(scene);
 
     const csgHoles = [];
     config.holesConfig.forEach(holeConfig => {
-      csgHoles.push(TableCreator._createCsgHole(holeConfig, objectBuilder));
+      csgHoles.push(TableCreator._createCsgHole(holeConfig, scene));
     });
 
     return csgHoles;
