@@ -24,7 +24,7 @@ const ObjectBuilder = class{
     const y = boxConfig.position.y;
     const z = boxConfig.position.z;
 
-    let mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateBox(name, {width: width, height: height, depth: depth}, scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
