@@ -34,7 +34,7 @@ const TableCreator = class {
     holeConfig.height = 0.1;
     holeConfig.position.y = 0;
 
-    const mesh = objectBuilder.createCylinder(holeConfig);
+    const mesh = ObjectBuilder.createCylinder(holeConfig, scene);
 
     const csg = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
