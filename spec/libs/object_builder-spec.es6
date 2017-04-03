@@ -108,7 +108,7 @@ describe('ObjectBuilder', function() {
     describe('creates a cylinder', function() {
       beforeEach(function() {
         const radius = 0.047625347;
-        this.cylinderConfig =   {
+        this.cylinderConfig = {
           name: "leftTop",
           diameterTop: radius * 2,
           diameterBottom: radius * 2,
@@ -118,7 +118,7 @@ describe('ObjectBuilder', function() {
             y: 0,
             z: -0.6641
           }
-        }
+        };
       });
 
       it('validating the scene first', function() {
@@ -142,33 +142,45 @@ describe('ObjectBuilder', function() {
       });
     });
 
-    xit('can create a line from given config', function() {
-      const lineConfig =   {
-        name: "axis",
-        points: [
-          new BABYLON.Vector3(0,0,0),
-          new BABYLON.Vector3(1,0,0)
-        ]
-      }
+    describe('creates a line', function() {
+      beforeEach(function() {
+        this.lineConfig = {
+          name: "axis",
+          points: [
+            new BABYLON.Vector3(0,0,0),
+            new BABYLON.Vector3(1,0,0)
+          ]
+        };
+      });
 
-      const line = this.objectBuilder.createLine(lineConfig);
+      it('validating the scene first', function() {
+        const nonScenes = NonValues;
+        nonScenes.forEach(nonScene => {
+          const throwsAnException = () => ObjectBuilder.createLine(this.lineConfig, nonScene);
+          expect(throwsAnException).toThrow("Given object is not a scene.");
+        });
+      });
 
-      expect(line instanceof BABYLON.Mesh).toBeTruthy();
-      expect(line.name).toEqual(lineConfig.name);
-    });
+      it('checks if given points to create a line are vectors', function() {
+        const lineConfig = {
+          name: "axis",
+          points: [
+            new BABYLON.Vector3(0,0,0),
+            {}
+          ]
+        };
 
-    xit('checks if given points to create a line are vectors', function() {
-      const lineConfig =   {
-        name: "axis",
-        points: [
-          new BABYLON.Vector3(0,0,0),
-          {}
-        ]
-      }
+        const throwsAnException = () => ObjectBuilder.createLine(lineConfig, this.scene);
 
-      const throwsAnException = () => this.objectBuilder.createLine(lineConfig);
+        expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
+      });
 
-      expect(throwsAnException).toThrow("At least one point given is not a BABYLON.Vector3-object.");
+      it('returning a mesh with given parameters', function() {
+        const line = ObjectBuilder.createLine(this.lineConfig, this.scene);
+
+        expect(line instanceof BABYLON.Mesh).toBeTruthy();
+        expect(line.name).toEqual(this.lineConfig.name);
+      });
     });
 
     xit('can create a polyhedron from given config', function() {
