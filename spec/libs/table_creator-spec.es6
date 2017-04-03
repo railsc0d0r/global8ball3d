@@ -9,18 +9,6 @@ import NumberRound from '../support/number_round';
 import * as TableConfig from '../../game_config/table_config';
 
 describe('TableCreator', function() {
-  beforeEach(function() {
-    HtmlFixtures.addCanvas();
-    const canvas = document.getElementById('renderCanvas');
-    this.engine = new BABYLON.Engine(canvas, true);
-    this.scene = Scene.create(this.engine);
-  });
-
-  afterEach(function() {
-    this.engine.dispose();
-    HtmlFixtures.removeFixture();
-  });
-
   describe('validates given object to', function() {
     it('be an instance of BABYLON.Scene', function() {
       const nonScenes = NonValues;
@@ -56,6 +44,18 @@ describe('TableCreator', function() {
   });
 
   describe('given a scene', function() {
+    beforeEach(function() {
+      HtmlFixtures.addCanvas();
+      const canvas = document.getElementById('renderCanvas');
+      this.engine = new BABYLON.Engine(canvas, true);
+      this.scene = Scene.create(this.engine);
+    });
+
+    afterEach(function() {
+      this.engine.dispose();
+      HtmlFixtures.removeFixture();
+    });
+
     describe('creates a hole', function() {
       beforeEach(function() {
         this.holeConfig = TableConfig.holesConfig.find( () => { return true; });
@@ -69,19 +69,10 @@ describe('TableCreator', function() {
         });
       });
 
-      xit('takes an config-object describing a hole and returns a CSG-object.', function () {
-        const firstHoleConfig = TableConfig.holesConfig.find( () => { return true; });
-        const csgHole = TableCreator._createCsgHole(firstHoleConfig, this.objectBuilder);
+      it('returning a CSG-object.', function () {
+        const csgHole = TableCreator._createCsgHole(this.holeConfig, this.scene);
 
         expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
-      });
-
-      xit('validates objectBuilder before creating csgHoles from given config', function() {
-        const nonObjectBuilders = NonValues;
-        nonObjectBuilders.forEach(nonObjectBuilder => {
-          const throwsAnException = () => TableCreator.createCsgHoles(TableConfig.holesConfig, nonObjectBuilder);
-          expect(throwsAnException).toThrow("Given object is not an instance of ObjectBuilder.");
-        });
       });
     });
 
