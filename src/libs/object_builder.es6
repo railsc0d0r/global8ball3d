@@ -68,7 +68,9 @@ const ObjectBuilder = class{
     return mesh;
   }
 
-  createLine(lineConfig) {
+  static createLine(lineConfig, scene) {
+    this.validateScene(scene);
+
     const name = lineConfig.name;
     const points = lineConfig.points;
 
@@ -78,7 +80,7 @@ const ObjectBuilder = class{
       }
     });
 
-    let mesh = BABYLON.MeshBuilder.CreateLines(name, {points: points}, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateLines(name, {points: points}, scene);
 
     return mesh;
   }
