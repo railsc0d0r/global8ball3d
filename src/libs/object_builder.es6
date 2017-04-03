@@ -99,7 +99,7 @@ const ObjectBuilder = class{
     return mesh;
   }
 
-  convertCsgToMesh(name, csgObject, material) {
+  static convertCsgToMesh(name, csgObject, material, scene) {
     if ( !( typeof name === "string" || name instanceof String ) ) {
       throw "Name given for mesh to be created from CSG-object is not a valid string.";
     }
@@ -112,7 +112,9 @@ const ObjectBuilder = class{
       throw "Material given to create a mesh from a CSG-object with is not a Material.";
     }
 
-    return csgObject.toMesh(name, material, this.scene, false);
+    this.validateScene(scene);
+
+    return csgObject.toMesh(name, material, scene, false);
   }
 
   static createPhysicsImpostor(object, impostor_class, options={}, scene) {
