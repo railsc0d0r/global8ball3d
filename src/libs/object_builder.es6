@@ -85,14 +85,16 @@ const ObjectBuilder = class{
     return mesh;
   }
 
-  createPolyhedron(polyhedronConfig) {
+  static createPolyhedron(polyhedronConfig, scene) {
+    this.validateScene(scene);
+
     const name = polyhedronConfig.name;
     const customOptions = {
       vertex: polyhedronConfig.vertex,
       face: polyhedronConfig.face
     };
 
-    let mesh = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreatePolyhedron(name, {custom: customOptions}, scene);
 
     return mesh;
   }
