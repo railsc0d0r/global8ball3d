@@ -66,13 +66,13 @@ const TableCreator = class {
     }
   }
 
-  static createPlayground(config, material, objectBuilder) {
+  static createPlayground(config, material, scene) {
     this.validateConfig(config);
     this.validateMaterial(material);
-    this.validateObjectBuilder(objectBuilder);
+    this.validateScene(scene);
 
     let playgroundMaterial = material.clone('playground');
-    objectBuilder.frostMaterial(playgroundMaterial);
+    ObjectBuilder.frostMaterial(playgroundMaterial);
 
     const playgroundConfig = config.playgroundConfig;
 
@@ -99,19 +99,19 @@ const TableCreator = class {
     };
 
     // creates the CSG-representation of the playground
-    let mesh = objectBuilder.createBox(boxConfig);
+    let mesh = ObjectBuilder.createBox(boxConfig, scene);
     let csgPlayground = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
 
-    const csgHoles = this.createCsgHoles(config, objectBuilder);
+    const csgHoles = this.createCsgHoles(config, scene);
 
     // drills the holes
     csgHoles.forEach(csgHole => {
       csgPlayground.subtractInPlace(csgHole);
     });
 
-    let playground = objectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial);
-    playground.physicsImpostor = objectBuilder.createPhysicsImpostor(playground, "GROUND", { mass: mass, restitution: restitution});
+    let playground = ObjectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial, scene);
+    playground.physicsImpostor = ObjectBuilder.createPhysicsImpostor(playground, "GROUND", { mass: mass, restitution: restitution}, scene);
     playground.receiveShadows = true;
 
     return playground;
