@@ -115,12 +115,12 @@ const ObjectBuilder = class{
     return csgObject.toMesh(name, material, this.scene, false);
   }
 
-  createPhysicsImpostor(object, impostor_class, options={}) {
+  static createPhysicsImpostor(object, impostor_class, options={}, scene) {
     // maps objects to PhysicsImpostor-classes
     const physicsImpostors = {
-      SPHERE: BABYLON.PhysicsImpostor.SphereImpostor,
-      BORDER: BABYLON.PhysicsImpostor.MeshImpostor,
-      GROUND: BABYLON.PhysicsImpostor.BoxImpostor
+      SPHERE: 'SphereImpostor',
+      BORDER: 'MeshImpostor',
+      GROUND: 'BoxImpostor'
     };
 
     if ( typeof object === 'undefined' || !(object instanceof BABYLON.Mesh) ) {
@@ -131,7 +131,10 @@ const ObjectBuilder = class{
       throw "You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or GROUND.";
     }
 
-    return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, this.scene);
+    this.validateScene(scene);
+
+    const impostor = BABYLON.PhysicsImpostor[physicsImpostors[impostor_class]];
+    return new BABYLON.PhysicsImpostor(object, impostor, options, scene);
   }
 
   static frostMaterial(material) {
