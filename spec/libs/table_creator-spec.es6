@@ -129,7 +129,7 @@ describe('TableCreator', function() {
             this.playground = TableCreator.createPlayground(TableConfig, this.material, this.scene);
           });
 
-          xit('with the right dimensions and the right position', function() {
+          it('with the right properties, an PhysicsImpostor, a mat material, receiving shadows', function() {
             expect(this.playground instanceof BABYLON.Mesh).toBeTruthy();
 
             const dimensions = this.playground.getBoundingInfo().boundingBox.extendSize.scale(2);
@@ -146,19 +146,13 @@ describe('TableCreator', function() {
             expect(NumberRound(dimensions.z, 4)).toEqual(expectedDepth);
 
             expect(this.playground.name).toEqual('playground');
-          });
 
-          xit('with an physics_impostor', function() {
             expect(this.playground.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
             expect(this.playground.physicsImpostor.getParam("mass")).toEqual(0);
             expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.98);
-          });
 
-          xit('with a mat material', function() {
             expect(this.playground.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
-          });
 
-          xit('that receives shadows', function() {
             expect(this.playground.receiveShadows).toBeTruthy();
           });
         });
