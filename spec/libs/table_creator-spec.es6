@@ -76,14 +76,24 @@ describe('TableCreator', function() {
       });
     });
 
-    xit('creates all holes as CSG-Objects from given config', function() {
-      const expectedCsgHoles = TableCreator.createCsgHoles(TableConfig, this.objectBuilder);
+    describe('creates all holes', function() {
+      it('validating the scene first', function() {
+        const nonScenes = NonValues;
+        nonScenes.forEach(nonScene => {
+          const throwsAnException = () => TableCreator.createCsgHoles(TableConfig, nonScene);
+          expect(throwsAnException).toThrow("Given object is not an instance of BABYLON.Scene.");
+        });
+      });
 
-      expect(expectedCsgHoles).toEqual(jasmine.any(Array));
-      expect(expectedCsgHoles.length).not.toEqual(0);
+      it('returning an array of CSG-Objects', function() {
+        const expectedCsgHoles = TableCreator.createCsgHoles(TableConfig, this.scene);
 
-      expectedCsgHoles.forEach(csgHole => {
-        expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
+        expect(expectedCsgHoles).toEqual(jasmine.any(Array));
+        expect(expectedCsgHoles.length).not.toEqual(0);
+
+        expectedCsgHoles.forEach(csgHole => {
+          expect(csgHole).toEqual(jasmine.any(BABYLON.CSG));
+        });
       });
     });
 
