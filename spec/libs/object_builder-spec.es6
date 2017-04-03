@@ -183,47 +183,59 @@ describe('ObjectBuilder', function() {
       });
     });
 
-    xit('can create a polyhedron from given config', function() {
-      const ball_diameter = 0.0291 * 2;
-      const nose_height = ball_diameter * 0.65;
-      const rail_height = 0.04445;
+    describe('creates a polyhedron', function() {
+      beforeEach(function() {
+        const ball_diameter = 0.0291 * 2;
+        const nose_height = ball_diameter * 0.65;
+        const rail_height = 0.04445;
 
-      const faces = [
-            [0,1,2],
-            [3,4,5],
-            [0,1,4,3],
-            [0,2,5,3],
-            [1,4,5,2]
-      ];
+        const faces = [
+              [0,1,2],
+              [3,4,5],
+              [0,1,4,3],
+              [0,2,5,3],
+              [1,4,5,2]
+        ];
 
-      const vertices = [
-        [
-          -1.27, nose_height, -0.560916126
-        ], [
-          -1.3282, 0, -0.624416589
-        ], [
-          -1.3282, rail_height, -0.624416589
-        ], [
-          -1.27, nose_height, 0.560916126
-        ], [
-          -1.3282, 0, 0.624416589
-        ], [
-          -1.3282, rail_height, 0.624416589
-        ]
-      ];
+        const vertices = [
+          [
+            -1.27, nose_height, -0.560916126
+          ], [
+            -1.3282, 0, -0.624416589
+          ], [
+            -1.3282, rail_height, -0.624416589
+          ], [
+            -1.27, nose_height, 0.560916126
+          ], [
+            -1.3282, 0, 0.624416589
+          ], [
+            -1.3282, rail_height, 0.624416589
+          ]
+        ];
 
-      const name = "left";
+        const name = "left";
 
-      const polyhedronConfig = {
-        name: "left",
-        vertex: vertices,
-        face: faces
-      };
+        this.polyhedronConfig = {
+          name: "left",
+          vertex: vertices,
+          face: faces
+        };
+      });
 
-      const polyhedron = this.objectBuilder.createPolyhedron(polyhedronConfig);
+      it('validating the scene first', function() {
+        const nonScenes = NonValues;
+        nonScenes.forEach(nonScene => {
+          const throwsAnException = () => ObjectBuilder.createPolyhedron(this.polyhedronConfig, nonScene);
+          expect(throwsAnException).toThrow("Given object is not a scene.");
+        });
+      });
 
-      expect(polyhedron).toEqual(jasmine.any(BABYLON.Mesh));
-      expect(polyhedron.name).toEqual(name);
+      it('returning a mesh with given parameters', function() {
+        const polyhedron = ObjectBuilder.createPolyhedron(this.polyhedronConfig, this.scene);
+
+        expect(polyhedron).toEqual(jasmine.any(BABYLON.Mesh));
+        expect(polyhedron.name).toEqual(this.polyhedronConfig.name);
+      });
     });
 
     xit('validates given material if called to frost it', function() {
