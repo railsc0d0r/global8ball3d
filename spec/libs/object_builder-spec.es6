@@ -68,29 +68,41 @@ describe('ObjectBuilder', function() {
       });
     });
 
-    xit('can create a sphere from given config', function() {
-      const radius = 0.4;
-      const sphereConfig = {
-        name: 'test',
-        radius: radius,
-        position: {
-          x: 0,
-          y: radius,
-          z: 0
-        }
-      };
+    describe('creates a sphere', function() {
+      beforeEach(function() {
+        const radius = 0.4;
+        this.sphereConfig = {
+          name: 'test',
+          radius: radius,
+          position: {
+            x: 0,
+            y: radius,
+            z: 0
+          }
+        };
+      });
 
-      const sphere = this.objectBuilder.createSphere(sphereConfig);
-      const realRadius = sphere.getBoundingInfo().boundingBox.extendSize.x;
+      it('validating the scene first', function() {
+        const nonScenes = NonValues;
+        nonScenes.forEach(nonScene => {
+          const throwsAnException = () => ObjectBuilder.createSphere(this.sphereConfig, nonScene);
+          expect(throwsAnException).toThrow("Given object is not a scene.");
+        });
+      });
 
-      expect(sphere instanceof BABYLON.Mesh).toBeTruthy();
-      expect(sphere.position.x).toEqual(sphereConfig.position.x);
-      expect(sphere.position.y).toEqual(sphereConfig.position.y);
-      expect(sphere.position.z).toEqual(sphereConfig.position.z);
+      it('returning a mesh with given parameters', function() {
+        const sphere = ObjectBuilder.createSphere(this.sphereConfig, this.scene);
+        const realRadius = sphere.getBoundingInfo().boundingBox.extendSize.x;
 
-      expect(realRadius).toEqual(sphereConfig.radius);
+        expect(sphere instanceof BABYLON.Mesh).toBeTruthy();
+        expect(sphere.position.x).toEqual(this.sphereConfig.position.x);
+        expect(sphere.position.y).toEqual(this.sphereConfig.position.y);
+        expect(sphere.position.z).toEqual(this.sphereConfig.position.z);
 
-      expect(sphere.name).toEqual(sphereConfig.name);
+        expect(realRadius).toEqual(this.sphereConfig.radius);
+
+        expect(sphere.name).toEqual(this.sphereConfig.name);
+      });
     });
 
     xit('can create a cylinder from given config', function() {
