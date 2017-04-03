@@ -7,7 +7,15 @@ const ObjectBuilder = class{
     this.scene = scene;
   }
 
-  createBox(boxConfig) {
+  static validateScene(scene) {
+    if (typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene)) {
+      throw "Given object is not a scene.";
+    }
+  }
+
+  static createBox(boxConfig, scene) {
+    this.validateScene(scene);
+
     const name = boxConfig.name;
     const width = boxConfig.width;
     const height = boxConfig.height;
