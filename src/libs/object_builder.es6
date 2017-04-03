@@ -134,7 +134,7 @@ const ObjectBuilder = class{
     return new BABYLON.PhysicsImpostor(object, physicsImpostors[impostor_class], options, this.scene);
   }
 
-  frostMaterial(material) {
+  static frostMaterial(material) {
     if ( typeof material === 'undefined' || !(material instanceof BABYLON.StandardMaterial) ) {
       throw "Given object to be frosted is not a material.";
     }
