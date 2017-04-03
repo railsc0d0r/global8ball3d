@@ -40,9 +40,9 @@ const TableCreator = class {
     return csg;
   }
 
-  static validateObjectBuilder(objectBuilder) {
-    if( typeof(objectBuilder) === 'undefined' || !(objectBuilder instanceof ObjectBuilder) ) {
-      throw "Given object is not an instance of ObjectBuilder.";
+  static validateScene(scene) {
+    if( typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene) ) {
+      throw "Given object is not an instance of BABYLON.Scene.";
     }
   }
 
