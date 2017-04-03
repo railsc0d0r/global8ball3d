@@ -102,63 +102,65 @@ describe('TableCreator', function() {
         this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
       });
 
-      xit('validates the config-object given before creating the playground', function() {
-        const throwsAnException = () => { TableCreator.createPlayground() };
-        expect(throwsAnException).toThrow("Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.");
-      });
-
-      xit('validates material before creating the playground', function() {
-        const nonMaterials = NonValues;
-        nonMaterials.forEach(nonMaterial => {
-          const throwsAnException = () => TableCreator.createPlayground(TableConfig.holesConfig, nonMaterial);
-          expect(throwsAnException).toThrow("Given material is not valid. Expected an object of type BABYLON.StandardMaterial.");
-        });
-      });
-
-      xit('validates objectBuilder before creating the playground from given config', function() {
-        const nonObjectBuilders = NonValues;
-        nonObjectBuilders.forEach(nonObjectBuilder => {
-          const throwsAnException = () => TableCreator.createPlayground(TableConfig.holesConfig, this.material, nonObjectBuilder);
-          expect(throwsAnException).toThrow("Given object is not an instance of ObjectBuilder.");
-        });
-      });
-
       describe('creates a playground', function() {
-        beforeEach(function() {
-          this.playground = TableCreator.createPlayground(TableConfig, this.material, this.objectBuilder);
+        it('validating the config-object', function() {
+          const throwsAnException = () => { TableCreator.createPlayground() };
+          expect(throwsAnException).toThrow("Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.");
         });
 
-        xit('with the right dimensions and the right position', function() {
-          expect(this.playground instanceof BABYLON.Mesh).toBeTruthy();
-
-          const dimensions = this.playground.getBoundingInfo().boundingBox.extendSize.scale(2);
-          const expectedWidth = 2.6564;
-          const expectedHeight = 0.02;
-          const expectedDepth = 1.3864;
-
-          expect(this.playground.position.x).toEqual(0);
-          expect(this.playground.position.y).toEqual(-(expectedHeight / 2));
-          expect(this.playground.position.z).toEqual(0);
-
-          expect(NumberRound(dimensions.x, 4)).toEqual(expectedWidth);
-          expect(NumberRound(dimensions.y, 4)).toEqual(expectedHeight);
-          expect(NumberRound(dimensions.z, 4)).toEqual(expectedDepth);
-
-          expect(this.playground.name).toEqual('playground');
+        it('validating the material', function() {
+          const nonMaterials = NonValues;
+          nonMaterials.forEach(nonMaterial => {
+            const throwsAnException = () => TableCreator.createPlayground(TableConfig.holesConfig, nonMaterial);
+            expect(throwsAnException).toThrow("Given material is not valid. Expected an object of type BABYLON.StandardMaterial.");
+          });
         });
 
-        xit('with an physics_impostor', function() {
-          expect(this.playground.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
-          expect(this.playground.physicsImpostor.getParam("mass")).toEqual(0);
-          expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.98);
+        it('validating the scene', function() {
+          const nonScenes = NonValues;
+          nonScenes.forEach(nonScene => {
+            const throwsAnException = () => TableCreator._createCsgHole(this.holeConfig, nonScene);
+            expect(throwsAnException).toThrow("Given object is not an instance of BABYLON.Scene.");
+          });
         });
 
-        xit('with a mat material', function() {
-          expect(this.playground.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
-        });
+        describe('returning a mesh', function() {
+          beforeEach(function() {
+            this.playground = TableCreator.createPlayground(TableConfig, this.material, this.scene);
+          });
 
-        xit('that receives shadows', function() {
-          expect(this.playground.receiveShadows).toBeTruthy();
+          xit('with the right dimensions and the right position', function() {
+            expect(this.playground instanceof BABYLON.Mesh).toBeTruthy();
+
+            const dimensions = this.playground.getBoundingInfo().boundingBox.extendSize.scale(2);
+            const expectedWidth = 2.6564;
+            const expectedHeight = 0.02;
+            const expectedDepth = 1.3864;
+
+            expect(this.playground.position.x).toEqual(0);
+            expect(this.playground.position.y).toEqual(-(expectedHeight / 2));
+            expect(this.playground.position.z).toEqual(0);
+
+            expect(NumberRound(dimensions.x, 4)).toEqual(expectedWidth);
+            expect(NumberRound(dimensions.y, 4)).toEqual(expectedHeight);
+            expect(NumberRound(dimensions.z, 4)).toEqual(expectedDepth);
+
+            expect(this.playground.name).toEqual('playground');
+          });
+
+          xit('with an physics_impostor', function() {
+            expect(this.playground.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+            expect(this.playground.physicsImpostor.getParam("mass")).toEqual(0);
+            expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.98);
+          });
+
+          xit('with a mat material', function() {
+            expect(this.playground.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+          });
+
+          xit('that receives shadows', function() {
+            expect(this.playground.receiveShadows).toBeTruthy();
+          });
         });
       });
     });
