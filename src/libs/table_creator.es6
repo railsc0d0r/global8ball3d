@@ -26,7 +26,9 @@ const TableCreator = class {
     return csgHoles;
   }
 
-  static _createCsgHole(holeConfig, objectBuilder) {
+  static _createCsgHole(holeConfig, scene) {
+    this.validateScene(scene);
+
     holeConfig.diameterTop = holeConfig.radius * 2;
     holeConfig.diameterBottom = holeConfig.radius * 2;
     holeConfig.height = 0.1;
