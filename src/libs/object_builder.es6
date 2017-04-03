@@ -49,7 +49,9 @@ const ObjectBuilder = class{
     return mesh;
   }
 
-  createCylinder(cylinderConfig) {
+  static createCylinder(cylinderConfig, scene) {
+    this.validateScene(scene);
+
     const name = cylinderConfig.name;
     const diameterTop = cylinderConfig.diameterTop;
     const diameterBottom = cylinderConfig.diameterBottom;
@@ -58,7 +60,7 @@ const ObjectBuilder = class{
     const y = cylinderConfig.position.y || 0;
     const z = cylinderConfig.position.z;
 
-    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameterTop: diameterTop, diameterBottom: diameterBottom, height: height }, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameterTop: diameterTop, diameterBottom: diameterBottom, height: height }, scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
