@@ -238,19 +238,22 @@ describe('ObjectBuilder', function() {
       });
     });
 
-    xit('validates given material if called to frost it', function() {
-      NonValues.forEach(nonMaterial => {
-        const throwsAnException = () => { this.objectBuilder.frostMaterial(nonMaterial) };
+    describe('frosts a given material', function() {
+      it('validating it first', function() {
+        NonValues.forEach(nonMaterial => {
+          const throwsAnException = () => { ObjectBuilder.frostMaterial(nonMaterial) };
 
-        expect(throwsAnException).toThrow('Given object to be frosted is not a material.');
+          expect(throwsAnException).toThrow('Given object to be frosted is not a material.');
+        });
       });
-    });
 
-    xit('can frost a material by setting its specularColor', function() {
-      let material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue.clone('mattBlue');
-      this.objectBuilder.frostMaterial(material);
+      it('by setting its specularColor', function() {
+        let material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue.clone('mattBlue');
+        ObjectBuilder.frostMaterial(material);
 
-      expect(material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+        expect(material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+      });
+
     });
 
     xit('requires an object of type BABYLON.Mesh if creating a physics_impostor for an object', function() {
