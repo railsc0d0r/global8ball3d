@@ -256,15 +256,7 @@ describe('ObjectBuilder', function() {
 
     });
 
-    xit('requires an object of type BABYLON.Mesh if creating a physics_impostor for an object', function() {
-      NonValues.forEach(nonValue => {
-        const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(nonValue) };
-
-        expect(throwsAnException).toThrow("Object given to create a PhysicsImpostor for has to be an instance of mesh.");
-      })
-    });
-
-    describe('w/ given mesh', function() {
+    describe('creates a physicsImpostor', function() {
       beforeEach(function() {
         const radius = 0.4;
         const sphereConfig = {
@@ -277,21 +269,38 @@ describe('ObjectBuilder', function() {
           }
         };
 
-        this.mesh = this.objectBuilder.createSphere(sphereConfig);
+        this.mesh = ObjectBuilder.createSphere(sphereConfig, this.scene);
         this.meshOptions = {
           mass: 0,
           restitution: 0.98
         };
+        this.impostorClass = "SPHERE"
       });
 
-      xit('requires an impostor_class if creating a physics_impostor for an object', function() {
-        const throwsAnException = () => { this.objectBuilder.createPhysicsImpostor(this.mesh) };
+      it('validating the scene first', function() {
+        const nonScenes = NonValues;
+        nonScenes.forEach(nonScene => {
+          const throwsAnException = () => ObjectBuilder.createPhysicsImpostor(this.mesh, this.impostorClass, this.meshOptions, nonScene);
+          expect(throwsAnException).toThrow("Given object is not a scene.");
+        });
+      });
+
+      it('requiring a mesh', function() {
+        NonValues.forEach(nonValue => {
+          const throwsAnException = () => { ObjectBuilder.createPhysicsImpostor(nonValue) };
+
+          expect(throwsAnException).toThrow("Object given to create a PhysicsImpostor for has to be an instance of mesh.");
+        })
+      });
+
+      it('requiring an impostorClass', function() {
+        const throwsAnException = () => { ObjectBuilder.createPhysicsImpostor(this.mesh) };
 
         expect(throwsAnException).toThrow("You have to define the impostor class to create a PhysicsImpostor from. Possible values are SPHERE, BORDER or GROUND.");
       });
 
-      xit('can create a physics_impostor for an object w/ given options', function() {
-        const physicsImpostor = this.objectBuilder.createPhysicsImpostor(this.mesh, "SPHERE", this.meshOptions);
+      it('can create a physics_impostor for an object w/ given options', function() {
+        const physicsImpostor = ObjectBuilder.createPhysicsImpostor(this.mesh, "SPHERE", this.meshOptions, this.scene);
 
         expect(physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
         expect(physicsImpostor.getParam("mass")).toEqual(this.meshOptions.mass);
