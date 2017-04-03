@@ -32,14 +32,16 @@ const ObjectBuilder = class{
     return mesh;
   }
 
-  createSphere(sphereConfig) {
+  static createSphere(sphereConfig, scene) {
+    this.validateScene(scene);
+
     const name = sphereConfig.name || sphereConfig.id;
     const diameter = sphereConfig.radius * 2;
     const x = sphereConfig.position.x;
     const y = sphereConfig.position.y || sphereConfig.radius;
     const z = sphereConfig.position.z;
 
-    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, this.scene);
+    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameter: diameter }, scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
