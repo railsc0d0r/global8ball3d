@@ -1,12 +1,4 @@
 const ObjectBuilder = class{
-  constructor(scene) {
-    if (typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene)) {
-      throw "ObjectBuilder requires a scene to be created.";
-    }
-
-    this.scene = scene;
-  }
-
   static validateScene(scene) {
     if (typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene)) {
       throw "Given object is not a scene.";
