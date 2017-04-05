@@ -158,11 +158,50 @@ describe('TableCreator', function() {
         });
       });
 
+      describe('creates the rail', function() {
+        it('validating the config-object', function() {
+          const throwsAnException = () => { TableCreator.createRail() };
+          expect(throwsAnException).toThrow("Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.");
+        });
+
+        it('validating the material', function() {
+          const nonMaterials = NonValues;
+          nonMaterials.forEach(nonMaterial => {
+            const throwsAnException = () => TableCreator.createRail(TableConfig, nonMaterial);
+            expect(throwsAnException).toThrow("Given material is not valid. Expected an object of type BABYLON.StandardMaterial.");
+          });
+        });
+
+        it('validating the scene', function() {
+          const nonScenes = NonValues;
+          nonScenes.forEach(nonScene => {
+            const throwsAnException = () => TableCreator.createRail(TableConfig, this.material, nonScene);
+            expect(throwsAnException).toThrow("Given object is not an instance of BABYLON.Scene.");
+          });
+        });
+
+        describe('returning a mesh', function() {
+          beforeEach(function() {
+            this.rail = TableCreator.createRail(TableConfig, this.material, this.scene);
+          });
+
+          it('with the right properties, an PhysicsImpostor, a mat material, receiving shadows', function() {
+            expect(this.rail).toEqual(jasmine.any(BABYLON.Mesh));
+            expect(this.rail.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+            expect(this.rail.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+            expect(this.rail.physicsImpostor.getParam("mass")).toEqual(0);
+            expect(this.rail.physicsImpostor.getParam("restitution")).toEqual(0.98);
+            expect(this.rail.receiveShadows).toBeTruthy();
+          });
+        });
+      });
+
       describe('and a shadowGenerator', function() {
         beforeEach(function() {
           const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
           this.shadowGenerator = new ShadowGenerator(light);
         });
+
         describe('creates the borders', function() {
           it('validating the config-object', function() {
             const throwsAnException = () => { TableCreator.createBorders() };
@@ -306,23 +345,6 @@ describe('TableCreator', function() {
           this.rail = this.tableCreator.createRail(this.railConfig, this.material);
         });
 
-        xit('returning a mesh', function() {
-          expect(this.rail).toEqual(jasmine.any(BABYLON.Mesh));
-        });
-
-        xit('with a mat material', function() {
-          expect(this.rail.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
-        });
-
-        xit('with certain physics-params', function() {
-          expect(this.rail.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
-          expect(this.rail.physicsImpostor.getParam("mass")).toEqual(0);
-          expect(this.rail.physicsImpostor.getParam("restitution")).toEqual(0.98);
-        });
-
-        xit('that receives shadows', function() {
-          expect(this.rail.receiveShadows).toBeTruthy();
-        });
       });
     });
   });
