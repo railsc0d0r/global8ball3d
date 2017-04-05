@@ -111,7 +111,7 @@ describe('TableCreator', function() {
         it('validating the material', function() {
           const nonMaterials = NonValues;
           nonMaterials.forEach(nonMaterial => {
-            const throwsAnException = () => TableCreator.createPlayground(TableConfig.holesConfig, nonMaterial);
+            const throwsAnException = () => TableCreator.createPlayground(TableConfig, nonMaterial);
             expect(throwsAnException).toThrow("Given material is not valid. Expected an object of type BABYLON.StandardMaterial.");
           });
         });
