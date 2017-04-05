@@ -200,7 +200,7 @@ describe('TableCreator', function() {
 
             it('with the right properties, an PhysicsImpostor, a mat material, generating and receiving shadows', function() {
               expect(this.borders).toEqual(jasmine.any(Array));
-              expect(this.borders.length).toEqual(2);
+              expect(this.borders.length).toEqual(6);
 
               this.borders.forEach(border => {
                 expect(border).toEqual(jasmine.any(BABYLON.Mesh));
@@ -209,7 +209,7 @@ describe('TableCreator', function() {
                 expect(border.physicsImpostor.getParam("mass")).toEqual(0);
                 expect(border.physicsImpostor.getParam("restitution")).toEqual(0.8);
                 expect(border.receiveShadows).toBeTruthy();
-                expect(this.tableCreator.shadowGenerator.renderList).toEqual(this.borders);
+                expect(this.shadowGenerator.renderList).toEqual(this.borders);
               });
             });
           });
