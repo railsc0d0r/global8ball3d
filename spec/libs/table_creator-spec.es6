@@ -157,6 +157,64 @@ describe('TableCreator', function() {
           });
         });
       });
+
+      describe('and a shadowGenerator', function() {
+        beforeEach(function() {
+          const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
+          this.shadowGenerator = new ShadowGenerator(light);
+        });
+        describe('creates the borders', function() {
+          it('validating the config-object', function() {
+            const throwsAnException = () => { TableCreator.createBorders() };
+            expect(throwsAnException).toThrow("Given config is not valid. It has to be a hash of config-options describing the borders, holes, playground and the rail.");
+          });
+
+          it('validating the material', function() {
+            const nonMaterials = NonValues;
+            nonMaterials.forEach(nonMaterial => {
+              const throwsAnException = () => TableCreator.createBorders(TableConfig, nonMaterial);
+              expect(throwsAnException).toThrow("Given material is not valid. Expected an object of type BABYLON.StandardMaterial.");
+            });
+          });
+
+          it('validating the shadowGenerator', function() {
+            const nonShadowGenerators = NonValues;
+            nonShadowGenerators.forEach(nonShadowGenerator => {
+              const throwsAnException = () => TableCreator.createBorders(TableConfig, this.material, nonShadowGenerator);
+              expect(throwsAnException).toThrow("Given object is not an instance of ShadowGenerator.");
+            });
+          });
+
+          it('validating the scene', function() {
+            const nonScenes = NonValues;
+            nonScenes.forEach(nonScene => {
+              const throwsAnException = () => TableCreator.createBorders(TableConfig, this.material, this.shadowGenerator, nonScene);
+              expect(throwsAnException).toThrow("Given object is not an instance of BABYLON.Scene.");
+            });
+          });
+
+          describe('returning an array of meshes', function() {
+            beforeEach(function() {
+              this.borders = TableCreator.createBorders(TableConfig, this.material, this.shadowGenerator, this.scene);
+            });
+
+            it('with the right properties, an PhysicsImpostor, a mat material, generating and receiving shadows', function() {
+              expect(this.borders).toEqual(jasmine.any(Array));
+              expect(this.borders.length).toEqual(2);
+
+              this.borders.forEach(border => {
+                expect(border).toEqual(jasmine.any(BABYLON.Mesh));
+                expect(border.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
+                expect(border.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
+                expect(border.physicsImpostor.getParam("mass")).toEqual(0);
+                expect(border.physicsImpostor.getParam("restitution")).toEqual(0.8);
+                expect(border.receiveShadows).toBeTruthy();
+                expect(this.tableCreator.shadowGenerator.renderList).toEqual(this.borders);
+              });
+            });
+          });
+        });
+      });
     });
   });
 
@@ -192,105 +250,6 @@ describe('TableCreator', function() {
       beforeEach(function() {
         this.tableCreator.createCsgHoles(this.holesConfig);
         this.material = new SurfaceMaterialsCreator(this.scene).surfaceMaterials.blue;
-      });
-
-      describe('can create borders', function() {
-        beforeEach(function() {
-          const ball_diameter = 0.0291 * 2;
-          const nose_height = ball_diameter * 0.65;
-          const rail_height = 0.04445;
-
-          this.borderConfigs = [{
-            id: "left",
-            vertices: [{
-              x: -1.27,
-              y: nose_height,
-              z: -0.560916126
-            }, {
-              x: -1.3282,
-              y: 0,
-              z: -0.624416589
-            }, {
-              x: -1.3282,
-              y: rail_height,
-              z: -0.624416589
-            }, {
-              x: -1.27,
-              y: nose_height,
-              z: 0.560916126
-            }, {
-              x: -1.3282,
-              y: 0,
-              z: 0.624416589
-            }, {
-              x: -1.3282,
-              y: rail_height,
-              z: 0.624416589
-            }]
-          }, {
-            id: "leftTop",
-            vertices: [{
-              x: -1.187978569,
-              y: nose_height,
-              z: 0.635
-            }, {
-              x: -1.259416589,
-              y: 0,
-              z: 0.6932
-            }, {
-              x: -1.259416589,
-              y: rail_height,
-              z: 0.6932
-            }, {
-              x: -0.066146316,
-              y: nose_height,
-              z: 0.635
-            }, {
-              x: -0.047625347,
-              y: 0,
-              z: 0.6932
-            }, {
-              x: -0.047625347,
-              y: rail_height,
-              z: 0.6932
-            }]
-          }]
-
-          this.borders = this.tableCreator.createBorders(this.borderConfigs, this.material);
-        });
-
-        xit('returning an array of meshes', function() {
-          expect(this.borders).toEqual(jasmine.any(Array));
-          expect(this.borders.length).toEqual(2);
-
-          this.borders.forEach(border => {
-            expect(border).toEqual(jasmine.any(BABYLON.Mesh));
-          });
-        });
-
-        xit('with a mat material', function() {
-          this.borders.forEach(border => {
-            expect(border.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
-          });
-        });
-
-        xit('with certain physics-params', function() {
-          this.borders.forEach(border => {
-            expect(border.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
-            expect(border.physicsImpostor.getParam("mass")).toEqual(0);
-            expect(border.physicsImpostor.getParam("restitution")).toEqual(0.8);
-          });
-        });
-
-        xit('that receive shadows', function() {
-          this.borders.forEach(border => {
-            expect(border.receiveShadows).toBeTruthy();
-          });
-        });
-
-        xit('that generate shadows', function() {
-          expect(this.tableCreator.shadowGenerator.renderList).toEqual(this.borders);
-        });
       });
 
       describe('can create the rail', function() {
