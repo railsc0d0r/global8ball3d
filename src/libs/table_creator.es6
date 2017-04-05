@@ -171,7 +171,13 @@ const TableCreator = class {
     return borders;
   }
 
-  createRail(railConfig, material) {
+  static createRail(config, material, scene) {
+    this.validateConfig(config);
+    this.validateMaterial(material);
+    this.validateScene(scene);
+
+    const railConfig = config.railConfig;
+
     let railBoxes = [];
     const name = "rail";
     const mass = railConfig.mass;
@@ -180,8 +186,8 @@ const TableCreator = class {
     let railMaterial = material.clone(name);
     railMaterial.specularColor = BABYLON.Color3.FromHexString('#333333');
 
-    railConfig.boxes.forEach(box => {
-      railBoxes.push(this.objectBuilder.createBox(box));
+    railConfig.boxes.forEach(boxConfig => {
+      railBoxes.push(ObjectBuilder.createBox(boxConfig, scene));
     });
 
     // creates the CSG-representation of the rail
@@ -189,13 +195,15 @@ const TableCreator = class {
     let csgRail = BABYLON.CSG.FromMesh(mesh);
     mesh.dispose();
 
+    const csgHoles = this.createCsgHoles(config, scene);
+
     // drills the holes
-    this.csgHoles.forEach(csgHole => {
+    csgHoles.forEach(csgHole => {
       csgRail.subtractInPlace(csgHole);
     });
 
-    let rail = this.objectBuilder.convertCsgToMesh(name, csgRail, railMaterial);
-    rail.physicsImpostor = this.objectBuilder.createPhysicsImpostor(rail, "BORDER", { mass: mass, restitution: restitution});
+    let rail = ObjectBuilder.convertCsgToMesh(name, csgRail, railMaterial, scene);
+    rail.physicsImpostor = ObjectBuilder.createPhysicsImpostor(rail, "BORDER", { mass: mass, restitution: restitution}, scene);
     rail.receiveShadows = true;
 
     return rail;
