@@ -13,6 +13,17 @@ describe('BallsManager', function() {
     const canvas = document.getElementById('renderCanvas');
     this.engine = new BABYLON.Engine(canvas, true);
     this.scene = Scene.create(this.engine);
+
+    const surfaceMaterials = new SurfaceMaterialsCreator(this.scene).surfaceMaterials;
+    this.materials = [
+      surfaceMaterials.red,
+      surfaceMaterials.yellow,
+      surfaceMaterials.white,
+      surfaceMaterials.black
+    ];
+
+    const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
+    this.shadowGenerator = new ShadowGenerator(light);
   });
 
   afterEach(function() {
@@ -20,64 +31,49 @@ describe('BallsManager', function() {
     HtmlFixtures.removeFixture();
   });
 
-  it('requires an instance of ObjectBuilder to be created', function() {
-    const throwsAnException = () => new BallsManager;
-
-    expect(throwsAnException).toThrow("BallsManager requires an instance of ObjectBuilder to be created.");
-  });
-
   it('requires an instance of ShadowGenerator to be created', function() {
-    const objectBuilder = new ObjectBuilder(this.scene);
     const nonShadowGenerators = NonValues;
 
     nonShadowGenerators.forEach(nonShadowGenerator => {
-      const throwsAnException = () => { new BallsManager(objectBuilder, nonShadowGenerator) };
+      const throwsAnException = () => { new BallsManager(nonShadowGenerator) };
       expect(throwsAnException).toThrow("BallsManager requires an instance of ShadowGenerator to be created.");
     });
   });
 
   it('requires an array of materials to be created', function() {
-    const objectBuilder = new ObjectBuilder(this.scene);
-    const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
-    const shadowGenerator = new ShadowGenerator(light);
     const nonArrays = NonValues;
 
     nonArrays.forEach(nonArray => {
-      const throwsAnException = () => { new BallsManager(objectBuilder, shadowGenerator, nonArray) };
+      const throwsAnException = () => { new BallsManager(this.shadowGenerator, nonArray) };
       expect(throwsAnException).toThrow("BallsManager requires an array of materials to be created.");
     });
   });
 
   it('requires given array to contain only materials', function() {
-    const objectBuilder = new ObjectBuilder(this.scene);
-    const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
-    const shadowGenerator = new ShadowGenerator(light);
     const nonValidArrays = [
       [],
       [{}]
     ];
 
     nonValidArrays.forEach(nonValidArray => {
-      const throwsAnException = () => { new BallsManager(objectBuilder, shadowGenerator, nonValidArray) };
+      const throwsAnException = () => { new BallsManager(this.shadowGenerator, nonValidArray) };
       expect(throwsAnException).toThrow("Given array must contain only materials and not be empty.");
+    });
+  });
+
+  it('requires an instance of BABYLON.Scene to be created', function() {
+    const nonScenes = NonValues;
+
+    nonScenes.forEach(nonScene => {
+      const throwsAnException = () => new BallsManager(this.shadowGenerator, this.materials, nonScene);
+
+      expect(throwsAnException).toThrow("BallsManager requires an instance of BABYLON.Scene to be created.");
     });
   });
 
   describe('as an instance', function() {
     beforeEach(function() {
-      this.objectBuilder = new ObjectBuilder(this.scene);
-      const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
-      this.shadowGenerator = new ShadowGenerator(light);
-
-      const surfaceMaterials = new SurfaceMaterialsCreator(this.scene).surfaceMaterials;
-      this.materials = [
-        surfaceMaterials.red,
-        surfaceMaterials.yellow,
-        surfaceMaterials.white,
-        surfaceMaterials.black
-      ];
-
-      this.ballsManager = new BallsManager(this.objectBuilder, this.shadowGenerator, this.materials);
+      this.ballsManager = new BallsManager(this.shadowGenerator, this.materials, this.scene);
     });
 
     it('stores given instance of ObjectBuilder as property', function() {
