@@ -119,7 +119,7 @@ describe('TableCreator', function() {
         it('validating the scene', function() {
           const nonScenes = NonValues;
           nonScenes.forEach(nonScene => {
-            const throwsAnException = () => TableCreator._createCsgHole(this.holeConfig, nonScene);
+            const throwsAnException = () => TableCreator.createPlayground(TableConfig, this.material, nonScene);
             expect(throwsAnException).toThrow("Given object is not an instance of BABYLON.Scene.");
           });
         });
