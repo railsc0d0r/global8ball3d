@@ -2,11 +2,7 @@ import ObjectBuilder from './object_builder';
 import ShadowGenerator from '../models/shadow_generator';
 
 const BallsManager = class {
-  constructor(objectBuilder, shadowGenerator, materials) {
-    if( typeof(objectBuilder) === 'undefined' || !(objectBuilder instanceof ObjectBuilder) ) {
-      throw "BallsManager requires an instance of ObjectBuilder to be created.";
-    }
-
+  constructor(shadowGenerator, materials, scene) {
     if( typeof(shadowGenerator) === 'undefined' || !(shadowGenerator instanceof ShadowGenerator) ) {
       throw "BallsManager requires an instance of ShadowGenerator to be created.";
     }
@@ -28,9 +24,13 @@ const BallsManager = class {
       throw "Given array must contain only materials and not be empty.";
     }
 
-    this.objectBuilder = objectBuilder;
+    if( typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene) ) {
+      throw "BallsManager requires an instance of BABYLON.Scene to be created.";
+    }
+
     this.shadowGenerator = shadowGenerator;
     this.materials = materials;
+    this.scene = scene;
   }
 
   manageBalls(balls, states) {
@@ -75,7 +75,7 @@ const BallsManager = class {
   }
 
   createBall(config) {
-    let mesh = this.objectBuilder.createSphere(config);
+    let mesh = ObjectBuilder.createSphere(config, this.scene);
 
     mesh.material = this.materials.find(material => {
       return material.name === config.color;
@@ -84,7 +84,7 @@ const BallsManager = class {
     const mass = config.mass;
     const restitution = 0.98;
 
-    mesh.physicsImpostor = this.objectBuilder.createPhysicsImpostor(mesh, "SPHERE", { mass: mass, restitution: restitution});
+    mesh.physicsImpostor = ObjectBuilder.createPhysicsImpostor(mesh, "SPHERE", { mass: mass, restitution: restitution}, this.scene);
 
     this.shadowGenerator.renderShadowsFrom(mesh);
 
