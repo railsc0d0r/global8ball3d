@@ -2,19 +2,6 @@ import ObjectBuilder from './object_builder';
 import ShadowGenerator from '../models/shadow_generator';
 
 const TableCreator = class {
-  constructor(objectBuilder, shadowGenerator) {
-    if( typeof(objectBuilder) === 'undefined' || !(objectBuilder instanceof ObjectBuilder) ) {
-      throw "TableCreator requires an instance of ObjectBuilder to be created.";
-    }
-
-    if( typeof(shadowGenerator) === 'undefined' || !(shadowGenerator instanceof ShadowGenerator) ) {
-      throw "TableCreator requires an instance of ShadowGenerator to be created.";
-    }
-
-    this.objectBuilder = objectBuilder;
-    this.shadowGenerator = shadowGenerator;
-  }
-
   static createCsgHoles(config, scene) {
     this.validateScene(scene);
 
