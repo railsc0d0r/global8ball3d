@@ -117,7 +117,12 @@ const TableCreator = class {
     return playground;
   }
 
-  createBorders(borderConfigs, material) {
+  static createBorders(config, material, shadowGenerator, scene) {
+    this.validateConfig(config);
+    this.validateMaterial(material);
+    this.validateShadowGenerator(shadowGenerator);
+    this.validateScene(scene);
+
     let borders = [];
 
     const borderFaces = [
@@ -137,7 +142,7 @@ const TableCreator = class {
     };
 
 
-    borderConfigs.forEach(borderConfig => {
+    config.bordersConfig.forEach(borderConfig => {
       let borderVertices = [];
 
       borderConfig.vertices.forEach(vertex => {
@@ -152,12 +157,12 @@ const TableCreator = class {
         face: borderFaces
       };
 
-      let border = this.objectBuilder.createPolyhedron(polyhedronConfig);
+      let border = ObjectBuilder.createPolyhedron(polyhedronConfig, scene);
 
       border.material = borderMaterial;
-      border.physicsImpostor = this.objectBuilder.createPhysicsImpostor(border, "BORDER", physicsConfig);
+      border.physicsImpostor = ObjectBuilder.createPhysicsImpostor(border, "BORDER", physicsConfig, scene);
 
-      this.shadowGenerator.renderShadowsFrom(border);
+      shadowGenerator.renderShadowsFrom(border);
       border.receiveShadows = true;
 
       borders.push(border);
