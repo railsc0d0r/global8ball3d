@@ -202,7 +202,6 @@ describe('Game', function() {
         const ballsStatesArray = NonValues;
 
         ballsStatesArray.forEach( ballsStates => {
-          this.config.ballsStates = ballsStates;
           const throwsAnException = () => { this.game.setBallsStates(ballsStates) };
           expect(throwsAnException).toThrow('setBallsStates() requires an array of ballsStates.');
         });
