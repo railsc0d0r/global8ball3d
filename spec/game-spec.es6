@@ -173,19 +173,6 @@ describe('Game', function() {
 
         this.game.setTableConfig(TableConfig);
 
-        let tableCreatorSpy = jasmine.createSpyObj('TableCreator', [
-          'createCsgHoles',
-          'createPlayground',
-          'createBorders',
-          'createRail'
-        ]);
-
-        tableCreatorSpy.createPlayground.and.returnValue({name: 'playground'});
-        tableCreatorSpy.createBorders.and.returnValue([]);
-        tableCreatorSpy.createRail.and.returnValue({name: 'rail'});
-
-        this.game.tableCreator = tableCreatorSpy;
-
         this.game.createTable();
       });
 
