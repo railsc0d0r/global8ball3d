@@ -101,10 +101,9 @@ const Game = class {
   }
 
   createTable() {
-    this.tableCreator.createCsgHoles(this.holesConfig);
-    this.table.playground = this.tableCreator.createPlayground(this.playgroundConfig, this.surfaceMaterials.lightBlue);
-    this.table.borders = this.tableCreator.createBorders(this.bordersConfig, this.surfaceMaterials.blue);
-    this.table.rail = this.tableCreator.createRail(this.railConfig, this.surfaceMaterials.brown);
+    this.table.playground = TableCreator.createPlayground(this.tableConfig, this.surfaceMaterials.lightBlue, this.scene);
+    this.table.borders = TableCreator.createBorders(this.tableConfig, this.surfaceMaterials.blue, this.shadowGenerator, this.scene);
+    this.table.rail = TableCreator.createRail(this.tableConfig, this.surfaceMaterials.brown, this.scene);
   }
 
   registerEvent(eventName) {
