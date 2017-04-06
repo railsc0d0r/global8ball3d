@@ -28,10 +28,7 @@ const Game = class {
     this.table = {};
 
     // initializes tableConfig
-    this.bordersConfig = {};
-    this.holesConfig = {};
-    this.railConfig = {};
-    this.playgroundConfig = {};
+    this.tableConfig = {};
 
     // initializes tableConfigChanged
     this.tableConfigChanged = false;
