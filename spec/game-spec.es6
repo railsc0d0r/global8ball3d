@@ -74,10 +74,7 @@ describe('Game', function() {
     });
 
     it('initializes tableConfig and tableConfigChanged', function() {
-      expect(this.game.bordersConfig).toEqual({});
-      expect(this.game.holesConfig).toEqual({});
-      expect(this.game.railConfig).toEqual({});
-      expect(this.game.playgroundConfig).toEqual({});
+      expect(this.game.tableConfig).toEqual({});
       expect(this.game.tableConfigChanged).toBeFalsy();
     });
 
