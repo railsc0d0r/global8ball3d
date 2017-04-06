@@ -164,11 +164,6 @@ describe('Game', function() {
       it('creates a shadowGenerator and stores it as property', function() {
         expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
       });
-
-      it('creates a objectBuilder and stores it as property', function() {
-        expect(this.game.objectBuilder).toEqual(jasmine.any(ObjectBuilder));
-      });
-
     });
 
     describe('creates a table', function() {
