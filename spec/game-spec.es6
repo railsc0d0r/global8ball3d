@@ -230,15 +230,15 @@ describe('Game', function() {
         const bordersConfigs = NonValues;
 
         bordersConfigs.forEach( bordersConfig => {
-          this.config.bordersConfig = bordersConfig;
-          const throwsAnException = () => { this.game.setTableConfig(this.config) };
+          this.tableConfig.bordersConfig = bordersConfig;
+          const throwsAnException = () => { this.game.setTableConfig(this.tableConfig) };
           expect(throwsAnException).toThrow('Game requires an array of border-definitions to describe the table.');
         });
       });
 
       it('requires a hash of configuration-options for the rail', function() {
-        this.config.railConfig = void 0;
-        const throwsAnException = () => { this.game.setTableConfig(this.config) };
+        this.tableConfig.railConfig = void 0;
+        const throwsAnException = () => { this.game.setTableConfig(this.tableConfig) };
         expect(throwsAnException).toThrow('Game requires a hash of config-options for the rail to describe the table.');
       });
 
@@ -246,15 +246,15 @@ describe('Game', function() {
         const boxDefinitions = NonValues;
 
         boxDefinitions.forEach((nonBoxDefinition) => {
-          this.config.railConfig.boxes = nonBoxDefinition;
-          const throwsAnException = () => { this.game.setTableConfig(this.config) };
+          this.tableConfig.railConfig.boxes = nonBoxDefinition;
+          const throwsAnException = () => { this.game.setTableConfig(this.tableConfig) };
           expect(throwsAnException).toThrow('Game requires an array of box-definitions to describe the rail for the table.');
         });
       });
 
       it('requires a hash of configuration-options for the playground', function() {
-        this.config.playgroundConfig = void 0;
-        const throwsAnException = () => { this.game.setTableConfig(this.config) };
+        this.tableConfig.playgroundConfig = void 0;
+        const throwsAnException = () => { this.game.setTableConfig(this.tableConfig) };
         expect(throwsAnException).toThrow('Game requires a hash of config-options for the playground to describe the table.');
       });
 
@@ -262,8 +262,8 @@ describe('Game', function() {
         const holesConfigs = NonValues;
 
         holesConfigs.forEach((holesConfig) => {
-          this.config.holesConfig = holesConfig;
-          const throwsAnException = () => { this.game.setTableConfig(this.config) };
+          this.tableConfig.holesConfig = holesConfig;
+          const throwsAnException = () => { this.game.setTableConfig(this.tableConfig) };
           expect(throwsAnException).toThrow('Game requires an array of hole-definitions to describe the table.');
         });
       });
