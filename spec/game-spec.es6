@@ -21,7 +21,7 @@ describe('Game', function() {
       boxes: []
     };
 
-    this.config = {
+    this.tableConfig = {
       bordersConfig: this.bordersConfig,
       holesConfig: this.holesConfig,
       playgroundConfig: this.playgroundConfig,
