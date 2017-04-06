@@ -181,25 +181,19 @@ describe('Game', function() {
         HtmlFixtures.removeFixture();
       });
 
-      it('with holes', function() {
-        expect(this.game.tableCreator.createCsgHoles).toHaveBeenCalledWith(TableConfig.holesConfig);
-      });
-
-      it('with a playground stored as a property', function() {
-        expect(this.game.tableCreator.createPlayground).toHaveBeenCalledWith(TableConfig.playgroundConfig, this.game.surfaceMaterials.lightBlue);
+      it('with a table stored as a property', function() {
         expect(this.game.table.playground).toBeDefined();
         expect(this.game.table.playground.name).toEqual('playground');
-      });
+        expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
 
-      it('with an array of borders stored as a property', function() {
-        expect(this.game.tableCreator.createBorders).toHaveBeenCalledWith(TableConfig.bordersConfig, this.game.surfaceMaterials.blue);
         expect(this.game.table.borders).toEqual(jasmine.any(Array));
-      });
+        this.game.table.borders.forEach(border => {
+          expect(border).toEqual(jasmine.any(BABYLON.Mesh));
+        });
 
-      it('with a rail stored as a property', function() {
-        expect(this.game.tableCreator.createRail).toHaveBeenCalledWith(TableConfig.railConfig, this.game.surfaceMaterials.brown);
         expect(this.game.table.rail).toBeDefined();
         expect(this.game.table.rail.name).toEqual('rail');
+        expect(this.game.table.rail).toEqual(jasmine.any(BABYLON.Mesh));
       });
     });
 
