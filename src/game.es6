@@ -62,9 +62,6 @@ const Game = class {
 
     // initializes a new shadowGenerator
     this.shadowGenerator = new ShadowGenerator(this.light);
-
-    // initializes a new objectBuilder
-    this.objectBuilder = new ObjectBuilder(this.scene);
   }
 
   setTableConfig(config) {
