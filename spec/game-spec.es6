@@ -299,10 +299,7 @@ describe('Game', function() {
         });
 
         it('stores given tableConfig and provides a getter to config-options.', function() {
-          expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
-          expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
-          expect(this.game.railConfig).toEqual(TableConfig.railConfig);
-          expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
+          expect(this.game.tableConfig).toEqual(TableConfig);
         });
 
         it('sets a flag to tell the game-instance about config-changes', function() {
@@ -314,10 +311,7 @@ describe('Game', function() {
     it('sets the tableConfig with given arguments if "setConfig" is dipatched', function() {
       this.game.dispatch('setConfig', TableConfig);
 
-      expect(this.game.bordersConfig).toEqual(TableConfig.bordersConfig);
-      expect(this.game.holesConfig).toEqual(TableConfig.holesConfig);
-      expect(this.game.railConfig).toEqual(TableConfig.railConfig);
-      expect(this.game.playgroundConfig).toEqual(TableConfig.playgroundConfig);
+      expect(this.game.tableConfig).toEqual(TableConfig);
       expect(this.game.tableConfigChanged).toBeTruthy();
     });
   });
