@@ -313,8 +313,8 @@ describe('Game', function() {
       });
 
       it('rejecting if tableConfig isn\'t set in 5s', function(done) {
-        this.promise.catch(value => {
-          expect(value).toBeFalsy();
+        this.promise.catch(message => {
+          expect(message).toEqual("TableConfig wasn't set in 5000ms.");
           done();
         });
         jasmine.clock().tick(6000);
