@@ -94,6 +94,7 @@ const Game = class {
     return new Promise((resolve, reject) => {
       let intervalId = 0;
       let timeoutId = 0;
+      const timeOut = 5000;
 
       intervalId = window.setInterval(() => {
         if (this.tableConfigIsSet) {
@@ -103,9 +104,10 @@ const Game = class {
       }, 100);
 
       timeoutId = window.setTimeout(() => {
-        reject(false);
+        const message = "TableConfig wasn't set in " + timeOut + "ms.";
+        reject(message);
         Game._clearTimeoutOrInterval(intervalId, timeoutId);
-      }, 5000);
+      }, timeOut);
     });
   }
 
