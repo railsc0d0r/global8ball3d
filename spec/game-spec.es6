@@ -333,10 +333,10 @@ describe('Game', function() {
         expect(this.promise).toEqual(jasmine.any(Promise));
       });
 
-      it('resolving if ballsStates are set in time', function(done) {
+      it('resolving with the states if ballsStates are set in time', function(done) {
         this.game.dispatch('setStates', BallsStates);
-        this.promise.then(value => {
-          expect(value).toBeTruthy();
+        this.promise.then(states => {
+          expect(states).toEqual(BallsStates);
           done();
         });
       });
