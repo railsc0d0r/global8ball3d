@@ -135,7 +135,7 @@ const Game = class {
 
       intervalId = window.setInterval(() => {
         if (this.ballsStatesChanged) {
-          resolve(true);
+          resolve(this.ballsStates);
           Game._clearTimeoutOrInterval(intervalId, timeoutId);
         }
       }, 100);
