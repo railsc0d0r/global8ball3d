@@ -4,6 +4,7 @@ import ObjectBuilder from '../src/libs/object_builder';
 import SurfaceMaterialsCreator from '../src/libs/surface_materials_creator';
 import ShadowGenerator from '../src/models/shadow_generator';
 import TableCreator from '../src/libs/table_creator';
+import BallsManager from '../src/libs/balls_manager';
 
 import HtmlFixtures from './support/html_fixtures';
 import NonValues from './support/non_values';
@@ -163,6 +164,10 @@ describe('Game', function() {
 
       it('creates a shadowGenerator and stores it as property', function() {
         expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
+      });
+
+      it('creates a ballsManager and stores it as a property', function() {
+        expect(this.game.ballsManager).toEqual(jasmine.any(BallsManager));
       });
     });
 
