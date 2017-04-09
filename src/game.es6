@@ -142,10 +142,10 @@ const Game = class {
     });
   }
 
-  createTable() {
-    this.table.playground = TableCreator.createPlayground(this.tableConfig, this.surfaceMaterials.lightBlue, this.scene);
-    this.table.borders = TableCreator.createBorders(this.tableConfig, this.surfaceMaterials.blue, this.shadowGenerator, this.scene);
-    this.table.rail = TableCreator.createRail(this.tableConfig, this.surfaceMaterials.brown, this.scene);
+  createTable(config) {
+    this.table.playground = TableCreator.createPlayground(config, this.surfaceMaterials.lightBlue, this.scene);
+    this.table.borders = TableCreator.createBorders(config, this.surfaceMaterials.blue, this.shadowGenerator, this.scene);
+    this.table.rail = TableCreator.createRail(config, this.surfaceMaterials.brown, this.scene);
   }
 
   registerEvent(eventName) {
