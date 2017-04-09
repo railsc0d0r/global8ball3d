@@ -119,6 +119,25 @@ const Game = class {
     this.ballsStatesChanged = true;
   }
 
+  checkBallsStatesChanged() {
+    return new Promise((resolve, reject) => {
+      let intervalId = 0;
+      let timeoutId = 0;
+
+      intervalId = window.setInterval(() => {
+        if (this.ballsStatesChanged) {
+          resolve(true);
+          Game._clearTimeoutOrInterval(intervalId, timeoutId);
+        }
+      }, 100);
+
+      timeoutId = window.setTimeout(() => {
+        reject(false);
+        Game._clearTimeoutOrInterval(intervalId, timeoutId);
+      }, 5000);
+    });
+  }
+
   createTable() {
     this.table.playground = TableCreator.createPlayground(this.tableConfig, this.surfaceMaterials.lightBlue, this.scene);
     this.table.borders = TableCreator.createBorders(this.tableConfig, this.surfaceMaterials.blue, this.shadowGenerator, this.scene);
