@@ -98,7 +98,7 @@ const Game = class {
 
       intervalId = window.setInterval(() => {
         if (this.tableConfigIsSet) {
-          resolve(true);
+          resolve(this.tableConfig);
           Game._clearTimeoutOrInterval(intervalId, timeoutId);
         }
       }, 100);
