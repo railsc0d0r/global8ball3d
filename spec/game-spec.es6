@@ -312,8 +312,12 @@ describe('Game', function() {
         });
       });
 
-      it('rejecting if tableConfig hasn\'t changed in 5s', function() {
-        pending();
+      it('rejecting if tableConfig hasn\'t changed in 5s', function(done) {
+        this.promise.catch(value => {
+          expect(value).toBeFalsy();
+          done();
+        });
+        jasmine.clock().tick(6000);
       });
     });
   });
