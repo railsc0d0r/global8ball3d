@@ -321,7 +321,7 @@ describe('Game', function() {
 
     describe('checks if ballsStates are changed', function() {
       beforeEach(function() {
-        this.promise = this.game.checkBallsStatesChanged();
+        this.promise = this.game.checkBallsStates();
         jasmine.clock().install();
       });
 

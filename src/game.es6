@@ -127,7 +127,7 @@ const Game = class {
     this.ballsStatesChanged = true;
   }
 
-  checkBallsStatesChanged() {
+  checkBallsStates() {
     return new Promise((resolve, reject) => {
       let intervalId = 0;
       let timeoutId = 0;
