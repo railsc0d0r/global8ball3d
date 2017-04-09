@@ -111,6 +111,12 @@ const Game = class {
     });
   }
 
+  createTable(config) {
+    this.table.playground = TableCreator.createPlayground(config, this.surfaceMaterials.lightBlue, this.scene);
+    this.table.borders = TableCreator.createBorders(config, this.surfaceMaterials.blue, this.shadowGenerator, this.scene);
+    this.table.rail = TableCreator.createRail(config, this.surfaceMaterials.brown, this.scene);
+  }
+
   setBallsStates(ballsStates) {
     if (typeof(ballsStates) === 'undefined' || !(ballsStates instanceof Array)) {
       throw "setBallsStates() requires an array of ballsStates.";
@@ -140,12 +146,6 @@ const Game = class {
         Game._clearTimeoutOrInterval(intervalId, timeoutId);
       }, timeOut);
     });
-  }
-
-  createTable(config) {
-    this.table.playground = TableCreator.createPlayground(config, this.surfaceMaterials.lightBlue, this.scene);
-    this.table.borders = TableCreator.createBorders(config, this.surfaceMaterials.blue, this.shadowGenerator, this.scene);
-    this.table.rail = TableCreator.createRail(config, this.surfaceMaterials.brown, this.scene);
   }
 
   registerEvent(eventName) {
