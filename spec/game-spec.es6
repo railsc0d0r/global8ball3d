@@ -341,7 +341,7 @@ describe('Game', function() {
         });
       });
 
-      it('rejecting if ballsStates haven\'t changed in 5s', function(done) {
+      it('rejecting with a message if ballsStates haven\'t changed in 5s', function(done) {
         this.promise.catch(message => {
           expect(message).toEqual("BallsStates haven't changed in 5000ms.");
           done();
