@@ -90,6 +90,12 @@ const Game = class {
     this.tableConfigChanged = true;
   }
 
+  checkTableConfig() {
+    return new Promise((resolve, reject) => {
+
+    });
+  }
+
   setBallsStates(ballsStates) {
     if (typeof(ballsStates) === 'undefined' || !(ballsStates instanceof Array)) {
       throw "setBallsStates() requires an array of ballsStates.";
