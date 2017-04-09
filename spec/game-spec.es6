@@ -208,6 +208,12 @@ describe('Game', function() {
       });
     });
 
+    describe('manages the balls', function() {
+      it('pending', function() {
+        pending();
+      });
+    });
+
     describe('on setBallsStates()', function() {
       it('requires an array of ballsStates', function() {
         const ballsStatesArray = NonValues;
