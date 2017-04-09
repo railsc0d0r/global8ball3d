@@ -73,9 +73,9 @@ describe('Game', function() {
       expect(this.game.ballsStatesChanged).toBeFalsy();
     });
 
-    it('initializes tableConfig and tableConfigChanged', function() {
+    it('initializes tableConfig and tableConfigIsSet', function() {
       expect(this.game.tableConfig).toEqual({});
-      expect(this.game.tableConfigChanged).toBeFalsy();
+      expect(this.game.tableConfigIsSet).toBeFalsy();
     });
 
     describe('handling events', function() {
@@ -278,7 +278,7 @@ describe('Game', function() {
         });
 
         it('sets a flag to tell the game-instance about config-changes', function() {
-          expect(this.game.tableConfigChanged).toBeTruthy();
+          expect(this.game.tableConfigIsSet).toBeTruthy();
         });
       });
     });
@@ -287,7 +287,7 @@ describe('Game', function() {
       this.game.dispatch('setConfig', TableConfig);
 
       expect(this.game.tableConfig).toEqual(TableConfig);
-      expect(this.game.tableConfigChanged).toBeTruthy();
+      expect(this.game.tableConfigIsSet).toBeTruthy();
     });
 
     describe('checks if tableConfig has changed', function() {
