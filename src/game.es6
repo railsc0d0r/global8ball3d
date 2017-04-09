@@ -92,7 +92,26 @@ const Game = class {
 
   checkTableConfigIsSet() {
     return new Promise((resolve, reject) => {
+      let intervalId = 0;
+      let timeoutId = 0;
 
+      intervalId = window.setInterval(() => {
+        if (this.tableConfigIsSet) {
+          resolve(true);
+          Game._clearTimeoutOrInterval(intervalId, timeoutId);
+        }
+      }, 100);
+
+      timeoutId = window.setTimeout(() => {
+        reject(false);
+        Game._clearTimeoutOrInterval(intervalId, timeoutId);
+      }, 5000);
+    });
+  }
+
+  static _clearTimeoutOrInterval(...ids) {
+    ids.forEach(id => {
+      window.clearTimeout(id);
     });
   }
 
