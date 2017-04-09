@@ -181,7 +181,7 @@ describe('Game', function() {
         HtmlFixtures.removeFixture();
       });
 
-      it('with a table stored as a property', function() {
+      it('stored as a property', function() {
         expect(this.game.table.playground).toBeDefined();
         expect(this.game.table.playground.name).toEqual('playground');
         expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
