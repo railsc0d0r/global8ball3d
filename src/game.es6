@@ -109,12 +109,6 @@ const Game = class {
     });
   }
 
-  static _clearTimeoutOrInterval(...ids) {
-    ids.forEach(id => {
-      window.clearTimeout(id);
-    });
-  }
-
   setBallsStates(ballsStates) {
     if (typeof(ballsStates) === 'undefined' || !(ballsStates instanceof Array)) {
       throw "setBallsStates() requires an array of ballsStates.";
@@ -147,6 +141,11 @@ const Game = class {
     });
   }
 
+  static _clearTimeoutOrInterval(...ids) {
+    ids.forEach(id => {
+      window.clearTimeout(id);
+    });
+  }
 };
 
 export default Game;
