@@ -171,9 +171,7 @@ describe('Game', function() {
         HtmlFixtures.addCanvas();
         this.game.init();
 
-        this.game.setTableConfig(TableConfig);
-
-        this.game.createTable();
+        this.game.createTable(TableConfig);
       });
 
       afterEach(function() {
