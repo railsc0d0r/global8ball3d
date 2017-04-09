@@ -304,8 +304,8 @@ describe('Game', function() {
 
       it('resolving if tableConfig is set in time', function(done) {
         this.game.dispatch('setConfig', TableConfig);
-        this.promise.then(value => {
-          expect(value).toBeTruthy();
+        this.promise.then(config => {
+          expect(config).toEqual(TableConfig);
           done();
         });
       });
