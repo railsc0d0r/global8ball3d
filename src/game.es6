@@ -4,6 +4,7 @@ import Scene from './models/scene';
 import SurfaceMaterialsCreator from './libs/surface_materials_creator';
 import ShadowGenerator from './models/shadow_generator';
 import TableCreator from './libs/table_creator';
+import BallsManager from './libs/balls_manager';
 
 const Game = class {
   constructor() {
@@ -62,6 +63,16 @@ const Game = class {
 
     // initializes a new shadowGenerator
     this.shadowGenerator = new ShadowGenerator(this.light);
+
+    // initializes a new ballsManager
+    const ballsMaterials = [
+      this.surfaceMaterials.red,
+      this.surfaceMaterials.yellow,
+      this.surfaceMaterials.white,
+      this.surfaceMaterials.black
+    ];
+
+    this.ballsManager = new BallsManager(this.shadowGenerator, ballsMaterials, this.scene);
   }
 
   setTableConfig(config) {
