@@ -30,8 +30,8 @@ const Game = class {
     // initializes tableConfig
     this.tableConfig = {};
 
-    // initializes tableConfigChanged
-    this.tableConfigChanged = false;
+    // initializes tableConfigIsSet
+    this.tableConfigIsSet = false;
 
     // initializes ballsStates
     this.ballsStates = [];
@@ -87,7 +87,7 @@ const Game = class {
 
     this.tableConfig = config;
 
-    this.tableConfigChanged = true;
+    this.tableConfigIsSet = true;
   }
 
   checkTableConfig() {
