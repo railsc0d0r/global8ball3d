@@ -299,8 +299,12 @@ describe('Game', function() {
         expect(this.promise).toEqual(jasmine.any(Promise));
       });
 
-      it('resolving if tableConfig changes in time', function() {
-        pending();
+      it('resolving if tableConfig changes in time', function(done) {
+        this.game.dispatch('setConfig', TableConfig);
+        this.promise.then(value => {
+          expect(value).toBeTruthy();
+          done();
+        });
       });
 
       it('rejecting if tableConfig hasn\'t changed in 5s', function() {
