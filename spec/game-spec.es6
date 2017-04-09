@@ -320,5 +320,36 @@ describe('Game', function() {
         jasmine.clock().tick(6000);
       });
     });
+
+    describe('checks if ballsStates are changed', function() {
+      beforeEach(function() {
+        this.promise = this.game.checkBallsStatesChanged();
+        jasmine.clock().install();
+      });
+
+      afterEach(function() {
+        jasmine.clock().uninstall();
+      });
+
+      it('returning a promise', function() {
+        expect(this.promise).toEqual(jasmine.any(Promise));
+      });
+
+      it('resolving if ballsStates are set in time', function(done) {
+        this.game.dispatch('setStates', BallsStates);
+        this.promise.then(value => {
+          expect(value).toBeTruthy();
+          done();
+        });
+      });
+
+      it('rejecting if tableConfig isn\'t set in 5s', function(done) {
+        this.promise.catch(value => {
+          expect(value).toBeFalsy();
+          done();
+        });
+        jasmine.clock().tick(6000);
+      });
+    });
   });
 });
