@@ -290,7 +290,7 @@ describe('Game', function() {
       expect(this.game.tableConfigIsSet).toBeTruthy();
     });
 
-    describe('checks if tableConfig has changed', function() {
+    describe('checks if tableConfig is set', function() {
       beforeEach(function() {
         this.promise = this.game.checkTableConfigIsSet();
         jasmine.clock().install();
