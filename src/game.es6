@@ -90,7 +90,7 @@ const Game = class {
     this.tableConfigIsSet = true;
   }
 
-  checkTableConfigIsSet() {
+  checkTableConfig() {
     return new Promise((resolve, reject) => {
       let intervalId = 0;
       let timeoutId = 0;

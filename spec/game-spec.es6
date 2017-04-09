@@ -290,7 +290,7 @@ describe('Game', function() {
 
     describe('checks if tableConfig is set', function() {
       beforeEach(function() {
-        this.promise = this.game.checkTableConfigIsSet();
+        this.promise = this.game.checkTableConfig();
         jasmine.clock().install();
       });
 
