@@ -289,5 +289,23 @@ describe('Game', function() {
       expect(this.game.tableConfig).toEqual(TableConfig);
       expect(this.game.tableConfigChanged).toBeTruthy();
     });
+
+    describe('checks if tableConfig has changed', function() {
+      beforeEach(function() {
+        this.promise = this.game.checkTableConfig();
+      });
+
+      it('returning a promise', function() {
+        expect(this.promise).toEqual(jasmine.any(Promise));
+      });
+
+      it('resolving if tableConfig changes in time', function() {
+        pending();
+      });
+
+      it('rejecting if tableConfig hasn\'t changed in 5s', function() {
+        pending();
+      });
+    });
   });
 });
