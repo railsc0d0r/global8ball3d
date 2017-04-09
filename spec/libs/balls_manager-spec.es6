@@ -76,10 +76,6 @@ describe('BallsManager', function() {
       this.ballsManager = new BallsManager(this.shadowGenerator, this.materials, this.scene);
     });
 
-    it('stores given instance of ObjectBuilder as property', function() {
-      expect(this.ballsManager.objectBuilder).toEqual(this.objectBuilder);
-    });
-
     it('stores given instance of ShadowGenerator as property', function() {
       expect(this.ballsManager.shadowGenerator).toEqual(this.shadowGenerator);
     });
