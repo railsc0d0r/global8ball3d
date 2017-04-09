@@ -302,7 +302,7 @@ describe('Game', function() {
         expect(this.promise).toEqual(jasmine.any(Promise));
       });
 
-      it('resolving if tableConfig is set in time', function(done) {
+      it('resolving with the config-object if tableConfig is set in time', function(done) {
         this.game.dispatch('setConfig', TableConfig);
         this.promise.then(config => {
           expect(config).toEqual(TableConfig);
@@ -310,7 +310,7 @@ describe('Game', function() {
         });
       });
 
-      it('rejecting if tableConfig isn\'t set in 5s', function(done) {
+      it('rejecting with a message if tableConfig isn\'t set in 5s', function(done) {
         this.promise.catch(message => {
           expect(message).toEqual("TableConfig wasn't set in 5000ms.");
           done();
