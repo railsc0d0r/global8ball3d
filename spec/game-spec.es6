@@ -341,6 +341,14 @@ describe('Game', function() {
         });
       });
 
+      it('setting flag to indicate ballsStatesChanged to false if resolving', function(done) {
+        this.game.dispatch('setStates', BallsStates);
+        this.promise.then(states => {
+          expect(this.game.ballsStatesChanged).toBeFalsy();
+          done();
+        });
+      });
+
       it('rejecting with a message if ballsStates haven\'t changed in 5s', function(done) {
         this.promise.catch(message => {
           expect(message).toEqual("BallsStates haven't changed in 5000ms.");
