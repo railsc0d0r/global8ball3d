@@ -293,6 +293,11 @@ describe('Game', function() {
     describe('checks if tableConfig has changed', function() {
       beforeEach(function() {
         this.promise = this.game.checkTableConfigIsSet();
+        jasmine.clock().install();
+      });
+
+      afterEach(function() {
+        jasmine.clock().uninstall();
       });
 
       it('returning a promise', function() {
