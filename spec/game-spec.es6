@@ -166,8 +166,16 @@ describe('Game', function() {
         expect(this.game.shadowGenerator).toEqual(jasmine.any(ShadowGenerator));
       });
 
-      it('creates a ballsManager and stores it as a property', function() {
+      it('creates a ballsManager with the right materials and stores it as a property', function() {
+        const expectedMaterials = [
+          this.game.surfaceMaterials.red,
+          this.game.surfaceMaterials.yellow,
+          this.game.surfaceMaterials.white,
+          this.game.surfaceMaterials.black
+        ];
+
         expect(this.game.ballsManager).toEqual(jasmine.any(BallsManager));
+        expect(this.game.ballsManager.materials).toEqual(expectedMaterials);
       });
     });
 
