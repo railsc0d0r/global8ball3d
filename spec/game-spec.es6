@@ -292,7 +292,7 @@ describe('Game', function() {
 
     describe('checks if tableConfig has changed', function() {
       beforeEach(function() {
-        this.promise = this.game.checkTableConfig();
+        this.promise = this.game.checkTableConfigIsSet();
       });
 
       it('returning a promise', function() {

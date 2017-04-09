@@ -90,7 +90,7 @@ const Game = class {
     this.tableConfigIsSet = true;
   }
 
-  checkTableConfig() {
+  checkTableConfigIsSet() {
     return new Promise((resolve, reject) => {
 
     });
