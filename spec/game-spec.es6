@@ -179,12 +179,10 @@ describe('Game', function() {
       });
     });
 
-    describe('creates a table', function() {
+    describe('after initializing', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
         this.game.init();
-
-        this.game.createTable(TableConfig);
       });
 
       afterEach(function() {
@@ -192,25 +190,31 @@ describe('Game', function() {
         HtmlFixtures.removeFixture();
       });
 
-      it('stored as a property', function() {
-        expect(this.game.table.playground).toBeDefined();
-        expect(this.game.table.playground.name).toEqual('playground');
-        expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
-
-        expect(this.game.table.borders).toEqual(jasmine.any(Array));
-        this.game.table.borders.forEach(border => {
-          expect(border).toEqual(jasmine.any(BABYLON.Mesh));
+      describe('creates a table', function() {
+        beforeEach(function() {
+          this.game.createTable(TableConfig);
         });
 
-        expect(this.game.table.rail).toBeDefined();
-        expect(this.game.table.rail.name).toEqual('rail');
-        expect(this.game.table.rail).toEqual(jasmine.any(BABYLON.Mesh));
-      });
-    });
+        it('stored as a property', function() {
+          expect(this.game.table.playground).toBeDefined();
+          expect(this.game.table.playground.name).toEqual('playground');
+          expect(this.game.table.playground).toEqual(jasmine.any(BABYLON.Mesh));
 
-    describe('manages the balls', function() {
-      it('pending', function() {
-        pending();
+          expect(this.game.table.borders).toEqual(jasmine.any(Array));
+          this.game.table.borders.forEach(border => {
+            expect(border).toEqual(jasmine.any(BABYLON.Mesh));
+          });
+
+          expect(this.game.table.rail).toBeDefined();
+          expect(this.game.table.rail.name).toEqual('rail');
+          expect(this.game.table.rail).toEqual(jasmine.any(BABYLON.Mesh));
+        });
+      });
+
+      describe('manages the balls', function() {
+        it('creating the balls given by states', function() {
+          pending();
+        });
       });
     });
 
