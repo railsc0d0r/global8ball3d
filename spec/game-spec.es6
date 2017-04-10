@@ -216,8 +216,15 @@ describe('Game', function() {
       });
 
       describe('manages the balls', function() {
+        beforeEach(function() {
+          this.game.manageBalls(BallsStates);
+        });
+
         it('creating the balls given by states', function() {
-          pending();
+          expect(this.game.balls.length).toEqual(16);
+          this.game.balls.forEach(ball => {
+            expect(ball).toEqual(jasmine.any(BABYLON.Mesh));
+          });
         });
       });
     });
