@@ -40,6 +40,9 @@ const Game = class {
     // initializes ballsStatesChanged
     this.ballsStatesChanged = false;
 
+    // creates an empty array as property to hold all the balls
+    this.balls = [];
+
     // adds event-listeners
     this.addEventListener('setStates', this.setBallsStates);
     this.addEventListener('setConfig', this.setTableConfig);
