@@ -163,6 +163,10 @@ const Game = class {
     });
   }
 
+  manageBalls(ballsStates) {
+    this.ballsManager.manageBalls(this.balls, ballsStates);
+  }
+
   registerEvent(eventName) {
     const event = new Event(eventName);
     this.events[eventName] = event;
