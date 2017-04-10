@@ -39,6 +39,10 @@ describe('Game', function() {
       expect(this.game.table).toEqual({});
     });
 
+    it('initializes its balls as an empty array', function() {
+      expect(this.game.balls).toEqual([]);
+    });
+
     describe('provides certain events:', function() {
       beforeEach(function() {
         this.expectedEvents = Object.keys(this.game.events);
