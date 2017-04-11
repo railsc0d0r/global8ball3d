@@ -181,6 +181,12 @@ describe('Game', function() {
         expect(this.game.ballsManager).toEqual(jasmine.any(BallsManager));
         expect(this.game.ballsManager.materials).toEqual(expectedMaterials);
       });
+
+      describe('creates a camera', function() {
+        it('of type ArcRotateCamera', function() {
+          expect(this.game.camera).toEqual(jasmine.any(BABYLON.ArcRotateCamera));
+        });
+      });
     });
 
     describe('after initializing', function() {
