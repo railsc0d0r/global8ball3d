@@ -212,7 +212,7 @@ describe('Game', function() {
 
           expect(this.game.camera.upperBetaLimit).toEqual(expectedUpperBetaLimit);
           expect(this.game.camera.lowerRadiusLimit).toEqual(expectedLowerRadiusLimit);
-          expect(this.camera.upperRadiusLimit).toEqual(expectedUpperRadiusLimit);
+          expect(this.game.camera.upperRadiusLimit).toEqual(expectedUpperRadiusLimit);
         });
       });
     });
