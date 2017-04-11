@@ -371,5 +371,43 @@ describe('ObjectBuilder', function() {
         expect(mesh.material).toEqual(this.material);
       });
     });
+
+    describe('given a target, a canvas and a scene, creates a camera', function() {
+      beforeEach(function() {
+        this.expectedTarget = new BABYLON.Vector3(0,0,0);
+        this.camera = ObjectBuilder.createCamera(this.expectedTarget, this.canvas, this.scene);
+      });
+
+      it('of type ArcRotateCamera', function() {
+        expect(this.camera).toEqual(jasmine.any(BABYLON.ArcRotateCamera));
+      });
+
+      it('pointing to the target', function() {
+        expect(this.camera.target).toEqual(this.expectedTarget);
+      });
+
+      it('from a specified distance', function() {
+        const expectedRadius = 3;
+        expect(this.camera.radius).toEqual(expectedRadius);
+      });
+
+      it('with a specified angle', function() {
+        const expectedAlpha = Math.PI;
+        const expectedBeta = Math.PI / 8 * 3;
+
+        expect(this.camera.alpha).toEqual(expectedAlpha);
+        expect(this.camera.beta).toEqual(expectedBeta);
+      });
+
+      it('with specified limits to its movement', function() {
+        const expectedUpperBetaLimit = Math.PI / 2 - Math.PI / 64;
+        const expectedLowerRadiusLimit = 0.75;
+        const expectedUpperRadiusLimit = 4;
+
+        expect(this.camera.upperBetaLimit).toEqual(expectedUpperBetaLimit);
+        expect(this.camera.lowerRadiusLimit).toEqual(expectedLowerRadiusLimit);
+        expect(this.camera.upperRadiusLimit).toEqual(expectedUpperRadiusLimit);
+      });
+    });
   });
 });
