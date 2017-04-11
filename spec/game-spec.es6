@@ -207,7 +207,12 @@ describe('Game', function() {
 
         it('with specified limits to its movement', function() {
           const expectedUpperBetaLimit = Math.PI / 2 - Math.PI / 64;
+          const expectedLowerRadiusLimit = 0.75;
+          const expectedUpperRadiusLimit = 4;
+
           expect(this.game.camera.upperBetaLimit).toEqual(expectedUpperBetaLimit);
+          expect(this.game.camera.lowerRadiusLimit).toEqual(expectedLowerRadiusLimit);
+          expect(this.camera.upperRadiusLimit).toEqual(expectedUpperRadiusLimit);
         });
       });
     });
