@@ -186,6 +186,16 @@ describe('Game', function() {
         it('of type ArcRotateCamera', function() {
           expect(this.game.camera).toEqual(jasmine.any(BABYLON.ArcRotateCamera));
         });
+
+        it('pointing to the middle of the table', function() {
+          const expectedTarget = new BABYLON.Vector3(0,0,0);
+          expect(this.game.camera.target).toEqual(expectedTarget);
+        });
+
+        it('from a specified distance', function() {
+          const expectedRadius = 3;
+          expect(this.game.camera.radius).toEqual(expectedRadius);
+        });
       });
     });
 
