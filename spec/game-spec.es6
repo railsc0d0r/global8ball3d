@@ -202,7 +202,12 @@ describe('Game', function() {
           const expectedBeta = Math.PI / 8 * 3;
 
           expect(this.game.camera.alpha).toEqual(expectedAlpha);
-          expect(this.game.beta).toEqual(expectedBeta);
+          expect(this.game.camera.beta).toEqual(expectedBeta);
+        });
+
+        it('with specified limits to its movement', function() {
+          const expectedUpperBetaLimit = Math.PI / 2 - Math.PI / 64;
+          expect(this.game.camera.upperBetaLimit).toEqual(expectedUpperBetaLimit);
         });
       });
     });
