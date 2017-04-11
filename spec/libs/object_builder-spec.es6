@@ -7,8 +7,8 @@ import NonValues from '../support/non_values';
 describe('ObjectBuilder', function() {
   beforeEach(function() {
     HtmlFixtures.addCanvas();
-    const canvas = document.getElementById('renderCanvas');
-    this.engine = new BABYLON.Engine(canvas, true);
+    this.canvas = document.getElementById('renderCanvas');
+    this.engine = new BABYLON.Engine(this.canvas, true);
     this.scene = Scene.create(this.engine);
   });
 
