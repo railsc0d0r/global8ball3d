@@ -76,6 +76,10 @@ const Game = class {
     ];
 
     this.ballsManager = new BallsManager(this.shadowGenerator, ballsMaterials, this.scene);
+
+    // create a camera pointing to the middle of the scene
+    const target = new BABYLON.Vector3(0,0,0);
+    this.camera = Game._createCamera(target, this.canvas, this.scene);
   }
 
   setTableConfig(config) {
