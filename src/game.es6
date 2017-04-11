@@ -79,7 +79,7 @@ const Game = class {
 
     // create a camera pointing to the middle of the scene
     const target = new BABYLON.Vector3(0,0,0);
-    this.camera = Game._createCamera(target, this.canvas, this.scene);
+    this.camera = ObjectBuilder.createCamera(target, this.canvas, this.scene);
   }
 
   setTableConfig(config) {
@@ -192,25 +192,6 @@ const Game = class {
       window.clearTimeout(id);
     });
   }
-
-  static _createCamera(target, canvas, scene) {
-    const alpha = Math.PI;
-    const beta = Math.PI / 8 * 3;
-    const radius = 3;
-
-    // create a ArcRotateCamera, and set its options
-    const camera = new BABYLON.ArcRotateCamera('camera1', alpha, beta, radius, target, scene);
-
-    camera.upperBetaLimit = Math.PI / 2 - Math.PI / 64;
-    camera.wheelPrecision = 400;
-    camera.lowerRadiusLimit = 0.75;
-    camera.upperRadiusLimit = 4;
-
-    // attach the camera to the canvas
-    camera.attachControl(canvas, false);
-
-    return camera;
-  };
 };
 
 export default Game;
