@@ -196,6 +196,14 @@ describe('Game', function() {
           const expectedRadius = 3;
           expect(this.game.camera.radius).toEqual(expectedRadius);
         });
+
+        it('with a specified angle', function() {
+          const expectedAlpha = Math.PI;
+          const expectedBeta = Math.PI / 8 * 3;
+
+          expect(this.game.camera.alpha).toEqual(expectedAlpha);
+          expect(this.game.beta).toEqual(expectedBeta);
+        });
       });
     });
 
