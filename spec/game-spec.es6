@@ -229,41 +229,36 @@ describe('Game', function() {
       describe('waits for the tableConfig and the ballsStates', function() {
         beforeEach(function() {
           this.errorMessage = 'myMessage';
+          this.resolvedObject = {};
 
-          this.resolvingTableConfig = new Promise((resolve, reject) => {
-            resolve(true);
+          this.resolvingPromise = new Promise((resolve, reject) => {
+            resolve(this.resolvedObject);
           });
-          this.rejectingTableConfig = new Promise((resolve, reject) => {
+          this.rejectingPromise = new Promise((resolve, reject) => {
             reject(this.errorMessage);
           });
 
           spyOn(this.game, 'createTable');
-
-          this.resolvingBallsStates = new Promise((resolve, reject) => {
-            resolve(BallsStates);
-          });
-          this.rejectingBallsStates = new Promise((resolve, reject) => {
-            reject(this.errorMessage);
-          });
-
           spyOn(this.game, 'manageBalls');
         });
 
         it('creating the table if the tableConfig is dispatched', function(done) {
-          spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingTableConfig);
+          spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingPromise);
           pending();
         });
 
         it('throwing an error if no tableConfig is dispatched', function() {
+          spyOn(this.game, 'checkTableConfig').and.returnValue(this.rejectingPromise);
           pending();
         });
 
         it('managing the balls if ballsStates are dispatched', function(done) {
-          spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingBallsStates);
+          spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingPromise);
           pending();
         });
 
         it('throwing an error if no ballsStates are dispatched', function() {
+          spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
           pending();
         });
       });
