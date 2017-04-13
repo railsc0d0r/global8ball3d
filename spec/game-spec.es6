@@ -83,6 +83,16 @@ describe('Game', function() {
       expect(this.game.tableConfigIsSet).toBeFalsy();
     });
 
+    describe('adds event-listener for', function() {
+      it('setStates', function() {
+        pending();
+      });
+
+      it('setConfig', function() {
+        pending();
+      });
+    });
+
     describe('handling events', function() {
       beforeEach(function() {
         this.eventName = 'myEvent';
