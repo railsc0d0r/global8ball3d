@@ -80,6 +80,16 @@ const Game = class {
     // create a camera pointing to the middle of the scene
     const target = new BABYLON.Vector3(0,0,0);
     this.camera = ObjectBuilder.createCamera(target, this.canvas, this.scene);
+
+    // run the render loop
+    this.engine.runRenderLoop(() => {
+      this.scene.render();
+    });
+
+    // the canvas/window resize event handler
+    window.addEventListener('resize', () => {
+      this.engine.resize();
+    });
   }
 
   setTableConfig(config) {
