@@ -226,6 +226,7 @@ describe('Game', function() {
         });
       });
 
+      // TODO: move this out of this scope.
       describe('waits for the tableConfig and the ballsStates', function() {
         beforeEach(function() {
           this.errorMessage = 'myMessage';
