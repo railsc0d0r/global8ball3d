@@ -255,7 +255,8 @@ describe('Game', function() {
 
         it('managing the balls if ballsStates are dispatched', function(done) {
           spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingPromise);
-          pending();
+          expect().toHaveBeenCalledWith(this.resolvedObject);
+          done();
         });
 
         it('throwing an error if no ballsStates are dispatched', function() {
