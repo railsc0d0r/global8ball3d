@@ -218,20 +218,29 @@ describe('Game', function() {
 
       describe('waits for the tableConfig and the ballsStates', function() {
         beforeEach(function() {
-          const resolvingTableConfig = new Promise((resolve, reject) => {
-            resolve(TableConfig);
+          this.errorMessage = 'myMessage';
+
+          this.resolvingTableConfig = new Promise((resolve, reject) => {
+            resolve(true);
           });
-          spyOn(this.game, 'checkTableConfig').and.returnValue(resolvingTableConfig);
+          this.rejectingTableConfig = new Promise((resolve, reject) => {
+            reject(this.errorMessage);
+          });
+
           spyOn(this.game, 'createTable');
 
-          const resolvingBallsStates = new Promise((resolve, reject) => {
+          this.resolvingBallsStates = new Promise((resolve, reject) => {
             resolve(BallsStates);
           });
-          spyOn(this.game, 'checkBallsStates').and.returnValue(resolvingBallsStates);
+          this.rejectingBallsStates = new Promise((resolve, reject) => {
+            reject(this.errorMessage);
+          });
+
           spyOn(this.game, 'manageBalls');
         });
 
-        it('creating the table if the tableConfig is dispatched', function() {
+        it('creating the table if the tableConfig is dispatched', function(done) {
+          spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingTableConfig);
           pending();
         });
 
@@ -239,7 +248,8 @@ describe('Game', function() {
           pending();
         });
 
-        it('managing the balls if ballsStates are dispatched', function() {
+        it('managing the balls if ballsStates are dispatched', function(done) {
+          spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingBallsStates);
           pending();
         });
 
