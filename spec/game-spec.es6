@@ -244,7 +244,8 @@ describe('Game', function() {
 
         it('creating the table if the tableConfig is dispatched', function(done) {
           spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingPromise);
-          pending();
+          expect(this.game.createTable).toHaveBeenCalledWith(this.resolvedObject);
+          done();
         });
 
         it('throwing an error if no tableConfig is dispatched', function() {
