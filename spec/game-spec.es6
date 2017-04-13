@@ -215,6 +215,38 @@ describe('Game', function() {
           expect(this.game.camera.upperRadiusLimit).toEqual(expectedUpperRadiusLimit);
         });
       });
+
+      describe('waits for the tableConfig and the ballsStates', function() {
+        beforeEach(function() {
+          const resolvingTableConfig = new Promise((resolve, reject) => {
+            resolve(TableConfig);
+          });
+          spyOn(this.game, 'checkTableConfig').and.returnValue(resolvingTableConfig);
+          spyOn(this.game, 'createTable');
+
+          const resolvingBallsStates = new Promise((resolve, reject) => {
+            resolve(BallsStates);
+          });
+          spyOn(this.game, 'checkBallsStates').and.returnValue(resolvingBallsStates);
+          spyOn(this.game, 'manageBalls');
+        });
+
+        it('creating the table if the tableConfig is dispatched', function() {
+          pending();
+        });
+
+        it('throwing an error if no tableConfig is dispatched', function() {
+          pending();
+        });
+
+        it('managing the balls if ballsStates are dispatched', function() {
+          pending();
+        });
+
+        it('throwing an error if no ballsStates are dispatched', function() {
+          pending();
+        });
+      });
     });
 
     describe('after initializing', function() {
