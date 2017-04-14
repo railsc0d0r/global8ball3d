@@ -227,7 +227,7 @@ describe('Game', function() {
       });
     });
 
-    describe('waits for the tableConfig and the ballsStates', function() {
+    describe('on init() waits for the tableConfig and the ballsStates', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
 
