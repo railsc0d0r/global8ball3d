@@ -86,6 +86,11 @@ const Game = class {
       this.createTable(tableConfig);
     });
 
+    // checkBallsStates and call manageBalls on resolving Promise
+    this.checkBallsStates().then(ballsStates => {
+      this.manageBalls(ballsStates);
+    });
+
     // run the render loop
     this.engine.runRenderLoop(() => {
       this.scene.render();
