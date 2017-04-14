@@ -81,6 +81,11 @@ const Game = class {
     const target = new BABYLON.Vector3(0,0,0);
     this.camera = ObjectBuilder.createCamera(target, this.canvas, this.scene);
 
+    // checkTableConfig and call createTable on resolving Promise
+    this.checkTableConfig().then(tableConfig => {
+      this.createTable(tableConfig);
+    });
+
     // run the render loop
     this.engine.runRenderLoop(() => {
       this.scene.render();
