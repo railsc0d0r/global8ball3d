@@ -225,45 +225,52 @@ describe('Game', function() {
           expect(this.game.camera.upperRadiusLimit).toEqual(expectedUpperRadiusLimit);
         });
       });
+    });
 
-      // TODO: move this out of this scope.
-      describe('waits for the tableConfig and the ballsStates', function() {
-        beforeEach(function() {
-          this.errorMessage = 'myMessage';
-          this.resolvedObject = {};
+    describe('waits for the tableConfig and the ballsStates', function() {
+      beforeEach(function() {
+        HtmlFixtures.addCanvas();
 
-          this.resolvingPromise = new Promise((resolve, reject) => {
-            resolve(this.resolvedObject);
-          });
-          this.rejectingPromise = new Promise((resolve, reject) => {
-            reject(this.errorMessage);
-          });
+        this.errorMessage = 'myMessage';
+        this.resolvedObject = {};
 
-          spyOn(this.game, 'createTable');
-          spyOn(this.game, 'manageBalls');
+        this.resolvingPromise = new Promise((resolve, reject) => {
+          resolve(this.resolvedObject);
+        });
+        this.rejectingPromise = new Promise((resolve, reject) => {
+          reject(this.errorMessage);
         });
 
-        it('creating the table if the tableConfig is dispatched', function(done) {
-          spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingPromise);
-          expect(this.game.createTable).toHaveBeenCalledWith(this.resolvedObject);
-          done();
-        });
+        spyOn(this.game, 'createTable');
+        spyOn(this.game, 'manageBalls');
+      });
 
-        it('throwing an error if no tableConfig is dispatched', function() {
-          spyOn(this.game, 'checkTableConfig').and.returnValue(this.rejectingPromise);
-          pending();
-        });
+      afterEach(function() {
+        this.game.engine.dispose();
+        HtmlFixtures.removeFixture();
+      });
 
-        it('managing the balls if ballsStates are dispatched', function(done) {
-          spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingPromise);
-          expect(this.game.manageBalls).toHaveBeenCalledWith(this.resolvedObject);
-          done();
-        });
+      it('creating the table if the tableConfig is dispatched', function(done) {
+        spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingPromise);
+        this.game.init();
+        done();
+        expect(this.game.createTable).toHaveBeenCalledWith(this.resolvedObject);
+      });
 
-        it('throwing an error if no ballsStates are dispatched', function() {
-          spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
-          pending();
-        });
+      it('throwing an error if no tableConfig is dispatched', function() {
+        spyOn(this.game, 'checkTableConfig').and.returnValue(this.rejectingPromise);
+        pending();
+      });
+
+      it('managing the balls if ballsStates are dispatched', function(done) {
+        spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingPromise);
+        expect(this.game.manageBalls).toHaveBeenCalledWith(this.resolvedObject);
+        done();
+      });
+
+      it('throwing an error if no ballsStates are dispatched', function() {
+        spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
+        pending();
       });
     });
 
