@@ -84,6 +84,8 @@ const Game = class {
     // checkTableConfig and call createTable on resolving Promise
     this.checkTableConfig().then(tableConfig => {
       this.createTable(tableConfig);
+    }).catch(message => {
+      this.throwException(message);
     });
 
     // checkBallsStates and call manageBalls on resolving Promise
