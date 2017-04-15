@@ -244,12 +244,14 @@ describe('Game', function() {
         this.resolvingPromise = new Promise((resolve, reject) => {
           resolve(this.resolvedObject);
         });
+
         this.rejectingPromise = new Promise((resolve, reject) => {
           reject(this.errorMessage);
         });
 
         spyOn(this.game, 'createTable');
         spyOn(this.game, 'manageBalls');
+        spyOn(this.game, 'throwException');
       });
 
       afterEach(function() {
