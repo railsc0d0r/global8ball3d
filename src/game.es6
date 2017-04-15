@@ -207,6 +207,10 @@ const Game = class {
     });
   }
 
+  throwException(message) {
+    throw message;
+  }
+
   static _clearTimeoutOrInterval(...ids) {
     ids.forEach(id => {
       window.clearTimeout(id);
