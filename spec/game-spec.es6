@@ -35,6 +35,13 @@ describe('Game', function() {
       this.game = new Game();
     });
 
+    it('throws an exception with given message', function() {
+      const message = "myMessage";
+      const throwsAnException = () => { this.game.throwException(message) };
+
+      expect(throwsAnException).toThrow(message);
+    });
+
     it('intializes a table as empty object and provides a getter for it.', function() {
       expect(this.game.table).toEqual({});
     });
