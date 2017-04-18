@@ -5,18 +5,6 @@ import HtmlFixtures from '../support/html_fixtures';
 import NonValues from '../support/non_values';
 
 describe('ObjectBuilder', function() {
-  beforeEach(function() {
-    HtmlFixtures.addCanvas();
-    this.canvas = document.getElementById('renderCanvas');
-    this.engine = new BABYLON.Engine(this.canvas, true);
-    this.scene = Scene.create(this.engine);
-  });
-
-  afterEach(function() {
-    this.engine.dispose();
-    HtmlFixtures.removeFixture();
-  });
-
   it('validates given object to be an instance of BABYLON.Scene', function() {
     const nonScenes = NonValues;
     nonScenes.forEach(nonScene => {
@@ -26,6 +14,18 @@ describe('ObjectBuilder', function() {
   });
 
   describe('with a given scene', function() {
+    beforeEach(function() {
+      HtmlFixtures.addCanvas();
+      this.canvas = document.getElementById('renderCanvas');
+      this.engine = new BABYLON.Engine(this.canvas, true);
+      this.scene = Scene.create(this.engine);
+    });
+
+    afterEach(function() {
+      this.engine.dispose();
+      HtmlFixtures.removeFixture();
+    });
+
     describe('creates a box', function() {
       beforeEach(function() {
         const height = 0.02;
