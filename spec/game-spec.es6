@@ -260,10 +260,12 @@ describe('Game', function() {
       });
 
       it('creating the table if the tableConfig is dispatched', function(done) {
-        spyOn(this.game, 'checkTableConfig').and.returnValue(this.resolvingPromise);
+        spyOn(this.game, 'checkTableConfig').and.callFake(() => {
+          done();
+          return this.resolvingPromise;
+        });
 
         this.game.init();
-        done();
 
         expect(this.game.createTable).toHaveBeenCalledWith(this.resolvedObject);
       });
