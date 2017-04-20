@@ -281,10 +281,12 @@ describe('Game', function() {
       });
 
       it('managing the balls if ballsStates are dispatched', function(done) {
-        spyOn(this.game, 'checkBallsStates').and.returnValue(this.resolvingPromise);
+        spyOn(this.game, 'checkBallsStates').and.callFake(() => {
+          done();
+          return this.resolvingPromise;
+        });
 
         this.game.init();
-        done();
 
         expect(this.game.manageBalls).toHaveBeenCalledWith(this.resolvedObject);
       });
