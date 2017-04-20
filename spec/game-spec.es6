@@ -287,9 +287,14 @@ describe('Game', function() {
         expect(this.game.manageBalls).toHaveBeenCalledWith(this.resolvedObject);
       });
 
-      it('throwing an error if no ballsStates are dispatched', function() {
+      it('throwing an error if no ballsStates are dispatched', function(done) {
         spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
-        pending();
+
+        this.game.init();
+        done();
+
+        expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
+        done();
       });
     });
 
