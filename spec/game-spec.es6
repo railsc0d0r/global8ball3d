@@ -296,13 +296,14 @@ describe('Game', function() {
         });
 
         it('if no ballsStates were dispatched', function(done) {
-          spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
+          spyOn(this.game, 'checkBallsStates').and.callFake(() => {
+            done();
+            return this.rejectingPromise;
+          });
 
           this.game.init();
-          done();
 
           expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
-          done();
         });
       });
     });
