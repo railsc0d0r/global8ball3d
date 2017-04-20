@@ -318,7 +318,7 @@ describe('Game', function() {
         HtmlFixtures.removeFixture();
       });
 
-      describe('creates a table', function() {
+      describe('can create a table', function() {
         beforeEach(function() {
           this.game.createTable(TableConfig);
         });
@@ -339,12 +339,12 @@ describe('Game', function() {
         });
       });
 
-      describe('manages the balls', function() {
+      describe('can manage the balls', function() {
         beforeEach(function() {
           this.game.manageBalls(BallsStates);
         });
 
-        it('creating the balls given by states', function() {
+        it('creating them as described by states', function() {
           expect(this.game.balls.length).toEqual(16);
           this.game.balls.forEach(ball => {
             expect(ball).toEqual(jasmine.any(BABYLON.Mesh));
