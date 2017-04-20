@@ -271,13 +271,14 @@ describe('Game', function() {
       });
 
       it('throwing an error if no tableConfig is dispatched', function(done) {
-        spyOn(this.game, 'checkTableConfig').and.returnValue(this.rejectingPromise);
+        spyOn(this.game, 'checkTableConfig').and.callFake(() => {
+          done();
+          return this.rejectingPromise;
+        });
 
         this.game.init();
-        done();
 
         expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
-        done();
       });
 
       it('managing the balls if ballsStates are dispatched', function(done) {
