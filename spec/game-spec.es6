@@ -283,29 +283,31 @@ describe('Game', function() {
         });
       });
 
-      it('throwing an error if no tableConfig is dispatched', function(done) {
-        spyOn(this.game, 'checkTableConfig').and.callFake(() => {
-          done();
-          return this.rejectingPromise;
+      describe('until a timeout is reached, then throwing an error', function() {
+        it('if no tableConfig was dispatched', function(done) {
+          spyOn(this.game, 'checkTableConfig').and.callFake(() => {
+            done();
+            return this.rejectingPromise;
+          });
+
+          this.game.init();
+
+          expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
         });
 
-        this.game.init();
+        it('if no ballsStates were dispatched', function(done) {
+          spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
 
-        expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
-      });
+          this.game.init();
+          done();
 
-      it('throwing an error if no ballsStates are dispatched', function(done) {
-        spyOn(this.game, 'checkBallsStates').and.returnValue(this.rejectingPromise);
-
-        this.game.init();
-        done();
-
-        expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
-        done();
+          expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
+          done();
+        });
       });
     });
 
-    describe('after initializing', function() {
+    describe('being initialized', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
         this.game.init();
