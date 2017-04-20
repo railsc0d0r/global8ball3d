@@ -82,14 +82,16 @@ const Game = class {
     this.camera = ObjectBuilder.createCamera(target, this.canvas, this.scene);
 
     // checkTableConfig and call createTable on resolving Promise
-    this.checkTableConfig().then(tableConfig => {
-      this.createTable(tableConfig);
-    }).catch(message => {
+    this.checkTableConfig().catch(message => {
       this.throwException(message);
+    }).then(tableConfig => {
+      this.createTable(tableConfig);
     });
 
     // checkBallsStates and call manageBalls on resolving Promise
-    this.checkBallsStates().then(ballsStates => {
+    this.checkBallsStates().catch(message => {
+      this.throwException(message);
+    }).then(ballsStates => {
       this.manageBalls(ballsStates);
     });
 
