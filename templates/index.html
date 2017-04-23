@@ -29,9 +29,15 @@
     <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
       var game = new Global8ball.Game3D();
-      function initializeGame() {
+      var getConfigEventListener = function() {
         game.dispatch('setConfig', TableConfig);
+      };
+      game.addEventListener('getConfig', getConfigEventListener);
+      var getStatesEventListener = function() {
         game.dispatch('setStates', BallsConfig.default);
+      };
+      game.addEventListener('getStates', getStatesEventListener);
+      function initializeGame() {
         game.init();
       }
       window.addEventListener('DOMContentLoaded', initializeGame);
