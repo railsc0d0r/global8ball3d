@@ -1,4 +1,4 @@
-const holeRadius = 0.047625347;
+const holeDiameter = 0.047625347;
 
 const HolesConfig = [
   {
@@ -7,42 +7,42 @@ const HolesConfig = [
       x: -1.2991,
       z: -0.6641
     },
-    radius: holeRadius
+    diameter: holeDiameter
   }, {
     id: "leftBottom",
     position: {
       x: -1.2991,
       z: 0.6641
     },
-    radius: holeRadius
+    diameter: holeDiameter
   }, {
     id: "centerBottom",
     position: {
       x: -0.002645853,
       z: 0.6932
     },
-    radius: holeRadius
+    diameter: holeDiameter
   }, {
     id: "rightBottom",
     position: {
       x: 1.2991,
       z: 0.6641
     },
-    radius: holeRadius
+    diameter: holeDiameter
   }, {
     id: "rightTop",
     position: {
       x: 1.2991,
       z: -0.6641
     },
-    radius: holeRadius
+    diameter: holeDiameter
   }, {
     id: "centerTop",
     position: {
       x: -0.002645853,
       z: -0.6932
     },
-    radius: holeRadius
+    diameter: holeDiameter
   }
 ];
 
