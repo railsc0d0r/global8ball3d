@@ -94,7 +94,7 @@ describe('Game', function() {
       it('setStates', function() {
         const expectedEventListener = {
           function: this.game.setBallsStates,
-          context: void 0
+          context: undefined
         };
         expect(this.game.events['setStates'].callbacks).toContain(expectedEventListener);
       });
@@ -102,7 +102,7 @@ describe('Game', function() {
       it('setConfig', function() {
         const expectedEventListener = {
           function: this.game.setTableConfig,
-          context: void 0
+          context: undefined
         };
         expect(this.game.events['setConfig'].callbacks).toContain(expectedEventListener);
       });
