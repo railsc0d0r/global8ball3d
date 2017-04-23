@@ -45,14 +45,16 @@ const ObjectBuilder = class{
     this.validateScene(scene);
 
     const name = cylinderConfig.name;
-    const diameterTop = cylinderConfig.diameterTop;
-    const diameterBottom = cylinderConfig.diameterBottom;
-    const height = cylinderConfig.height;
     const x = cylinderConfig.position.x;
     const y = cylinderConfig.position.y || 0;
     const z = cylinderConfig.position.z;
 
-    let mesh = BABYLON.MeshBuilder.CreateSphere(name,{ diameterTop: diameterTop, diameterBottom: diameterBottom, height: height }, scene);
+    const options = {
+      diameter: cylinderConfig.diameter,
+      height: cylinderConfig.height
+    };
+
+    let mesh = BABYLON.MeshBuilder.CreateCylinder(name, options, scene);
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
