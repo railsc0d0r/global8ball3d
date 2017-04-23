@@ -52,6 +52,9 @@ const Game = class {
     // the canvas element to render on
     this.canvas = document.getElementById('renderCanvas');
 
+    // dispatch events
+    this.dispatch('getConfig');
+
     // the engine used to render the world
     this.engine = new BABYLON.Engine(this.canvas, true);
 
