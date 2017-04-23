@@ -16,8 +16,6 @@ const TableCreator = class {
   static _createCsgHole(holeConfig, scene) {
     this.validateScene(scene);
 
-    holeConfig.diameterTop = holeConfig.diamter;
-    holeConfig.diameterBottom = holeConfig.diameter;
     holeConfig.height = 0.1;
     holeConfig.position.y = 0;
 
