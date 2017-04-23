@@ -54,6 +54,7 @@ const Game = class {
 
     // dispatch events
     this.dispatch('getConfig');
+    this.dispatch('getStates');
 
     // the engine used to render the world
     this.engine = new BABYLON.Engine(this.canvas, true);
