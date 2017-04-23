@@ -144,6 +144,20 @@ describe('Game', function() {
     describe('on init()', function() {
       beforeEach(function() {
         HtmlFixtures.addCanvas();
+
+        this.getConfigCalled = false;
+        this.getStatesCalled = false;
+
+        const getConfigEventListener = () => {
+          this.getConfigCalled = true;
+        };
+        this.game.addEventListener('getConfig', getConfigEventListener, this);
+
+        const getStatesEventListener = () => {
+          this.getStatesCalled = true;
+        };
+        this.game.addEventListener('getStates', getStatesEventListener, this);
+
         this.game.init();
       });
 
