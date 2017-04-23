@@ -174,11 +174,11 @@ describe('Game', function() {
 
       describe('dispatches', function() {
         it('getConfig', function() {
-          pending();
+          expect(this.getConfigCalled).toBeTruthy();
         });
 
         it('getStates', function() {
-          pending();
+          expect(this.getStatesCalled).toBeTruthy();
         });
       });
 
