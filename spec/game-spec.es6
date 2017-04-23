@@ -158,6 +158,16 @@ describe('Game', function() {
         expect(this.game.canvas).toEqual(expectedCanvas);
       });
 
+      describe('dispatches', function() {
+        it('getConfig', function() {
+          pending();
+        });
+
+        it('getStates', function() {
+          pending();
+        });
+      });
+
       it('creates an engine and stores it as property', function() {
         expect(this.game.engine).toEqual(jasmine.any(BABYLON.Engine));
       });
