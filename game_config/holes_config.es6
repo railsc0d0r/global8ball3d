@@ -1,4 +1,5 @@
-const holeDiameter = 0.047625347;
+const holeRadius = 0.047625347;
+const holeDiameter = holeRadius * 2;
 
 const HolesConfig = [
   {
