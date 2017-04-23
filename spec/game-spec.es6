@@ -92,7 +92,11 @@ describe('Game', function() {
 
     describe('adds event-listener for', function() {
       it('setStates', function() {
-        pending();
+        const expectedEventListener = {
+          function: this.game.setBallsStates,
+          context: void 0
+        };
+        expect(this.game.events['setStates'].callbacks).toContain(expectedEventListener);
       });
 
       it('setConfig', function() {
