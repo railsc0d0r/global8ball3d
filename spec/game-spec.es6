@@ -100,7 +100,11 @@ describe('Game', function() {
       });
 
       it('setConfig', function() {
-        pending();
+        const expectedEventListener = {
+          function: this.game.setTableConfig,
+          context: void 0
+        };
+        expect(this.game.events['setConfig'].callbacks).toContain(expectedEventListener);
       });
     });
 
