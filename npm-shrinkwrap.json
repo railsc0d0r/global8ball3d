@@ -1,0 +1,21 @@
+{
+  "name": "global8ball3d",
+  "version": "0.0.1",
+  "dependencies": {
+    "babylonjs": {
+      "version": "2.5.0",
+      "from": "babylonjs@>=2.5.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/babylonjs/-/babylonjs-2.5.0.tgz"
+    },
+    "cannon": {
+      "version": "0.6.2",
+      "from": "cannon@>=0.6.2 <0.7.0",
+      "resolved": "https://registry.npmjs.org/cannon/-/cannon-0.6.2.tgz"
+    },
+    "pepjs": {
+      "version": "0.4.2",
+      "from": "pepjs@>=0.4.2 <0.5.0",
+      "resolved": "https://registry.npmjs.org/pepjs/-/pepjs-0.4.2.tgz"
+    }
+  }
+}

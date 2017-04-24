@@ -1,14 +1,55 @@
 {
-  "name": "game3d_poc",
+  "name": "global8ball3d",
   "version": "0.0.1",
-  "description": "PoC for a 8ball-pool based on babylonjs",
+  "description": "A 8ball-pool-game based on babylonjs",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "clean": "rimraf public/*",
+    "test_ci": "DISPLAY=:100 karma start --browsers Firefox --single-run",
+    "test": "karma start"
   },
-  "author": "",
+  "author": "Stephan Barth",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.1"
-  }
+    "babylonjs": "^2.5.0",
+    "cannon": "^0.6.2",
+    "pepjs": "^0.4.2"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2016": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.1.0",
+    "express": "^4.14.1",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "jasmine": "^2.5.3",
+    "karma": "^1.4.1",
+    "karma-browserify": "^5.1.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-longest-reporter": "^1.1.0",
+    "rimraf": "^2.5.4",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@p2501.twilightparadox.com:33333/home/git/git_repos/game3d_poc.git"
+  },
+  "keywords": [
+    "pool",
+    "8ball",
+    "3d",
+    "game",
+    "babylonjs"
+  ]
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+    <title>Global8ball3D</title>
+    <script src="/js/pep.js"></script>
+    <script src="/js/babylon.js"></script>
+    <script src="/js/cannon.js"></script>
+    <script src="/js/balls_config.min.js"></script>
+    <script src="/js/table_config.min.js"></script>
+    <script src="/js/game3d.min.js"></script>
+    <style>
+      html, body {
+        overflow: hidden;
+        width   : 100%;
+        height  : 100%;
+        margin  : 0;
+        padding : 0;
+      }
+
+      #renderCanvas {
+        width   : 100%;
+        height  : 100%;
+        touch-action: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="renderCanvas" touch-action="none"></canvas>
+    <script>
+      var game = new Global8ball.Game3D();
+      var getConfigEventListener = function() {
+        game.dispatch('setConfig', TableConfig);
+      };
+      game.addEventListener('getConfig', getConfigEventListener);
+      var getStatesEventListener = function() {
+        game.dispatch('setStates', BallsConfig.default);
+      };
+      game.addEventListener('getStates', getStatesEventListener);
+      function initializeGame() {
+        game.init();
+      }
+      window.addEventListener('DOMContentLoaded', initializeGame);
+    </script>
+  </body>
+</html>

@@ -1,47 +1,50 @@
-var hole_radius = 0.047625347;
+const holeRadius = 0.047625347;
+const holeDiameter = holeRadius * 2;
 
-var HOLES = [
+const HolesConfig = [
   {
     id: "leftTop",
     position: {
       x: -1.2991,
       z: -0.6641
     },
-    radius: hole_radius
+    diameter: holeDiameter
   }, {
     id: "leftBottom",
     position: {
       x: -1.2991,
       z: 0.6641
     },
-    radius: hole_radius
+    diameter: holeDiameter
   }, {
     id: "centerBottom",
     position: {
       x: -0.002645853,
       z: 0.6932
     },
-    radius: hole_radius
+    diameter: holeDiameter
   }, {
     id: "rightBottom",
     position: {
       x: 1.2991,
       z: 0.6641
     },
-    radius: hole_radius
+    diameter: holeDiameter
   }, {
     id: "rightTop",
     position: {
       x: 1.2991,
       z: -0.6641
     },
-    radius: hole_radius
+    diameter: holeDiameter
   }, {
     id: "centerTop",
     position: {
       x: -0.002645853,
       z: -0.6932
     },
-    radius: hole_radius
+    diameter: holeDiameter
   }
-]
+];
+
+export default HolesConfig;
