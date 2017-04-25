@@ -65,8 +65,6 @@ const TableCreator = class {
     const width = playgroundConfig.width;
     const height = playgroundConfig.height;
     const depth = playgroundConfig.depth;
-    const mass = playgroundConfig.mass;
-    const restitution = playgroundConfig.restitution;
     const x = playgroundConfig.position.x;
     const y = playgroundConfig.position.y;
     const z = playgroundConfig.position.z;
@@ -83,6 +81,12 @@ const TableCreator = class {
         }
     };
 
+    const physicsOptions = {
+      mass: playgroundConfig.mass,
+      restitution: playgroundConfig.restitution,
+      friction: playgroundConfig.friction
+    };
+
     // creates the CSG-representation of the playground
     let mesh = ObjectBuilder.createBox(boxConfig, scene);
     let csgPlayground = BABYLON.CSG.FromMesh(mesh);
@@ -96,7 +100,7 @@ const TableCreator = class {
     });
 
     let playground = ObjectBuilder.convertCsgToMesh(name, csgPlayground, playgroundMaterial, scene);
-    playground.physicsImpostor = ObjectBuilder.createPhysicsImpostor(playground, "GROUND", { mass: mass, restitution: restitution}, scene);
+    playground.physicsImpostor = ObjectBuilder.createPhysicsImpostor(playground, "GROUND", physicsOptions, scene);
     playground.receiveShadows = true;
 
     return playground;
