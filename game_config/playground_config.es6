@@ -6,7 +6,8 @@ const PlaygroundConfig = {
     height: height,
     depth: 1.3864,
     mass: 0,
-    restitution: 0.98,
+    restitution: 0.5,
+    friction: 0.15,
     position: {
       x: 0,
       y: -(height / 2),
