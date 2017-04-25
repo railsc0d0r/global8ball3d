@@ -149,7 +149,8 @@ describe('TableCreator', function() {
 
             expect(this.playground.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
             expect(this.playground.physicsImpostor.getParam("mass")).toEqual(0);
-            expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.98);
+            expect(this.playground.physicsImpostor.getParam("restitution")).toEqual(0.5);
+            expect(this.playground.physicsImpostor.getParam("friction")).toEqual(0.15);
 
             expect(this.playground.material.specularColor).toEqual(BABYLON.Color3.FromHexString('#333333'));
 
