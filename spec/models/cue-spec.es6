@@ -42,7 +42,12 @@ describe('Cue', () => {
     });
 
     it('scene to be a BABYLON.Scene', function() {
-      pending();
+      const nonScenes = NonValues;
+
+      nonScenes.forEach(nonScene => {
+        const throwsAnException = () => { new Cue(this.target, nonScene) };
+        expect(throwsAnException).toThrow("Cue requires an instance of BABYLON.Scene to be created.");
+      });
     });
   });
 
