@@ -31,16 +31,16 @@ describe('Cue', () => {
     HtmlFixtures.removeFixture();
   });
 
-  it('can be instanciated', () => {
-    let cue = new Cue();
-    expect(cue).toEqual(jasmine.any(Cue));
-  });
-
   it('validates the given target to be a mesh', function() {
     pending();
   });
 
   it('validates the given scene', function() {
     pending();
+  });
+
+  it('can be instanciated', function() {
+    let cue = new Cue(this.target, this.scene);
+    expect(cue).toEqual(jasmine.any(Cue));
   });
 });
