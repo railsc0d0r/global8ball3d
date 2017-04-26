@@ -31,12 +31,14 @@ describe('Cue', () => {
     HtmlFixtures.removeFixture();
   });
 
-  it('validates the given target to be a mesh', function() {
-    pending();
-  });
+  describe('to be created requires given', function() {
+    it('target to be a BABYLON.Mesh', function() {
+      pending();
+    });
 
-  it('validates the given scene', function() {
-    pending();
+    it('scene to be a BABYLON.Scene', function() {
+      pending();
+    });
   });
 
   it('can be instanciated', function() {
