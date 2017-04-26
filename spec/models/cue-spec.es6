@@ -41,7 +41,7 @@ describe('Cue', () => {
     });
   });
 
-  it('can be instanciated', function() {
+  it('can be created', function() {
     let cue = new Cue(this.target, this.scene);
     expect(cue).toEqual(jasmine.any(Cue));
   });
