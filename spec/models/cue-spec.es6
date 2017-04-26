@@ -59,5 +59,37 @@ describe('Cue', () => {
     it('can be created', function() {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
+
+    describe('provides a mesh', function() {
+      it('as property', function() {
+        pending();
+      });
+
+      describe('consisting of subMeshes:', function() {
+        it('the tip', function() {
+          pending();
+        });
+
+        it('the ferule', function() {
+          pending();
+        });
+
+        it('the taper', function() {
+          pending();
+        });
+
+        it('the shaft', function() {
+          pending();
+        });
+
+        it('the butt', function() {
+          pending();
+        });
+
+        it('an axis', function() {
+          pending();
+        });
+      });
+    });
   });
 });
