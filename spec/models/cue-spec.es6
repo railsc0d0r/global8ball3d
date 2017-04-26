@@ -31,7 +31,7 @@ describe('Cue', () => {
     HtmlFixtures.removeFixture();
   });
 
-  describe('to be created requires given', function() {
+  describe('on creation requires given', function() {
     it('target to be a BABYLON.Mesh', function() {
       const nonTargets = NonValues;
 
