@@ -12,6 +12,18 @@ describe('Cue', () => {
     const canvas = document.getElementById('renderCanvas');
     this.engine = new BABYLON.Engine(canvas, true);
     this.scene = Scene.create(this.engine);
+
+    const ballConfig = {
+      id: 1,
+      type: "breakball",
+      radius: 0.0291,
+      position: {
+          x: -0.635,
+          z: 0
+      }
+    };
+
+    this.target = ObjectBuilder.createSphere(ballConfig, this.scene);
   });
 
   afterEach(function() {
