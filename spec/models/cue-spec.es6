@@ -33,7 +33,12 @@ describe('Cue', () => {
 
   describe('to be created requires given', function() {
     it('target to be a BABYLON.Mesh', function() {
-      pending();
+      const nonTargets = NonValues;
+
+      nonTargets.forEach(nonTarget => {
+        const throwsAnException = () => { new Cue(nonTarget) };
+        expect(throwsAnException).toThrow("Cue requires an instance of BABYLON.Mesh as target to be created.");
+      });
     });
 
     it('scene to be a BABYLON.Scene', function() {
