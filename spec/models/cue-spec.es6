@@ -51,8 +51,13 @@ describe('Cue', () => {
     });
   });
 
-  it('can be created', function() {
-    let cue = new Cue(this.target, this.scene);
-    expect(cue).toEqual(jasmine.any(Cue));
+  describe('as instance', function() {
+    beforeEach(function() {
+      this.cue = new Cue(this.target, this.scene);
+    });
+
+    it('can be created', function() {
+      expect(this.cue).toEqual(jasmine.any(Cue));
+    });
   });
 });
