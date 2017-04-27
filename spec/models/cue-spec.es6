@@ -84,7 +84,11 @@ describe('Cue', () => {
         });
 
         it('the taper', function() {
-          pending();
+          const taper = this.cue.mesh.getChildren().find(child => {
+            return child.name == 'taper';
+          });
+
+          expect(taper).toEqual(jasmine.any(BABYLON.Mesh));
         });
 
         it('the shaft', function() {
