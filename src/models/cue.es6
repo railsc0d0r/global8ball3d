@@ -9,6 +9,8 @@ const Cue = class {
     if( typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene) ) {
       throw "Cue requires an instance of BABYLON.Scene to be created.";
     }
+
+    this.mesh = new BABYLON.Mesh('cue', scene);
   }
 };
 
