@@ -100,7 +100,11 @@ describe('Cue', () => {
         });
 
         it('the butt', function() {
-          pending();
+          const butt = this.cue.mesh.getChildren().find(child => {
+            return child.name == 'butt';
+          });
+
+          expect(butt).toEqual(jasmine.any(BABYLON.Mesh));
         });
 
         it('an axis', function() {
