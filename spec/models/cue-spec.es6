@@ -92,7 +92,11 @@ describe('Cue', () => {
         });
 
         it('the shaft', function() {
-          pending();
+          const shaft = this.cue.mesh.getChildren().find(child => {
+            return child.name == 'shaft';
+          });
+
+          expect(shaft).toEqual(jasmine.any(BABYLON.Mesh));
         });
 
         it('the butt', function() {
