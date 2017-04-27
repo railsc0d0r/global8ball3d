@@ -108,7 +108,11 @@ describe('Cue', () => {
         });
 
         it('an axis', function() {
-          pending();
+          const axis = this.cue.mesh.getChildren().find(child => {
+            return child.name == 'cueAxis';
+          });
+
+          expect(axis).toEqual(jasmine.any(BABYLON.Mesh));
         });
       });
     });
