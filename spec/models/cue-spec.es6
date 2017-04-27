@@ -62,7 +62,8 @@ describe('Cue', () => {
 
     describe('provides a mesh', function() {
       it('as property', function() {
-        pending();
+        expect(this.cue.mesh).toEqual(jasmine.any(BABYLON.Mesh));
+        expect(this.cue.mesh.name).toEqual('cue');
       });
 
       describe('consisting of subMeshes:', function() {
