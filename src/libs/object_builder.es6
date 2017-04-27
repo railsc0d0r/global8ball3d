@@ -50,7 +50,8 @@ const ObjectBuilder = class{
     const z = cylinderConfig.position.z;
 
     const options = {
-      diameter: cylinderConfig.diameter,
+      diameterTop: cylinderConfig.diameterTop,
+      diameterBottom: cylinderConfig.diameterBottom,
       height: cylinderConfig.height
     };
 
