@@ -76,7 +76,11 @@ describe('Cue', () => {
         });
 
         it('the ferule', function() {
-          pending();
+          const ferule = this.cue.mesh.getChildren().find(child => {
+            return child.name == 'ferule';
+          });
+
+          expect(ferule).toEqual(jasmine.any(BABYLON.Mesh));
         });
 
         it('the taper', function() {
