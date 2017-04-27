@@ -18,6 +18,8 @@ const TableCreator = class {
 
     holeConfig.height = 0.1;
     holeConfig.position.y = 0;
+    holeConfig.diameterTop = holeConfig.diameter;
+    holeConfig.diameterBottom = holeConfig.diameter;
 
     const mesh = ObjectBuilder.createCylinder(holeConfig, scene);
 
