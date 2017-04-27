@@ -68,7 +68,11 @@ describe('Cue', () => {
 
       describe('consisting of subMeshes:', function() {
         it('the tip', function() {
-          pending();
+          const tip = this.cue.mesh.getChildren().find(child => {
+            return child.name == 'tip';
+          });
+
+          expect(tip).toEqual(jasmine.any(BABYLON.Mesh));
         });
 
         it('the ferule', function() {
