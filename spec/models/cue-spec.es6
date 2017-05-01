@@ -53,12 +53,12 @@ describe('Cue', () => {
       });
     });
 
-    it('scene to be a BABYLON.Scene', function() {
-      const nonScenes = NonValues;
+    it('shadowGenerator to be valid', function() {
+      const nonShadowGenerators = NonValues;
 
-      nonScenes.forEach(nonScene => {
-        const throwsAnException = () => { new Cue(this.target, nonScene) };
-        expect(throwsAnException).toThrow("Cue requires an instance of BABYLON.Scene to be created.");
+      nonShadowGenerators.forEach(nonShadowGenerator => {
+        const throwsAnException = () => { new Cue(this.target, nonShadowGenerator) };
+        expect(throwsAnException).toThrow("Cue requires an instance of ShadowGenerator to be created.");
       });
     });
 
@@ -86,14 +86,19 @@ describe('Cue', () => {
       });
     });
 
-    it('shadowGenerator to be valid', function() {
-      pending();
+    it('scene to be a BABYLON.Scene', function() {
+      const nonScenes = NonValues;
+
+      nonScenes.forEach(nonScene => {
+        const throwsAnException = () => { new Cue(this.target, this.shadowGenerator, nonScene) };
+        expect(throwsAnException).toThrow("Cue requires an instance of BABYLON.Scene to be created.");
+      });
     });
   });
 
   describe('as instance', function() {
     beforeEach(function() {
-      this.cue = new Cue(this.target, this.scene);
+      this.cue = new Cue(this.target, this.shadowGenerator, this.scene);
     });
 
     it('can be created', function() {
