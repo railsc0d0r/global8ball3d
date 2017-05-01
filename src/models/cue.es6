@@ -34,6 +34,7 @@ const Cue = class {
     }
 
     this.shadowGenerator = shadowGenerator;
+    this.materials = materials;
 
     this.mesh = new BABYLON.Mesh('cue', scene);
     this._createCueParts(scene);
