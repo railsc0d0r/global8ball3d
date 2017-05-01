@@ -20,12 +20,22 @@ describe('Cue', () => {
       type: "breakball",
       radius: 0.0291,
       position: {
-          x: -0.635,
-          z: 0
+        x: -0.635,
+        z: 0
       }
     };
 
     this.target = ObjectBuilder.createSphere(ballConfig, this.scene);
+
+    const surfaceMaterials = new SurfaceMaterialsCreator(this.scene).surfaceMaterials;
+    this.materials = [
+      surfaceMaterials.black,
+      surfaceMaterials.white,
+      surfaceMaterials.lightBrown
+    ];
+
+    const light = new BABYLON.SpotLight('tableLight', new BABYLON.Vector3(0,2,0), new BABYLON.Vector3(0,-1,0), Math.PI / 2, 2.5, this.scene);
+    this.shadowGenerator = new ShadowGenerator(light);
   });
 
   afterEach(function() {
