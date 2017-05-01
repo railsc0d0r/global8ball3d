@@ -12,7 +12,10 @@ const Cue = class {
     }
 
     this.mesh = new BABYLON.Mesh('cue', scene);
+    this._createCueParts(scene);
+  }
 
+  _createCueParts(scene) {
     let axisPoints = [];
     const distanceFromTarget = 0.08;
 
