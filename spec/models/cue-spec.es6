@@ -64,24 +64,23 @@ describe('Cue', () => {
 
     describe('materials to', function() {
       it('be an array', function() {
-        pending();
+        const nonArrays = NonValues;
+
+        nonArrays.forEach(nonArray => {
+          const throwsAnException = () => { new Cue(this.target, this.shadowGenerator, nonArray) };
+          expect(throwsAnException).toThrow("Cue requires an array of materials to be created.");
+        });
       });
 
       it('contain only materials', function() {
-        pending();
-      });
+        const nonValidArrays = [
+          [],
+          [{}]
+        ];
 
-      describe('provide', function() {
-        it('black', function() {
-          pending();
-        });
-
-        it('white', function() {
-          pending();
-        });
-
-        it('lightBrown', function() {
-          pending();
+        nonValidArrays.forEach(nonValidArray => {
+          const throwsAnException = () => { new Cue(this.target, this.shadowGenerator, nonValidArray) };
+          expect(throwsAnException).toThrow("Given array must contain only materials and not be empty.");
         });
       });
     });
@@ -90,7 +89,7 @@ describe('Cue', () => {
       const nonScenes = NonValues;
 
       nonScenes.forEach(nonScene => {
-        const throwsAnException = () => { new Cue(this.target, this.shadowGenerator, nonScene) };
+        const throwsAnException = () => { new Cue(this.target, this.shadowGenerator, this.materials, nonScene) };
         expect(throwsAnException).toThrow("Cue requires an instance of BABYLON.Scene to be created.");
       });
     });
@@ -98,7 +97,7 @@ describe('Cue', () => {
 
   describe('as instance', function() {
     beforeEach(function() {
-      this.cue = new Cue(this.target, this.shadowGenerator, this.scene);
+      this.cue = new Cue(this.target, this.shadowGenerator, this.materials, this.scene);
     });
 
     it('can be created', function() {
