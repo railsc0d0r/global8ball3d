@@ -1,4 +1,5 @@
 import Cue from '../../src/models/cue';
+import CueConfig from '../../src/config/cue_config';
 import ObjectBuilder from '../../src/libs/object_builder';
 import Scene from '../../src/models/scene';
 import ShadowGenerator from '../../src/models/shadow_generator';
@@ -122,11 +123,23 @@ describe('Cue', () => {
 
       describe('consisting of subMeshes:', function() {
         it('the tip', function() {
+          const name = 'tip';
+          const tipConfig = CueConfig.find(configPart => {
+            return configPart.name = name;
+          });
+
+          console.log(this.materials);
+
+          const tipMaterial = this.materials.find(material => {
+            return material.name == tipConfig.color;
+          });
+
           const tip = this.cue.mesh.getChildren().find(child => {
             return child.name == 'tip';
           });
 
           expect(tip).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(tip.material).toEqual(tipMaterial);
         });
 
         it('the ferule', function() {
