@@ -218,6 +218,7 @@ describe('Cue', () => {
           });
 
           expect(axis).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(axis.color).toEqual(BABYLON.Color3.Red());
         });
       });
     });
