@@ -177,19 +177,39 @@ describe('Cue', () => {
         });
 
         it('the shaft', function() {
+          const name = 'shaft';
+          const config = CueConfig.find(configPart => {
+            return configPart.name == name;
+          });
+
+          const cuePartMaterial = this.materials.find(material => {
+            return material.name == config.color;
+          });
+
           const shaft = this.cue.mesh.getChildren().find(child => {
-            return child.name == 'shaft';
+            return child.name == name;
           });
 
           expect(shaft).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(shaft.material).toEqual(cuePartMaterial);
         });
 
         it('the butt', function() {
+          const name = 'butt';
+          const config = CueConfig.find(configPart => {
+            return configPart.name == name;
+          });
+
+          const cuePartMaterial = this.materials.find(material => {
+            return material.name == config.color;
+          });
+
           const butt = this.cue.mesh.getChildren().find(child => {
-            return child.name == 'butt';
+            return child.name == name;
           });
 
           expect(butt).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(butt.material).toEqual(cuePartMaterial);
         });
 
         it('an axis', function() {
