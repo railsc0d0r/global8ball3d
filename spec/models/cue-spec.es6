@@ -159,11 +159,21 @@ describe('Cue', () => {
         });
 
         it('the taper', function() {
+          const name = 'taper';
+          const config = CueConfig.find(configPart => {
+            return configPart.name == name;
+          });
+
+          const cuePartMaterial = this.materials.find(material => {
+            return material.name == config.color;
+          });
+
           const taper = this.cue.mesh.getChildren().find(child => {
-            return child.name == 'taper';
+            return child.name == name;
           });
 
           expect(taper).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(taper.material).toEqual(cuePartMaterial);
         });
 
         it('the shaft', function() {
