@@ -1,6 +1,8 @@
 import Cue from '../../src/models/cue';
 import ObjectBuilder from '../../src/libs/object_builder';
 import Scene from '../../src/models/scene';
+import ShadowGenerator from '../../src/models/shadow_generator';
+import SurfaceMaterialsCreator from '../../src/libs/surface_materials_creator';
 
 import HtmlFixtures from '../support/html_fixtures';
 import NonValues from '../support/non_values';
