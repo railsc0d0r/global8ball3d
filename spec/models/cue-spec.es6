@@ -128,8 +128,6 @@ describe('Cue', () => {
             return configPart.name = name;
           });
 
-          console.log(this.materials);
-
           const tipMaterial = this.materials.find(material => {
             return material.name == tipConfig.color;
           });
