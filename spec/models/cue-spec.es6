@@ -61,6 +61,34 @@ describe('Cue', () => {
         expect(throwsAnException).toThrow("Cue requires an instance of BABYLON.Scene to be created.");
       });
     });
+
+    describe('materials to', function() {
+      it('be an array', function() {
+        pending();
+      });
+
+      it('contain only materials', function() {
+        pending();
+      });
+
+      describe('provide', function() {
+        it('black', function() {
+          pending();
+        });
+
+        it('white', function() {
+          pending();
+        });
+
+        it('lightBrown', function() {
+          pending();
+        });
+      });
+    });
+
+    it('shadowGenerator to be valid', function() {
+      pending();
+    });
   });
 
   describe('as instance', function() {
