@@ -50,6 +50,12 @@ const Cue = class {
       axisPoints.push(axisPoint.scale(-distanceFromTarget));
 
       const mesh = ObjectBuilder.createCylinder(configPart, scene);
+
+      const material = this.materials.find(material => {
+        return material.name == configPart.color;
+      });
+      mesh.material = material;
+
       mesh.parent = this.mesh;
     });
 
