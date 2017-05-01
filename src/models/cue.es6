@@ -1,15 +1,22 @@
 import CueConfig from '../config/cue_config';
 import ObjectBuilder from '../libs/object_builder';
+import ShadowGenerator from '../models/shadow_generator';
 
 const Cue = class {
-  constructor(target, scene) {
+  constructor(target, shadowGenerator, scene) {
     if( typeof(target) === 'undefined' || !(target instanceof BABYLON.Mesh) ) {
       throw "Cue requires an instance of BABYLON.Mesh as target to be created.";
+    }
+
+    if( typeof(shadowGenerator) === 'undefined' || !(shadowGenerator instanceof ShadowGenerator) ) {
+      throw "Cue requires an instance of ShadowGenerator to be created.";
     }
 
     if( typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene) ) {
       throw "Cue requires an instance of BABYLON.Scene to be created.";
     }
+
+    this.shadowGenerator = shadowGenerator;
 
     this.mesh = new BABYLON.Mesh('cue', scene);
     this._createCueParts(scene);
