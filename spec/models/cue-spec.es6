@@ -124,28 +124,38 @@ describe('Cue', () => {
       describe('consisting of subMeshes:', function() {
         it('the tip', function() {
           const name = 'tip';
-          const tipConfig = CueConfig.find(configPart => {
-            return configPart.name = name;
+          const config = CueConfig.find(configPart => {
+            return configPart.name == name;
           });
 
-          const tipMaterial = this.materials.find(material => {
-            return material.name == tipConfig.color;
+          const cuePartMaterial = this.materials.find(material => {
+            return material.name == config.color;
           });
 
           const tip = this.cue.mesh.getChildren().find(child => {
-            return child.name == 'tip';
+            return child.name == name;
           });
 
           expect(tip).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(tip.material).toEqual(tipMaterial);
+          expect(tip.material).toEqual(cuePartMaterial);
         });
 
         it('the ferule', function() {
+          const name = 'ferule';
+          const config = CueConfig.find(configPart => {
+            return configPart.name == name;
+          });
+
+          const cuePartMaterial = this.materials.find(material => {
+            return material.name == config.color;
+          });
+
           const ferule = this.cue.mesh.getChildren().find(child => {
-            return child.name == 'ferule';
+            return child.name == name;
           });
 
           expect(ferule).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(ferule.material).toEqual(cuePartMaterial);
         });
 
         it('the taper', function() {
