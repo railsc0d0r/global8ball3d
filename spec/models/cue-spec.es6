@@ -110,7 +110,7 @@ describe('Cue', () => {
       });
 
       it('materials', function() {
-        pending();
+        expect(this.cue.materials).toEqual(this.materials);
       });
     });
 
