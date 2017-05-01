@@ -3,13 +3,30 @@ import ObjectBuilder from '../libs/object_builder';
 import ShadowGenerator from '../models/shadow_generator';
 
 const Cue = class {
-  constructor(target, shadowGenerator, scene) {
+  constructor(target, shadowGenerator, materials, scene) {
     if( typeof(target) === 'undefined' || !(target instanceof BABYLON.Mesh) ) {
       throw "Cue requires an instance of BABYLON.Mesh as target to be created.";
     }
 
     if( typeof(shadowGenerator) === 'undefined' || !(shadowGenerator instanceof ShadowGenerator) ) {
       throw "Cue requires an instance of ShadowGenerator to be created.";
+    }
+
+    if( typeof(materials) === 'undefined' || !(materials instanceof Array) ) {
+      throw "Cue requires an array of materials to be created.";
+    }
+
+    // validates if given array of materials is not empty and contains only materials
+    let containsOnlyMaterials = true;
+
+    materials.forEach(material => {
+      if (!(material instanceof BABYLON.StandardMaterial)) {
+        containsOnlyMaterials = false;
+      }
+    });
+
+    if ( materials.length === 0 || !containsOnlyMaterials ) {
+      throw "Given array must contain only materials and not be empty.";
     }
 
     if( typeof(scene) === 'undefined' || !(scene instanceof BABYLON.Scene) ) {
