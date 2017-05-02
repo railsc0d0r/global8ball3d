@@ -37,10 +37,10 @@ const Cue = class {
     this.materials = materials;
 
     this.mesh = new BABYLON.Mesh('cue', scene);
-    this._createCueParts(scene);
+    this._createCueParts(shadowGenerator, materials, scene);
   }
 
-  _createCueParts(scene) {
+  _createCueParts(shadowGenerator, materials, scene) {
     let axisPoints = [];
     const distanceFromTarget = 0.08;
 
@@ -51,7 +51,7 @@ const Cue = class {
 
       const mesh = ObjectBuilder.createCylinder(configPart, scene);
 
-      const material = this.materials.find(material => {
+      const material = materials.find(material => {
         return material.name == configPart.color;
       });
       mesh.material = material;
