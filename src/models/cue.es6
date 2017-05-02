@@ -52,6 +52,7 @@ const Cue = class {
         return material.name == configPart.color;
       });
       mesh.material = material;
+      shadowGenerator.renderShadowsFrom(mesh);
 
       mesh.parent = this.mesh;
     });
@@ -63,6 +64,8 @@ const Cue = class {
 
     let axis = ObjectBuilder.createLine(lineConfig, scene);
     axis.color = BABYLON.Color3.Red();
+    shadowGenerator.renderShadowsFrom(axis);
+
     axis.parent = this.mesh;
   }
 };
