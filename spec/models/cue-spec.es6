@@ -105,16 +105,6 @@ describe('Cue', () => {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
 
-    describe('stores given', function() {
-      it('shadowGenerator', function() {
-        expect(this.cue.shadowGenerator).toEqual(this.shadowGenerator);
-      });
-
-      it('materials', function() {
-        expect(this.cue.materials).toEqual(this.materials);
-      });
-    });
-
     describe('provides a mesh', function() {
       it('as property', function() {
         expect(this.cue.mesh).toEqual(jasmine.any(BABYLON.Mesh));
