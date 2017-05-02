@@ -121,105 +121,30 @@ describe('Cue', () => {
         expect(this.cue.mesh.name).toEqual('cue');
       });
 
-      describe('consisting of subMeshes:', function() {
-        it('the tip', function() {
-          const name = 'tip';
-          const config = CueConfig.find(configPart => {
-            return configPart.name == name;
-          });
+      it('consisting of subMeshes as described by CueConfig', function() {
+        CueConfig.forEach(configPart => {
+          const name = configPart.name;
 
           const cuePartMaterial = this.materials.find(material => {
-            return material.name == config.color;
+            return material.name == configPart.color;
           });
 
-          const tip = this.cue.mesh.getChildren().find(child => {
+          const subMesh = this.cue.mesh.getChildren().find(child => {
             return child.name == name;
           });
 
-          expect(tip).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(tip.material).toEqual(cuePartMaterial);
+          expect(subMesh).toEqual(jasmine.any(BABYLON.Mesh));
+          expect(subMesh.material).toEqual(cuePartMaterial);
+        });
+      });
+
+      it('showing an axis', function() {
+        const axis = this.cue.mesh.getChildren().find(child => {
+          return child.name == 'cueAxis';
         });
 
-        it('the ferule', function() {
-          const name = 'ferule';
-          const config = CueConfig.find(configPart => {
-            return configPart.name == name;
-          });
-
-          const cuePartMaterial = this.materials.find(material => {
-            return material.name == config.color;
-          });
-
-          const ferule = this.cue.mesh.getChildren().find(child => {
-            return child.name == name;
-          });
-
-          expect(ferule).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(ferule.material).toEqual(cuePartMaterial);
-        });
-
-        it('the taper', function() {
-          const name = 'taper';
-          const config = CueConfig.find(configPart => {
-            return configPart.name == name;
-          });
-
-          const cuePartMaterial = this.materials.find(material => {
-            return material.name == config.color;
-          });
-
-          const taper = this.cue.mesh.getChildren().find(child => {
-            return child.name == name;
-          });
-
-          expect(taper).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(taper.material).toEqual(cuePartMaterial);
-        });
-
-        it('the shaft', function() {
-          const name = 'shaft';
-          const config = CueConfig.find(configPart => {
-            return configPart.name == name;
-          });
-
-          const cuePartMaterial = this.materials.find(material => {
-            return material.name == config.color;
-          });
-
-          const shaft = this.cue.mesh.getChildren().find(child => {
-            return child.name == name;
-          });
-
-          expect(shaft).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(shaft.material).toEqual(cuePartMaterial);
-        });
-
-        it('the butt', function() {
-          const name = 'butt';
-          const config = CueConfig.find(configPart => {
-            return configPart.name == name;
-          });
-
-          const cuePartMaterial = this.materials.find(material => {
-            return material.name == config.color;
-          });
-
-          const butt = this.cue.mesh.getChildren().find(child => {
-            return child.name == name;
-          });
-
-          expect(butt).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(butt.material).toEqual(cuePartMaterial);
-        });
-
-        it('an axis', function() {
-          const axis = this.cue.mesh.getChildren().find(child => {
-            return child.name == 'cueAxis';
-          });
-
-          expect(axis).toEqual(jasmine.any(BABYLON.Mesh));
-          expect(axis.color).toEqual(BABYLON.Color3.Red());
-        });
+        expect(axis).toEqual(jasmine.any(BABYLON.Mesh));
+        expect(axis.color).toEqual(BABYLON.Color3.Red());
       });
     });
   });
