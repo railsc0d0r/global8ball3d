@@ -136,6 +136,12 @@ describe('Cue', () => {
         expect(axis).toEqual(jasmine.any(BABYLON.Mesh));
         expect(axis.color).toEqual(BABYLON.Color3.Red());
       });
+
+      it('dropping shadows', function() {
+        this.cue.mesh.getChildren().forEach(subMesh => {
+          expect(this.shadowGenerator.renderList).toContain(subMesh);
+        });
+      });
     });
   });
 });
