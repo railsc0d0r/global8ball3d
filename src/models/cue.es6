@@ -33,9 +33,6 @@ const Cue = class {
       throw "Cue requires an instance of BABYLON.Scene to be created.";
     }
 
-    this.shadowGenerator = shadowGenerator;
-    this.materials = materials;
-
     this.mesh = new BABYLON.Mesh('cue', scene);
     this._createCueParts(shadowGenerator, materials, scene);
   }
