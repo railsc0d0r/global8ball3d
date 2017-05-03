@@ -142,6 +142,11 @@ describe('Cue', () => {
           expect(this.shadowGenerator.renderList).toContain(subMesh);
         });
       });
+
+      it('positioned 8cm from the target', function() {
+        const distance = this.cue.mesh.position.subtract(this.target.position);
+        expect(distance.length()).toEqual(0.08);
+      });
     });
   });
 });
