@@ -35,6 +35,10 @@ const Cue = class {
 
     this.mesh = new BABYLON.Mesh('cue', scene);
     this._createCueParts(shadowGenerator, materials, scene);
+
+    this.mesh.position.x = target.position.x;
+    this.mesh.position.y = target.position.y;
+    this.mesh.position.z = target.position.z + 0.08;
   }
 
   _createCueParts(shadowGenerator, materials, scene) {
