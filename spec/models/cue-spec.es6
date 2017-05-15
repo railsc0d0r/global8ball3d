@@ -147,6 +147,17 @@ describe('Cue', () => {
         const distance = this.cue.mesh.position.subtract(this.target.position);
         expect(distance.length()).toEqual(0.08);
       });
+
+      it('pivoting around the target', function() {
+        const pivotAt = this.target.position;
+        const cuePosition = this.cue.mesh.position;
+        const radiusV3 = cuePosition.subtract(pivotAt);
+
+        const expectedMatrix = this.target.getPivotMatrix();
+        expectedMatrix.setTranslation(radiusV3.negate());
+
+        expect(this.cue.mesh.getPivotMatrix()).toEqual(expectedMatrix);
+      });
     });
   });
 });
