@@ -39,6 +39,10 @@ const Cue = class {
     const pivotAt = target.position;
     const startPosition = new BABYLON.Vector3(pivotAt.x, pivotAt.y, pivotAt.z + 0.08);
 
+    const radiusV3 = startPosition.subtract(pivotAt);
+
+    this.mesh.position = startPosition;
+    this.mesh.setPivotMatrix(BABYLON.Matrix.Translation(-radiusV3.x, -radiusV3.y, -radiusV3.z));
     this.mesh.position = startPosition;
   }
 
