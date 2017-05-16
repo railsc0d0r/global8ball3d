@@ -109,6 +109,10 @@ describe('Cue', () => {
       it('alpha describing its horizontal rotation', function() {
         expect(this.cue.alpha).toEqual(0);
       });
+
+      it('beta describing its vertical rotation', function() {
+        expect(this.cue.beta).toEqual(0);
+      });
     });
 
     describe('provides a mesh', function() {
