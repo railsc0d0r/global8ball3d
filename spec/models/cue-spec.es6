@@ -105,6 +105,12 @@ describe('Cue', () => {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
 
+    describe('provides as property in radians', function() {
+      it('alpha describing its horizontal rotation', function() {
+        expect(this.cue.alpha).toEqual(0);
+      });
+    });
+
     describe('provides a mesh', function() {
       it('as property', function() {
         expect(this.cue.mesh).toEqual(jasmine.any(BABYLON.Mesh));
