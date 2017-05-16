@@ -132,6 +132,10 @@ describe('BallsManager', function() {
           expect(this.ball.material).toEqual(expectedMaterial);
         });
 
+        it('of given type', function() {
+          expect(this.ball.type).toEqual(this.ballConfig.type);
+        });
+
         it('with certain physics-attributes', function() {
           expect(this.ball.physicsImpostor).toEqual(jasmine.any(BABYLON.PhysicsImpostor));
           expect(this.ball.physicsImpostor.getParam("mass")).toEqual(this.ballConfig.mass);
