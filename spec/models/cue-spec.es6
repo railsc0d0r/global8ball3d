@@ -105,12 +105,12 @@ describe('Cue', () => {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
 
-    describe('provides as property in radians', function() {
-      it('alpha describing its horizontal rotation', function() {
+    describe('provides an angle as property in radians describing', function() {
+      it('its horizontal rotation', function() {
         expect(this.cue.alpha).toEqual(0);
       });
 
-      it('beta describing its vertical rotation', function() {
+      it('its vertical rotation', function() {
         expect(this.cue.beta).toEqual(0);
       });
     });
