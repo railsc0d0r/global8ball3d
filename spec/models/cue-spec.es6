@@ -153,7 +153,7 @@ describe('Cue', () => {
         const cuePosition = this.cue.mesh.position;
         const radiusV3 = cuePosition.subtract(pivotAt);
 
-        const expectedMatrix = this.target.getPivotMatrix();
+        const expectedMatrix = BABYLON.Matrix.FromValues(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
         expectedMatrix.setTranslation(radiusV3.negate());
 
         expect(this.cue.mesh.getPivotMatrix()).toEqual(expectedMatrix);
