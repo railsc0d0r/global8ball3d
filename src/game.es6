@@ -219,6 +219,13 @@ const Game = class {
     throw message;
   }
 
+  get breakballs() {
+    console.log(this.balls);
+    return this.balls.filter(ball => {
+      return ball.type === 'breakball';
+    });
+  }
+
   static _clearTimeoutOrInterval(...ids) {
     ids.forEach(id => {
       window.clearTimeout(id);
