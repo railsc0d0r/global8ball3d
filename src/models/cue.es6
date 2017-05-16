@@ -44,6 +44,8 @@ const Cue = class {
     this.mesh.position = startPosition;
     this.mesh.setPivotMatrix(BABYLON.Matrix.Translation(-radiusV3.x, -radiusV3.y, -radiusV3.z));
     this.mesh.position = startPosition;
+
+    this.alpha = 0;
   }
 
   _createCueParts(shadowGenerator, materials, scene) {
