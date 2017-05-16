@@ -383,6 +383,14 @@ describe('Game', function() {
             expect(ball).toEqual(jasmine.any(BABYLON.Mesh));
           });
         });
+
+        it('providing a property returning the breakballs', function() {
+          const expectedBreakballCount = BallsStates.filter(ballConfig => {
+            return ballConfig.type === 'breakball';
+          }).length;
+
+          expect(this.game.breakballs.length).toEqual(expectedBreakballCount);
+        });
       });
     });
 
