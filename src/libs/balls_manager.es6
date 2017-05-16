@@ -88,6 +88,8 @@ const BallsManager = class {
 
     this.shadowGenerator.renderShadowsFrom(mesh);
 
+    mesh.type = config.type;
+
     return mesh;
   }
 
