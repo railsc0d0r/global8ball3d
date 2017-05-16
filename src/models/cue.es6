@@ -46,6 +46,7 @@ const Cue = class {
     this.mesh.position = startPosition;
 
     this.alpha = 0;
+    this.beta = 0;
   }
 
   _createCueParts(shadowGenerator, materials, scene) {
