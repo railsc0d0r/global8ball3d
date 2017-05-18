@@ -53,6 +53,10 @@ const Cue = class {
     return this._alpha;
   }
 
+  set alpha(value) {
+    this._alpha = value;
+  }
+
   get beta() {
     return this._beta;
   }
