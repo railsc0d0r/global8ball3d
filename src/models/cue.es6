@@ -61,6 +61,10 @@ const Cue = class {
     return this._beta;
   }
 
+  set beta(value) {
+    this._beta = value;
+  }
+
   _createCueParts(shadowGenerator, materials, scene) {
     let axisPoints = [];
     const distanceFromTarget = 0.08;
