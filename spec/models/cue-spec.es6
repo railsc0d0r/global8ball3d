@@ -110,11 +110,25 @@ describe('Cue', () => {
         it('returning its value in radians', function() {
           expect(this.cue.alpha).toEqual(0);
         });
+
+        it('storing the value given', function() {
+          const expectedValue = Math.PI;
+          this.cue.alpha = expectedValue;
+
+          expect(this.cue.alpha).toEqual(expectedValue);
+        });
       });
 
       describe('its vertical rotation', function() {
         it('returning its value in radians', function() {
           expect(this.cue.beta).toEqual(0);
+        });
+
+        it('storing the value given', function() {
+          const expectedValue = Math.PI / 8 * 3;
+          this.cue.beta = expectedValue;
+
+          expect(this.cue.beta).toEqual(expectedValue);
         });
       });
     });
