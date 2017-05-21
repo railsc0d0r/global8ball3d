@@ -38,12 +38,9 @@ const Cue = class {
 
     const pivotAt = target.position;
     const startPosition = new BABYLON.Vector3(pivotAt.x, pivotAt.y, pivotAt.z + 0.08);
-
     const radiusV3 = startPosition.subtract(pivotAt);
 
-    this.mesh.position = startPosition;
-    this.mesh.setPivotMatrix(BABYLON.Matrix.Translation(-radiusV3.x, -radiusV3.y, -radiusV3.z));
-    this.mesh.position = startPosition;
+    this._setPivotMatrix(this.mesh, startPosition, radiusV3);
 
     this._alpha = 0;
     this._beta = 0;
@@ -95,6 +92,12 @@ const Cue = class {
     shadowGenerator.renderShadowsFrom(axis);
 
     axis.parent = this.mesh;
+  }
+
+  _setPivotMatrix(mesh, startPosition, radiusV3) {
+    mesh.position = startPosition;
+    mesh.setPivotMatrix(BABYLON.Matrix.Translation(-radiusV3.x, -radiusV3.y, -radiusV3.z));
+    mesh.position = startPosition;
   }
 };
 
