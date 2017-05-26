@@ -136,11 +136,23 @@ describe('Cue', () => {
           expect(this.cue.beta).toEqual(0);
         });
 
-        it('storing the value given', function() {
-          const expectedValue = Math.PI / 8 * 3;
-          this.cue.beta = expectedValue;
+        describe('on setting its value', function() {
+          beforeEach(function() {
+            this.expectedValue = Math.PI / 8 * 3;
+            this.cue.beta = this.expectedValue;
+          });
 
-          expect(this.cue.beta).toEqual(expectedValue);
+          it('storing it', function() {
+            expect(this.cue.beta).toEqual(this.expectedValue);
+          });
+
+          it('rotating the cue to the given value horizontally', function() {
+            const expectedZ = Math.sin(this.expectedValue / 2);
+            const expectedW = Math.cos(this.expectedValue / 2);
+
+            expect(this.cue.mesh.rotationQuaternion.z).toEqual(expectedZ);
+            expect(this.cue.mesh.rotationQuaternion.w).toEqual(expectedW);
+          });
         });
       });
     });
