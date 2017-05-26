@@ -51,6 +51,8 @@ const Cue = class {
   }
 
   set alpha(value) {
+    const deltaAlpha = value - this._alpha;
+    this._rotateCue(this.mesh, BABYLON.Axis.Y, deltaAlpha);
     this._alpha = value;
   }
 
@@ -98,6 +100,10 @@ const Cue = class {
     mesh.position = startPosition;
     mesh.setPivotMatrix(BABYLON.Matrix.Translation(-radiusV3.x, -radiusV3.y, -radiusV3.z));
     mesh.position = startPosition;
+  }
+
+  _rotateCue(mesh, axis, deltaTheta) {
+    mesh.rotate(axis, deltaTheta, BABYLON.Space.World);
   }
 };
 
