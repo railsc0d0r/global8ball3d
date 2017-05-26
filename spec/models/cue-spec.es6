@@ -105,17 +105,25 @@ describe('Cue', () => {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
 
-    describe('provides an angle describing', function() {
+    describe('provides an angle as property describing', function() {
       describe('its horizontal rotation', function() {
         it('returning its value in radians', function() {
           expect(this.cue.alpha).toEqual(0);
         });
 
-        it('storing the value given', function() {
-          const expectedValue = Math.PI;
-          this.cue.alpha = expectedValue;
+        describe('on setting its value', function() {
+          beforeEach(function() {
+            this.expectedValue = Math.PI;
+            this.cue.alpha = this.expectedValue;
+          });
 
-          expect(this.cue.alpha).toEqual(expectedValue);
+          it('storing it', function() {
+            expect(this.cue.alpha).toEqual(this.expectedValue);
+          });
+
+          it('rotating the cue to the given value horizontally', function() {
+            console.log(this.cue.mesh.rotationQuaternion);
+          });
         });
       });
 
