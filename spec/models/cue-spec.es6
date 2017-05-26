@@ -122,7 +122,11 @@ describe('Cue', () => {
           });
 
           it('rotating the cue to the given value horizontally', function() {
-            console.log(this.cue.mesh.rotationQuaternion);
+            const expectedY = Math.sin(this.expectedValue / 2);
+            const expectedW = Math.cos(this.expectedValue / 2);
+
+            expect(this.cue.mesh.rotationQuaternion.y).toEqual(expectedY);
+            expect(this.cue.mesh.rotationQuaternion.w).toEqual(expectedW);
           });
         });
       });
