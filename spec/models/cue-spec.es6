@@ -105,6 +105,11 @@ describe('Cue', () => {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
 
+    it('set the upper limit for vertical rotation', function() {
+      const expectedUpperBetaLimit = Math.PI / 2 - Math.PI / 64;
+      expect(this.cue.upperBetaLimit).toEqual(expectedUpperBetaLimit);
+    });
+
     describe('provides an angle as property describing', function() {
       describe('its horizontal rotation', function() {
         it('returning its value in radians', function() {
