@@ -99,20 +99,20 @@ describe('Cue', () => {
   describe('as instance', function() {
     beforeEach(function() {
       this.cue = new Cue(this.target, this.shadowGenerator, this.materials, this.scene);
+      this.expectedUpperBetaLimit = Math.PI / 2 - Math.PI / 64;
+      this.expectedLowerBetaLimit = 0;
     });
 
     it('can be created', function() {
       expect(this.cue).toEqual(jasmine.any(Cue));
     });
 
-    it('set the upper limit for vertical rotation', function() {
-      const expectedUpperBetaLimit = Math.PI / 2 - Math.PI / 64;
-      expect(this.cue.upperBetaLimit).toEqual(expectedUpperBetaLimit);
+    it('sets the upper limit for vertical rotation', function() {
+      expect(this.cue.upperBetaLimit).toEqual(this.expectedUpperBetaLimit);
     });
 
-    it('set the lower limit for vertical rotation', function() {
-      const expectedLowerBetaLimit = 0;
-      expect(this.cue.lowerBetaLimit).toEqual(expectedLowerBetaLimit);
+    it('sets the lower limit for vertical rotation', function() {
+      expect(this.cue.lowerBetaLimit).toEqual(this.expectedLowerBetaLimit);
     });
 
     describe('provides an angle as property describing', function() {
