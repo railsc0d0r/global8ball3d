@@ -64,6 +64,8 @@ const Cue = class {
   }
 
   set beta(value) {
+    value = this.checkBetaLimits(value);
+
     const deltaBeta = value - this._beta;
     this._rotateCue(this.mesh, BABYLON.Axis.Z, deltaBeta);
     this._beta = value;
