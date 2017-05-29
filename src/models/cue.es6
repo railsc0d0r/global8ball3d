@@ -44,6 +44,7 @@ const Cue = class {
 
     this._alpha = 0;
     this._beta = 0;
+    this.upperBetaLimit = Math.PI / 2 - Math.PI / 64;
   }
 
   get alpha() {
