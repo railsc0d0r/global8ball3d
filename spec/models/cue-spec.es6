@@ -110,6 +110,11 @@ describe('Cue', () => {
       expect(this.cue.upperBetaLimit).toEqual(expectedUpperBetaLimit);
     });
 
+    it('set the lower limit for vertical rotation', function() {
+      const expectedLowerBetaLimit = 0;
+      expect(this.cue.lowerBetaLimit).toEqual(expectedLowerBetaLimit);
+    });
+
     describe('provides an angle as property describing', function() {
       describe('its horizontal rotation', function() {
         it('returning its value in radians', function() {
