@@ -115,6 +115,12 @@ describe('Cue', () => {
       expect(this.cue.lowerBetaLimit).toEqual(this.expectedLowerBetaLimit);
     });
 
+    describe('provides a method to check the value given for vertical rotation against defined limits', function() {
+      it('returning the lower limit if value is less than it', function() {
+        expect(this.cue.checkBetaLimits(-1)).toEqual(this.expectedLowerBetaLimit);
+      })
+    });
+
     describe('provides an angle as property describing', function() {
       describe('its horizontal rotation', function() {
         it('returning its value in radians', function() {
