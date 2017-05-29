@@ -119,6 +119,10 @@ describe('Cue', () => {
       it('returning the lower limit if value is less than it', function() {
         expect(this.cue.checkBetaLimits(-1)).toEqual(this.expectedLowerBetaLimit);
       })
+
+      it('returning the upper limit if value is greater than it', function() {
+        expect(this.cue.checkBetaLimits(Math.PI / 2)).toEqual(this.expectedUpperBetaLimit);
+      })
     });
 
     describe('provides an angle as property describing', function() {
