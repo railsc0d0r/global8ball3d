@@ -69,6 +69,16 @@ const Cue = class {
     this._beta = value;
   }
 
+  checkBetaLimits(value) {
+    if (value > this.upperBetaLimit) {
+      value = this.upperBetaLimit;
+    } else if ( value < this.lowerBetaLimit) {
+      value = this.lowerBetaLimit;
+    }
+
+    return value;
+  }
+
   _createCueParts(shadowGenerator, materials, scene) {
     let axisPoints = [];
     const distanceFromTarget = 0.08;
