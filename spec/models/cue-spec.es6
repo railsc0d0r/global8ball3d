@@ -125,6 +125,12 @@ describe('Cue', () => {
       })
     });
 
+    describe('provides a method to normalize the value given for horizontal rotation returning', function() {
+      it('the value if it is less or equal than full circle', function() {
+        expect(this.cue.normalizeAlpha(Math.PI)).toEqual(Math.PI);
+      });
+    });
+
     describe('provides an angle as property describing', function() {
       describe('its horizontal rotation', function() {
         it('returning its value in radians', function() {
