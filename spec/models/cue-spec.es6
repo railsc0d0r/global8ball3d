@@ -129,6 +129,10 @@ describe('Cue', () => {
       it('the value if it is less or equal than full circle', function() {
         expect(this.cue.normalizeAlpha(Math.PI)).toEqual(Math.PI);
       });
+
+      it('the value if it is greater than full circle', function() {
+        expect(this.cue.normalizeAlpha(3 * Math.PI)).toEqual(Math.PI);
+      });
     });
 
     describe('provides an angle as property describing', function() {
