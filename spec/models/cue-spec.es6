@@ -127,19 +127,31 @@ describe('Cue', () => {
 
     describe('provides a method to normalize the value given for horizontal rotation returning', function() {
       it('the value if it is less or equal than full circle', function() {
-        expect(this.cue.normalizeAlpha(Math.PI)).toEqual(Math.PI);
+        const value = Math.PI;
+        const expectedResult = Math.PI;
+
+        expect(this.cue.normalizeAlpha(value)).toEqual(expectedResult);
       });
 
-      it('the value if it is greater than full circle', function() {
-        expect(this.cue.normalizeAlpha(3 * Math.PI)).toEqual(Math.PI);
+      it('the normalized value if it is greater than full circle', function() {
+        const value = 3 * Math.PI;
+        const expectedResult = Math.PI;
+
+        expect(this.cue.normalizeAlpha(value)).toEqual(expectedResult);
       });
 
-      it('the value if it is negative and less or equal than full circle', function() {
-        expect(this.cue.normalizeAlpha(-(Math.PI / 2))).toEqual(Math.PI * 1.5);
+      it('the normalized positive value if it is negative and less or equal than full circle', function() {
+        const value = -(Math.PI / 2);
+        const expectedResult = Math.PI * 1.5;
+
+        expect(this.cue.normalizeAlpha(value)).toEqual(expectedResult);
       });
 
-      it('the value if it is negative and greater than full circle', function() {
-        expect(this.cue.normalizeAlpha(-(Math.PI / 2 + 4 * Math.PI))).toEqual(Math.PI * 1.5);
+      it('the normalized positive value if it is negative and greater than full circle', function() {
+        const value = -(Math.PI / 2 + 4 * Math.PI);
+        const expectedResult = Math.PI * 1.5;
+
+        expect(this.cue.normalizeAlpha(value)).toEqual(expectedResult);
       });
     });
 
