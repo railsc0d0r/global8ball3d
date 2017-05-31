@@ -56,7 +56,7 @@ const Cue = class {
   set alpha(value) {
     const deltaAlpha = value - this._alpha;
     this._rotateCue(this.mesh, BABYLON.Axis.Y, deltaAlpha);
-    this._alpha = value;
+    this._alpha = this.normalizeAlpha(value);
   }
 
   get beta() {
