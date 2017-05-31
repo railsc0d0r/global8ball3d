@@ -81,6 +81,13 @@ const Cue = class {
     return value;
   }
 
+  normalizeAlpha(value) {
+    const multiplicator = value / ( Math.PI * 2 );
+    const result = value - ( Math.PI * 2 ) * Math.floor(multiplicator);
+
+    return result;
+  }
+
   _createCueParts(shadowGenerator, materials, scene) {
     let axisPoints = [];
     const distanceFromTarget = 0.08;
