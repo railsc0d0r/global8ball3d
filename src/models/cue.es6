@@ -47,6 +47,8 @@ const Cue = class {
 
     this.lowerBetaLimit = 0;
     this.upperBetaLimit = Math.PI / 2 - Math.PI / 64;
+
+    this.rotationalPrecision = 2 * Math.PI / 72;
   }
 
   get alpha() {
