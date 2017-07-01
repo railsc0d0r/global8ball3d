@@ -211,6 +211,24 @@ describe('Cue', () => {
       });
     });
 
+    describe('provides a method to rotate the cue', function() {
+      it('on step down', function() {
+        pending();
+      });
+
+      it('on step up', function() {
+        pending();
+      });
+
+      it('on step left', function() {
+        pending();
+      });
+
+      it('on step right', function() {
+        pending();
+      });
+    });
+
     describe('provides a mesh', function() {
       it('as property', function() {
         expect(this.cue.mesh).toEqual(jasmine.any(BABYLON.Mesh));
