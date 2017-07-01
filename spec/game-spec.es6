@@ -292,49 +292,49 @@ describe('Game', function() {
       });
 
       describe('until they are dispatched via an event, then', function() {
-        it('creating the table', function(done) {
+        beforeEach(function(done) {
           spyOn(this.game, 'checkTableConfig').and.callFake(() => {
             done();
             return this.resolvingPromise;
           });
 
-          this.game.init();
-
-          expect(this.game.createTable).toHaveBeenCalledWith(this.resolvedObject);
-        });
-
-        it('managing the balls', function(done) {
           spyOn(this.game, 'checkBallsStates').and.callFake(() => {
             done();
             return this.resolvingPromise;
           });
 
           this.game.init();
+        });
 
+        it('creating the table', function() {
+          expect(this.game.createTable).toHaveBeenCalledWith(this.resolvedObject);
+        });
+
+        it('managing the balls', function() {
           expect(this.game.manageBalls).toHaveBeenCalledWith(this.resolvedObject);
         });
       });
 
       describe('until a timeout is reached, then throwing an error', function() {
-        it('if no tableConfig was dispatched', function(done) {
+        beforeEach(function(done) {
           spyOn(this.game, 'checkTableConfig').and.callFake(() => {
             done();
             return this.rejectingPromise;
           });
 
-          this.game.init();
-
-          expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
-        });
-
-        it('if no ballsStates were dispatched', function(done) {
           spyOn(this.game, 'checkBallsStates').and.callFake(() => {
             done();
             return this.rejectingPromise;
           });
 
           this.game.init();
+        });
 
+        it('if no tableConfig was dispatched', function() {
+          expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
+        });
+
+        it('if no ballsStates were dispatched', function() {
           expect(this.game.throwException).toHaveBeenCalledWith(this.errorMessage);
         });
       });
