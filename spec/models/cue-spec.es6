@@ -115,6 +115,10 @@ describe('Cue', () => {
       expect(this.cue.lowerBetaLimit).toEqual(this.expectedLowerBetaLimit);
     });
 
+    it('sets the precision used for rotation', function() {
+      expect(this.cue.rotationalPrecision).toEqual(2 * Math.PI / 72);
+    });
+
     describe('provides a method to check the value given for vertical rotation against defined limits', function() {
       it('returning the lower limit if value is less than it', function() {
         expect(this.cue.checkBetaLimits(-1)).toEqual(this.expectedLowerBetaLimit);
