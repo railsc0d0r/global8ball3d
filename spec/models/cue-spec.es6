@@ -200,7 +200,7 @@ describe('Cue', () => {
             expect(this.cue.beta).toEqual(this.expectedValue);
           });
 
-          it('rotating the cue to the given value horizontally', function() {
+          it('rotating the cue to the given value vertically', function() {
             const expectedZ = Math.sin(this.expectedValue / 2);
             const expectedW = Math.cos(this.expectedValue / 2);
 
