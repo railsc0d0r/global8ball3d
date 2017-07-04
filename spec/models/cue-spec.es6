@@ -211,25 +211,29 @@ describe('Cue', () => {
       });
     });
 
-    fdescribe('provides a method to rotate the cue', function() {
-      it('one step down', function() {
-        const startingBeta = Math.PI / 8;
-        this.cue.beta = startingBeta;
+    fdescribe('provides a method to rotate the cue one step', function() {
+      describe('vertically', function() {
+        beforeEach(function() {
+          this.beta = Math.PI / 8;
+          this.cue.beta = this.beta;
+        });
 
-        this.cue.rotateDown();
+        it('down', function() {
+          this.cue.rotateDown();
 
-        const expectedBeta = startingBeta + this.cue.rotationalPrecision;
+          const expectedBeta = this.beta + this.cue.rotationalPrecision;
 
-        const expectedZ = Math.sin(expectedBeta / 2);
-        const expectedW = Math.cos(expectedBeta / 2);
+          const expectedZ = Math.sin(expectedBeta / 2);
+          const expectedW = Math.cos(expectedBeta / 2);
 
-        expect(this.cue.mesh.rotationQuaternion.z).toEqual(expectedZ);
-        expect(this.cue.mesh.rotationQuaternion.w).toEqual(expectedW);
-      });
+          expect(this.cue.mesh.rotationQuaternion.z).toEqual(expectedZ);
+          expect(this.cue.mesh.rotationQuaternion.w).toEqual(expectedW);
+        });
 
-      it('one step up', function() {
-        pending();
-      });
+        it('up', function() {
+          pending();
+        });
+      })
 
       it('one step left', function() {
         pending();
