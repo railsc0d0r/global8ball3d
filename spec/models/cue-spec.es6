@@ -244,12 +244,27 @@ describe('Cue', () => {
         });
       })
 
-      it('one step left', function() {
-        pending();
-      });
+      describe('horizontally', function() {
+        beforeEach(function() {
+          this.alpha = Math.PI;
+          this.cue.alpha = this.alpha;
+        });
 
-      it('one step right', function() {
-        pending();
+        it('left', function() {
+          this.cue.rotateLeft();
+
+          const expectedAlpha = this.alpha + this.cue.rotationalPrecision;
+
+          const expectedY = Math.sin(expectedAlpha / 2);
+          const expectedW = Math.cos(expectedAlpha / 2);
+
+          expect(NumberRound(this.cue.mesh.rotationQuaternion.y, 14)).toEqual(NumberRound(expectedY, 14));
+          expect(NumberRound(this.cue.mesh.rotationQuaternion.w, 14)).toEqual(NumberRound(expectedW, 14));
+        });
+
+        it('right', function() {
+          pending();
+        });
       });
     });
 
