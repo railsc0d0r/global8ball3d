@@ -77,6 +77,10 @@ const Cue = class {
     this.beta = this.beta + this.rotationalPrecision;
   }
 
+  rotateUp() {
+    this.beta = this.beta - this.rotationalPrecision;
+  }
+
   checkBetaLimits(value) {
     if (value > this.upperBetaLimit) {
       value = this.upperBetaLimit;
