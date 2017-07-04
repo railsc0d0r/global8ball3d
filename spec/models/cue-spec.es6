@@ -227,12 +227,20 @@ describe('Cue', () => {
           const expectedZ = Math.sin(expectedBeta / 2);
           const expectedW = Math.cos(expectedBeta / 2);
 
-          expect(this.cue.mesh.rotationQuaternion.z).toEqual(expectedZ);
-          expect(this.cue.mesh.rotationQuaternion.w).toEqual(expectedW);
+          expect(NumberRound(this.cue.mesh.rotationQuaternion.z, 14)).toEqual(NumberRound(expectedZ, 14));
+          expect(NumberRound(this.cue.mesh.rotationQuaternion.w, 14)).toEqual(NumberRound(expectedW, 14));
         });
 
         it('up', function() {
-          pending();
+          this.cue.rotateUp();
+
+          const expectedBeta = this.beta - this.cue.rotationalPrecision;
+
+          const expectedZ = Math.sin(expectedBeta / 2);
+          const expectedW = Math.cos(expectedBeta / 2);
+
+          expect(NumberRound(this.cue.mesh.rotationQuaternion.z, 14)).toEqual(NumberRound(expectedZ, 14));
+          expect(NumberRound(this.cue.mesh.rotationQuaternion.w, 14)).toEqual(NumberRound(expectedW, 14));
         });
       })
 
