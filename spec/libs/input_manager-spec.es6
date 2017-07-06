@@ -22,4 +22,14 @@ fdescribe('InputManager', function() {
     });
   });
 
+  describe('as an instance', function() {
+    beforeEach(function() {
+      this.inputManager = new InputManager(this.canvas);
+    });
+
+    it('stores the given DOM-element as a property', function() {
+      expect(this.inputManager.element).toEqual(this.canvas);
+    });
+  });
+
 });
