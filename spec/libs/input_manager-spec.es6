@@ -22,6 +22,13 @@ fdescribe('InputManager', function() {
     });
   });
 
+  it('requires the given DOM-element to be marked to receive touch-actions', function() {
+    const nonTouchCanvas = document.getElementById('nonTouchCanvas');
+
+    const throwsAnException = () => { new InputManager(nonTouchCanvas) };
+    expect(throwsAnException).toThrow('DOM-element given to InputManager is required to have an attribute touch-action defined.');
+  });
+
   describe('as an instance', function() {
     beforeEach(function() {
       this.inputManager = new InputManager(this.canvas);
