@@ -7,7 +7,6 @@ fdescribe('InputManager', function() {
   beforeEach(function() {
     HtmlFixtures.addCanvas();
     this.canvas = document.getElementById('renderCanvas');
-    console.log(this.canvas);
   });
 
   afterEach(function() {
