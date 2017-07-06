@@ -17,6 +17,7 @@ const HtmlFixtures = class {
     '   }' +
     ' </style>' +
     ' <canvas id="renderCanvas" touch-action="none"></canvas>' +
+    ' <canvas id="nonTouchCanvas"></canvas>' +
     '</div>';
 
     document.body.insertAdjacentHTML(
