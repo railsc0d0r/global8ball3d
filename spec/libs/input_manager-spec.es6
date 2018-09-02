@@ -3,7 +3,7 @@ import InputManager from '../../src/libs/input_manager';
 import HtmlFixtures from '../support/html_fixtures';
 import NonValues from '../support/non_values';
 
-fdescribe('InputManager', function() {
+describe('InputManager', function() {
   beforeEach(function() {
     HtmlFixtures.addCanvas();
     this.canvas = document.getElementById('renderCanvas');
